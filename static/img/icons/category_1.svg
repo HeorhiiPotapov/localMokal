@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit Оценочная версия) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.7264mm" height="12.4633mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+viewBox="0 0 13.13 9.78"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+   <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="2.1" y1="0.39" x2="11.06" y2="9.36">
+    <stop offset="0" stop-opacity="1" stop-color="#009A84"/>
+    <stop offset="0.25098" stop-opacity="1" stop-color="#218A7F"/>
+    <stop offset="1" stop-opacity="1" stop-color="#437A79"/>
+   </linearGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path fill="url(#id0)" d="M-0 6.75l7.11 -5.51 2.53 5.94 -9.2 0.99 -0.44 -1.42zm8.09 -6.23l0 -0 2.73 6.41 -0 0 0 0.01c0.08,0.2 -0.01,0.42 -0.21,0.51 -0.2,0.08 -0.43,-0.01 -0.52,-0.21l-0 -0.01 -0 0 -2.72 -6.39 -0.01 -0.02c-0.08,-0.2 0.01,-0.42 0.21,-0.51 0.2,-0.08 0.43,0.01 0.52,0.21l0 0zm-0.29 7.3c0.03,0.12 0.05,0.25 0.05,0.38 0,0.87 -0.72,1.58 -1.61,1.58 -0.89,0 -1.61,-0.71 -1.61,-1.58 0,-0.01 0,-0.03 0,-0.04l0.58 -0.06c-0,0.03 -0.01,0.07 -0.01,0.1 0,0.56 0.46,1.02 1.03,1.02 0.57,0 1.03,-0.46 1.03,-1.02 0,-0.11 -0.02,-0.22 -0.05,-0.32l0.58 -0.06zm2.93 -4.53l-0 -0 1.2 -0.48 0 0 0 -0c0.14,-0.06 0.31,0.01 0.37,0.15 0.06,0.14 -0.01,0.31 -0.16,0.37l-0 0 0 0 -1.18 0.48 -0.01 0c-0.15,0.06 -0.31,-0.01 -0.37,-0.15 -0.06,-0.14 0.01,-0.31 0.16,-0.37l0 0zm0.11 -2.88l0 0 -0.58 1.13 -0 -0 -0 0c-0.07,0.14 -0.24,0.2 -0.38,0.13 -0.14,-0.07 -0.2,-0.24 -0.13,-0.38l0 -0 -0 -0 0.57 -1.12 0.01 -0.01c0.07,-0.14 0.24,-0.2 0.38,-0.13 0.14,0.07 0.2,0.24 0.13,0.38l0 0zm1.93 5.97l-0 0 -1.25 -0.32 0 -0 -0 -0c-0.15,-0.04 -0.24,-0.19 -0.2,-0.34 0.04,-0.15 0.2,-0.24 0.35,-0.2l0 0 0 -0 1.24 0.32 0.01 0c0.15,0.04 0.24,0.19 0.2,0.34 -0.04,0.15 -0.2,0.24 -0.35,0.2l0 -0z"/>
+ </g>
+</svg>

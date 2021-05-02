@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная</title>
+
+
+	<script src="./assets/js/jquery-3.6.0.min.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap-grid.min.css">
+	<script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- /BOOTSTRAP -->
+
+	<!-- SLICK -->
+	<link rel="stylesheet" href="./assets/slick-master/slick/slick.css">
+	<link rel="stylesheet" href="./assets/slick-master/slick/slick-theme.css">
+	<script src="./assets/slick-master/slick/slick.js"></script>
+	<!-- /SLICK -->
+
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!-- fontawesome -->
+
+	<link rel="stylesheet" href="./assets/css/main.css">
+
+
+
+</head>
+<body>
+	<div id="page">
+
+		<header class='header-main'>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5">
+						<div class="header-main__logo-wrapper">
+							<img src="./img/logo.png" alt="logo">
+						</div>
+					</div>
+					<div class="col-lg-7 d-flex align-items-center">
+						<div class="header-main__items">
+							<div class="header-main__items__item search-form">
+								<form action="" id="search-form">
+									<!-- 
+										ФОРМА ПОИСКА 
+									 -->
+									<input type="text" placeholder="Что ищите?">
+									<img class="loupe" src="./img/icons/loupe.svg" alt="loupe">
+								</form>
+							</div>
+							<div class="header-main__items__item region">
+								<form action="" id="region-form">
+									<select>
+										<!-- 
+											вывод регионов, первый option всегда -> <option disabled selected>Регион</option>
+										 -->
+										<option disabled selected>Регион</option>
+										<option value="Харьков">Харьков</option>
+										<option value="Киев">Киев</option>
+									</select>
+								</form>
+							</div>
+							<div class="header-main__items__item follow-sale">
+								<a href="#">
+									<img src="./img/icons/follow_sale.svg" alt="follow_sale">
+									подписка на акции
+								</a>
+							</div>
+							<div class="header-main__items__item favorites">
+								<a href="#">
+									<img src="./img/icons/favorites.svg" alt="favorites">
+								</a>
+							</div>
+							<div class="header-main__items__item hamburger">
+								<div class="wrapper-menu-hamburger">
+									<div class="wrapper-menu-hamburger__hamburger-menu"></div>
+								</div>
+							</div>
+						</div> <!-- header-main__items -->
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+
+
+		<div id="content">
+			<div class="product-page">
+				
+				<div class="product-page__images-block">
+					<div class="product-page__images-block__image">
+						<img src="./img/product1.jpg" alt="">
+					</div>
+					<div class="product-page__images-block__image">
+						<img src="./img/product2.jpg" alt="">
+					</div>
+					<div class="product-page__images-block__image">
+						<img src="./img/product3.jpg" alt="">
+					</div>
+					<div class="product-page__images-block__image">
+						<img src="./img/product4.jpg" alt="">
+					</div>
+				</div>
+
+				<div class="product-page__content">
+					<div class="product-page__content__header">
+						<div class="product-page__content__header__go-back">
+							<a href="#"></a>
+						</div>
+						<div class="product-page__content__header__buttons">
+							<button class='button tmp-button-gray' id='btn_call'>позвонить</button>
+							<button class='button tmp-button-gray' id='btn_message'>сообщение</button>
+						</div>
+					</div>
+
+					<div class="product-page__content__breadcrumbs-wrapper">
+						<div class="product-page__content__breadcrumbs-wrapper__breadcrumbs">
+							главная / полиграфия / визитки / Визитки цыфровые
+						</div>
+					</div>
+					<div class="product-page__content__product-info">
+						<div class="product-page__content__product-info__name">
+							<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatem rem fuga maiores, totam rerum.</h2>
+						</div>
+						<div class="product-page__content__product-info__price-and-favorites">
+							<div class="product-page__content__product-info__price-and-favorites__price">
+								<div class="product-page__content__product-info__price-and-favorites__price__without-discount">40000<span class="sumbol">грн.</span></div>
+								<div class="product-page__content__product-info__price-and-favorites__price__with-discount">444444<span class="sumbol">грн.</span></div>
+							</div>
+							<div class="product-page__content__product-info__price-and-favorites__favorites">
+								<a href="#">
+									<img src="./img/icons/favorites.svg" alt="favorites">
+								</a>
+							</div>
+							<div class="product-page__content__product-info__price-and-favorites__share">
+								<a href="#">
+									<i class="fa fa-share-alt" aria-hidden="true"></i>
+								</a>
+							</div>
+						</div>
+						<div class="product-page__content__product-info__product-code">
+							Код: <span>123</span>
+						</div>
+						<div class="product-page__content__product-info__sale">
+							<div class="product-page__content__product-info__sale__title">
+								АКЦИЯ:
+							</div>
+							<div class="product-page__content__product-info__sale__desctiption">
+								Купите 300 по цене 200Купите 300 по цене 200Купите 300 по цене 200Купите 300 по цене 200Купите 300 по цене 200Купите 300 по цене 200Купите 300 по цене 
+							</div>
+							<div class="product-page__content__product-info__sale__time">
+								<span>20.03 - 20.04</span> 
+								<i class="fa fa-clock-o" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div class="product-page__content__product-info__description">
+							<div class="product-page__content__product-info__description__title">
+								<h3>Описание</h3>
+							</div>
+							<div class="product-page__content__product-info__description__text">
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias error eligendi, placeat numquam quod quo sunt eos voluptatibus sit omnis perferendis eum? Officiis voluptas architecto consequatur molestiae ipsa eum necessitatibus commodi neque quia laborum ducimus, quas sed cum temporibus perspiciatis! Porro libero, odio quae distinctio ipsa facilis eius modi velit aliquam nobis in neque impedit at ipsum vitae tempora aliquid molestiae dignissimos magnam repellat mollitia cupiditate. Voluptatem rerum, dolore eaque asperiores optio nemo quidem ut ullam natus. Saepe pariatur ut aperiam totam suscipit! Quas impedit, accusamus officia nihil quia incidunt molestias illum itaque tempora in nostrum, vero, nisi harum iusto perferendis explicabo aspernatur inventore neque. Dignissimos nulla facilis eaque, deserunt quibusdam id dolorem nostrum recusandae perspiciatis eveniet quas amet? Maxime, ex provident quos ducimus laudantium architecto explicabo. Quis exercitationem repellat ex dolores sit vitae sapiente molestias odio aliquam mollitia. Dolor consectetur dicta est blanditiis perferendis doloremque commodi unde suscipit, ipsam distinctio praesentium ipsa corrupti? Impedit rerum itaque error tempora facilis repellendus officia explicabo, exercitationem iusto, ducimus odio quasi, assumenda totam. Dolorem perferendis exercitationem excepturi, rem optio commodi. Eveniet sequi nostrum ratione ipsam exercitationem sapiente maiores expedita incidunt neque? Officia atque accusamus totam aperiam doloribus nobis. Expedita architecto distinctio tempora nostrum.
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem magnam voluptatem molestiae alias fuga asperiores eveniet vero temporibus quia quasi assumenda et animi rerum earum voluptatum magni quaerat quis laudantium provident, consequuntur quae ipsum dolorem. Iusto maiores aspernatur facilis mollitia doloremque neque non fugit libero natus nesciunt voluptate praesentium, sapiente quae ut eligendi? Corrupti odio nam, consequatur quas ea cupiditate iure placeat ex, corporis, exercitationem mollitia eveniet tenetur excepturi nostrum dignissimos perferendis expedita necessitatibus laboriosam eos fuga eius animi ut! Quasi esse neque eius dolore minus nihil, est, iste quia necessitatibus debitis aliquid voluptates, perferendis et in repudiandae nulla similique autem voluptas optio totam maiores possimus molestiae. Omnis velit hic minima debitis assumenda at voluptatibus esse atque. Obcaecati hic excepturi iusto nulla placeat cumque iste veritatis nostrum, iure eveniet deserunt a incidunt ducimus itaque consequuntur perferendis mollitia ipsa ea ab repudiandae laudantium animi perspiciatis maxime harum! Vel vitae at ducimus assumenda, voluptatum saepe obcaecati facilis impedit. Exercitationem cupiditate delectus odit ad nemo et recusandae sed accusamus. Ipsam molestiae, cum dolores natus maxime quas aperiam officiis hic provident. Est quis error veniam impedit illum beatae iste, ea ducimus eius fugit tenetur minima, exercitationem harum! Numquam ad porro nihil eveniet placeat quo.
+							</div>
+							<div class="product-page__content__product-info__description__expand">
+								Подробнее
+							</div>
+							<div class="block-for-calculate-height">
+
+							</div>
+						</div>
+
+
+						<div class="product-page__content__product-info__contacts">
+							<div class="product-page__content__product-info__contacts__title">Контакты</div>
+							<div class="product-page__content__product-info__contacts__content">
+								<div class="product-page__content__product-info__contacts__content__name-and-logo">
+									<div class="product-page__content__product-info__contacts__content__name-and-logo__logo">
+										<img src="./img/some_logo1.png" alt="">
+									</div>
+									<div class="product-page__content__product-info__contacts__content__name-and-logo__name">
+										OOO CДЕК
+									</div>
+								</div>
+								<div class="product-page__content__product-info__contacts__content__section">
+									<div class="product-page__content__product-info__contacts__content__section__title">
+										<i class="fa fa-globe" aria-hidden="true"></i>
+										Страна
+									</div>
+									<div class="product-page__content__product-info__contacts__content__section__field">
+										Украина
+									</div>
+								</div>
+								<div class="product-page__content__product-info__contacts__content__section">
+									<div class="product-page__content__product-info__contacts__content__section__title">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+										Город / Адрес
+									</div>
+									<div class="product-page__content__product-info__contacts__content__section__field">
+										г. Полтава, ул. Полтавская, дом 64, оф 703
+									</div>
+								</div>
+								<div class="product-page__content__product-info__contacts__content__section">
+									<div class="product-page__content__product-info__contacts__content__section__title">
+										<i class="fa fa-mobile" aria-hidden="true"></i>
+										Телефоны
+									</div>
+									<div class="product-page__content__product-info__contacts__content__section__field">
+										+38 063 777-77-77
+									</div>
+									<div class="product-page__content__product-info__contacts__content__section__field">
+										+38 063 777-77-77
+									</div>
+									<div class="product-page__content__product-info__contacts__content__section__field">
+										+38 063 777-77-77
+									</div>
+								</div>
+								<div class="product-page__content__product-info__contacts__content__section">
+									<div class="product-page__content__product-info__contacts__content__section__title">
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+										E-mail:
+									</div>
+									<div class="product-page__content__product-info__contacts__content__section__field">
+										info@cdek.com
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="product-page__content__recommendation">
+						<div class="product-page__content__recommendation__title">
+							С этим товаром покупают
+						</div>
+						<div class="products-wrapper">
+							<div class="container">
+								<div class="row">
+									<div class="col-12 col-md-6 col-lg-6 product-wrapper">
+										<div class="product">
+											<div class="product__header-image-wrapper">
+												<div class="product__header-image-wrapper__header-image">
+													<div class="product__header-image-wrapper__header-image__sale-block">
+														<img class='product__header-image-wrapper__header-image__sale-block__bg' src="./img/icons/sale_bg.svg" alt="">
+														<span class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ!</span> 
+													</div>
+													<img class='product__header-image-wrapper__header-image__product-img' src="./img/product4.jpg" alt="product_name">
+												</div>
+											</div>
+
+											<div class="product__name">
+												Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+											</div>
+											<div class="product__price-favorite">
+												<div class="product__price-favorite__price">
+													<div class="product__price-favorite__price__without-discount">40000<!--<span class="sumbol">грн.</span>--> </div>
+													<div class="product__price-favorite__price__with-discount">39000<span class="sumbol">грн.</span></div>
+												</div>
+												<div class="product__price-favorite__favorite">
+													<img src="./img/icons/favorites.svg" alt="favorites">
+												</div>
+											</div>
+											<div class="product__company">
+												<div class="product__company__logo">
+													<img src="./img/some_logo.png" alt="some_logo">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-12 col-md-6 col-lg-6 product-wrapper">
+										<div class="product">
+											<div class="product__header-image-wrapper">
+												<div class="product__header-image-wrapper__header-image">
+													<div class="product__header-image-wrapper__header-image__sale-block">
+														<img class='product__header-image-wrapper__header-image__sale-block__bg' src="./img/icons/sale_bg.svg" alt="">
+														<span class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ!</span> 
+													</div>
+													<img class='product__header-image-wrapper__header-image__product-img' src="./img/product4.jpg" alt="product_name">
+												</div>
+											</div>
+											<div class="product__name">
+												Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+											</div>
+											<div class="product__price-favorite">
+												<div class="product__price-favorite__price">
+													<div class="product__price-favorite__price__without-discount">40000<span class="sumbol">грн.</span></div>
+													<div class="product__price-favorite__price__with-discount">444444<span class="sumbol">грн.</span></div>
+												</div>
+												<div class="product__price-favorite__favorite">
+													<img src="./img/icons/favorites.svg" alt="favorites">
+												</div>
+											</div>
+											<div class="product__company">
+												<div class="product__company__logo">
+													<img src="./img/some_logo.png" alt="some_logo">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!-- row -->
+							</div><!-- container -->
+						</div> <!-- products-wrapper -->
+					</div> <!-- product-page__content__recommendation -->
+				</div><!--product-page__content -->
+			</div><!-- product-page -->
+		</div><!-- content -->
+	</div> <!-- page -->
+
+	<div class="mobile_menu_on_bottom">
+
+	</div>
+	<!-- FOR SVG GRADIENT -->
+	<svg class='hide-svg'>
+		<defs>
+			<linearGradient id="icon_gradient" gradientUnits="userSpaceOnUse" x1="2.1" y1="0.39" x2="11.06" y2="9.36">
+				<stop offset="0" stop-opacity="1" stop-color="#07DC58"/>
+				<stop offset="1" stop-opacity="1" stop-color="#048B3B"/>
+			</linearGradient>
+		</defs>
+	</svg>
+	<!-- /FOR SVG GRADIENT -->
+
+	<script src="./assets/js/main.js"></script>
+
+</body>
+</html>

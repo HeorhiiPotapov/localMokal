@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{{ favorites }}
+<div id="page">
+	<div id="content">
+<div class="products-wrapper ">
+    <div class="container">
+        <div class="row mb-5 mt-3">
+          <div class="col-lg-12"><a href="{% url 'index' %}">Главная</a> / Избранное</div>
+        </div>
+        <div class="row">
+        {% for product in products %}
+            <div class="col-6 col-md-4 col-lg-3 product-wrapper">
+                <div class="product">
+                    <div class="product__header-image-wrapper">
+                        <div class="product__header-image-wrapper__header-image">
+                            {% if product.discount %}
+                                <div class="product__header-image-wrapper__header-image__sale-block">
+                                    <img class='product__header-image-wrapper__header-image__sale-block__bg' src="{% static './img/icons/sale_bg.svg' %}" alt="">
+                                    <span class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ!</span> 
+                                </div>
+                            {% endif %}
+                            <img class='product__header-image-wrapper__header-image__product-img' src="{{ product.main_image.url }}" alt="product_name">
+                        </div>
+                    </div>
+                    <div class="product__name">
+                        <a style="color: inherit" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    </div>
+                    <div class="product__price-favorite">
+                        <div class="product__price-favorite__price">
+                            {% if product.discount %}
+                            <div class="product__price-favorite__price__without-discount">{{ product.price|floatformat:"0" }}
+                                <!--<span class="sumbol">грн.</span>-->
+                            </div>
+                            {% endif %}
+                            <div class="product__price-favorite__price__with-discount">
+                                {{ product.price_after_discount|floatformat:"0" }}<span class="sumbol"> грн</span></div>
+                        </div>
+                        <div class="product__price-favorite__favorite">
+                            
+                            <a href="{% url 'products:add_to_favorite' product_id=product.id %}">
+                                <div class="add_to_favorites">
+                                  <img src="{% if product.id in request.session.favorites %}
+                                      {% static './img/icons/favorites_fill.svg' %}
+                                    {% else %}{% static './img/icons/favorites.svg' %}{% endif %}" alt="favorites">	
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product__company">
+                        <div class="product__company__logo " style="display: inline;">
+                            {% if product.owner.profile.logo %}
+                                <img src="{{ product.owner.profile.logo.url }}" alt="some_logo">
+                            {% elif product.owner.profile.brand %}
+                                <p>{{ product.owner.profile.brand }}</p>
+                            {% else %}
+                                <p>{{ product.owner.profile.user.email }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <!-- ajax button -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="products-wrapper__see-all">
+                    <a href="{% url 'products:all' %}" class="button button-grey">
+                        Показать все
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- products-wrapper -->
+			</div>
+		</div>
+{% endblock content %}

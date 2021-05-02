@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная</title>
+
+
+	<script src="./assets/js/jquery-3.6.0.min.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap-grid.min.css">
+	<script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- /BOOTSTRAP -->
+
+	<!-- SLICK -->
+	<link rel="stylesheet" href="./assets/slick-master/slick/slick.css">
+	<link rel="stylesheet" href="./assets/slick-master/slick/slick-theme.css">
+	<script src="./assets/slick-master/slick/slick.js"></script>
+	<!-- /SLICK -->
+
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!-- fontawesome -->
+
+	<link rel="stylesheet" href="./assets/css/main.css">
+
+
+
+</head>
+<body>
+	<div id="page">
+
+		<header class='header-main'>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5">
+						<div class="header-main__logo-wrapper">
+							<img src="./img/logo.png" alt="logo">
+						</div>
+					</div>
+					<div class="col-lg-7 d-flex align-items-center">
+						<div class="header-main__items">
+							<div class="header-main__items__item search-form">
+								<form action="" id="search-form">
+									<!-- 
+										ФОРМА ПОИСКА 
+									 -->
+									<input type="text" placeholder="Что ищите?">
+									<img class="loupe" src="./img/icons/loupe.svg" alt="loupe">
+								</form>
+							</div>
+							<div class="header-main__items__item region">
+								<form action="" id="region-form">
+									<select>
+										<!-- 
+											вывод регионов, первый option всегда -> <option disabled selected>Регион</option>
+										 -->
+										<option disabled selected>Регион</option>
+										<option value="Харьков">Харьков</option>
+										<option value="Киев">Киев</option>
+									</select>
+								</form>
+							</div>
+							<div class="header-main__items__item follow-sale">
+								<a href="#">
+									<img src="./img/icons/follow_sale.svg" alt="follow_sale">
+									подписка на акции
+								</a>
+							</div>
+							<div class="header-main__items__item favorites">
+								<a href="#">
+									<img src="./img/icons/favorites.svg" alt="favorites">
+								</a>
+							</div>
+							<div class="header-main__items__item hamburger">
+								<div class="wrapper-menu-hamburger">
+									<div class="wrapper-menu-hamburger__hamburger-menu"></div>
+								</div>
+							</div>
+						</div> <!-- header-main__items -->
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+		<div id="content">
+
+
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="my-contacts">
+							<h2>Мои контакты</h2>
+
+							<form class='my-contacts__form' action="">
+								<div class="my-contacts__form__left">
+									<div class="my-contacts__form__left__upload-file">
+										<i class="fa fa-plus" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="my-contacts__form__center">
+									<div class="my-contacts__form__center__block-fields">
+										<div class="my-contacts__form__center__block-fields__title">
+											<i class="fa fa-building my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+											Компания
+										</div>
+										<div class="my-contacts__form__center__block-fields__inp-block _company_name">
+											<input type="text" class='tmp-input-text' name='company_name' >
+										</div>
+									</div>
+
+									<div class="my-contacts__form__center__block-fields">
+										<div class="my-contacts__form__center__block-fields__title">
+											<i class="fa fa-globe my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+											Страна
+										</div>
+										<div class="my-contacts__form__center__block-fields__inp-block _country">
+											<input type="text" class='tmp-input-text' name='country' >
+										</div>
+									</div>
+
+									<div class="my-contacts__form__center__block-fields">
+										<div class="my-contacts__form__center__block-fields__title">
+											<i class="fa fa-map-marker my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+											Город / адрес
+										</div>
+										<div class="my-contacts__form__center__block-fields__inp-block _addres">
+											<input type="text" class='tmp-input-text' name='addres' >
+										</div>
+										<div class="my-contacts__form__center__block-fields__inp-block _addres1">
+											<input type="text" class='tmp-input-text' name='addres1' >
+										</div>
+									</div>
+									<div class="my-contacts__form__center__block-fields">
+										<div class="my-contacts__form__center__block-fields__title">
+											<i class="fa fa-mobile my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+											Телефоны
+										</div>
+										<div class="my-contacts__form__center__block-fields__inp-block _phone">
+											<input type="text" class='tmp-input-text' name='phone' >
+										</div>
+										<div class="my-contacts__form__center__block-fields__inp-block _phone1">
+											<input type="text" class='tmp-input-text' name='phone1' >
+										</div>
+									</div>
+									<div class="my-contacts__form__center__block-fields">
+										<div class="my-contacts__form__center__block-fields__title">
+											<i class="fa fa-envelope-o my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+											E-mail
+										</div>
+										<div class="my-contacts__form__center__block-fields__inp-block _email">
+											<input type="email" class='tmp-input-text' name='email' >
+										</div>
+
+									</div>
+									
+
+								</div>
+								<div class="my-contacts__form__right">
+									<div class="my-contacts__form__inp-block">
+										<input class='button button-with-gradient my-contacts__submit' type="submit" value='Сохранить'>
+									</div>
+								</div>
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+
+
+		<footer class='footer-main'>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="footer-main__nav-and-info">
+							<div class="footer-main__nav-and-info__nav">
+								<h3 class='footer-main__nav-and-info__nav__title'>Сайт: </h3>
+								<nav class='footer-main__nav-and-info__nav__menu'>
+									<a href="#">
+										О проекте
+									</a>
+									<a href="#">
+										Правила сайта 
+									</a>
+									<a href="#">
+										Обратная связь
+									</a>
+								</navю>
+							</div>
+							<div class="footer-main__nav-and-info__info-block">
+								<h3 class='footer-main__nav-and-info__info-block"__title'>Покупателям: </h3>
+								<p>
+									Подпишитесь на акции, скидки, распродажи, Избранное
+								</p>
+							</div>
+							<div class="footer-main__nav-and-info__info-block">
+								<h3 class='footer-main__nav-and-info__info-block"__title'>Поставщикам: </h3>
+								<p>
+									Размещайте свои акции, распродажи, товары, услуги
+								</p>
+							</div>
+
+						</div>
+
+
+						<div class="footer-main__logo-and-socials">
+
+							<div class="footer-main__logo-and-socials__socials">
+								<!-- 
+									ссылкам добавить атрибут  rel="nofollow" для SEO
+									'link_to_social' : 'url'
+									'img_social': 'url'
+									'alt_social': 'name' SEO 
+								 -->
+								<div class="footer-main__logo-and-socials__socials__social">
+									<a href="#" rel="nofollow">
+										<img src="./img/icons/youtube.svg" alt="youtube">
+									</a>
+								</div>
+								<div class="footer-main__logo-and-socials__socials__social">
+									<a href="#" rel="nofollow">
+										<img src="./img/icons/facebook.svg" alt="facebook">
+									</a>
+								</div>
+								<div class="footer-main__logo-and-socials__socials__social">
+									<a href="#" rel="nofollow">
+										<img src="./img/icons/twitter.svg" alt="twitter">
+									</a>
+								</div>
+								<div class="footer-main__logo-and-socials__socials__social">
+									<a href="#" rel="nofollow">
+										<img src="./img/icons/instagram.svg" alt="instagram">
+									</a>
+								</div>
+								<div class="footer-main__logo-and-socials__socials__social">
+									<a href="#" rel="nofollow">
+										<img src="./img/icons/pinterest.svg" alt="pinterest">
+									</a>
+								
+								</div>
+								<div class="footer-main__logo-and-socials__socials__social">
+									<a href="#" rel="nofollow">
+										<img src="./img/icons/linkedin.svg" alt="linkedin">
+									</a>
+								</div>
+
+							</div>
+							<div class="footer-main__logo-and-socials__logo">
+								<a href="#">
+									<img src="./img/logo.png" alt="logo">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div> <!-- page -->
+
+
+	<!-- FOR SVG GRADIENT -->
+	<svg class='hide-svg'>
+		<defs>
+			<linearGradient id="icon_gradient" gradientUnits="userSpaceOnUse" x1="2.1" y1="0.39" x2="11.06" y2="9.36">
+				<stop offset="0" stop-opacity="1" stop-color="#07DC58"/>
+				<stop offset="1" stop-opacity="1" stop-color="#048B3B"/>
+			</linearGradient>
+		</defs>
+	</svg>
+	<!-- /FOR SVG GRADIENT -->
+
+	<script src="./assets/js/main.js"></script>
+
+</body>
+</html>

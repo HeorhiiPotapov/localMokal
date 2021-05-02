@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="my-contacts">
+					<h2>Мои контакты</h2>
+					<form class='my-contacts__form' action="" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ profile_form|crispy }}
+						{{ user_form|crispy }}
+						{% comment %} <div class="my-contacts__form__left">
+							<div class="my-contacts__form__left__upload-file">
+								<i class="" aria-hidden="true">
+									<img style="max-height: 70px; display: inline-block; border: 1px solid light; border-radius: 50%; margin-top: 5px;" src="{{ request.user.profile.image.url }}" class="rounded-circle">
+								</i>
+							</div>
+						</div>
+						<div class="my-contacts__form__center">
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-building my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+									Компания
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _company_name">
+									{% render_field profile_form.brand  type="text" class='tmp-input-text' name='company_name' placeholder="" %}
+								</div>
+							</div>
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-globe my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+									Страна
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _country">
+									{% render_field profile_form.country type="text" class='tmp-input-text' name='country' value='' %}
+								</div>
+							</div>
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-map-marker my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+									Город / адрес
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _addres">
+									{% render_field profile_form.city  type="text" class='tmp-input-text' name='addres' %}
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _addres1">
+									{% render_field profile_form.address  type="text" class='tmp-input-text' name='addres1' placeholder="" %}
+								</div>
+							</div>
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-mobile my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+									Телефоны
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _phone">
+									{% render_field profile_form.phone  type="text" class='tmp-input-text' name='phone' placeholder="" %}
+								</div>
+								{% comment %} <div class="my-contacts__form__center__block-fields__inp-block _phone1">
+									<input type="text" class='tmp-input-text' name='phone1' >
+								</div> {% endcomment %}
+							{% comment %} </div> {% endcomment %}
+							{% comment %} <div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-envelope-o my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
+									E-mail
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _email">
+									{% render_field user_form.email  type="email" class='tmp-input-text' name='email' placeholder="" %}
+								</div>
+							</div>
+						</div> {% endcomment %}
+						<div class="my-contacts__form__right">
+							<div class="my-contacts__form__inp-block">
+								<input class='button button-with-gradient my-contacts__submit' type="submit" value='Сохранить'>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% comment %} <div class="container">
+    <div class="row justify-content-center my-4">
+        <div class="col-lg-5">
+            <h3 class="text-right">Личная информация</h3>
+            <hr>
+            <div class="text-right">
+                <img class="img-fluid rounded-circle border" src="{{ request.user.profile.image.url }}" alt="" style="max-height: 150px">
+            </div>
+            <form class="mt-4" action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form|crispy }}
+                {{ profile_form|crispy }}
+                <button type="submit" class="btn btn-outline-info">Сохранить</button>
+            </form>
+            <h3 class="mt-5 text-right">Безопасность</h3>
+            <hr>
+            <p class="mt-4">Для смены пароля перейдите по ссылке ниже:</p>
+            <a href="{% url 'users:passwd_change' %}">Изменить пароль</a>
+        </div>
+    </div>
+</div> {% endcomment %}

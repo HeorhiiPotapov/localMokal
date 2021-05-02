@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="row my-5 justify-content-center">
+        <div class="col-lg-5">
+            <h3 class="mb-4">Изменить пароль</h3>
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-outline-info" type="submit">Изменить пароль</button>
+            </form>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
