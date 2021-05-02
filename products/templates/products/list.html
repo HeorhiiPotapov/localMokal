@@ -35,30 +35,9 @@
                 <div class="product__price-favorite__favorite">
                   <div class="add_to_favorites" id="item-1" data-itemid="1" data-itemurl="/favorite/">
                     <img id="{{ product.id }}" class="favorite-button" src="{% if product.id in request.session.favorites %}
-                          {% static './img/icons/favorites_fill.svg' %}
+                            {% static './img/icons/favorites_fill.svg' %}
                         {% else %}{% static './img/icons/favorites.svg' %}{% endif %}" alt="favorites">
-                  </div>
-                </div>
-                <script>
-                  $('.add_to_favorites').click(function() {
-                    let prod_id = this.getAttribute('data-itemid')
-                    $.ajax({
-                      url: "http://127..0.0.1:8000/favorites/add_to_favorite" + prod_id,
-                      data: { "product_id": prod_id},
-                      async: false,
-                      success: function( data ){
-                        console.log(data)
-                      }
-                    })
-                  })
-                </script>
-                <div class="product__price-favorite__favorite">
-                    <a href="{% url 'favorites:add_to_favorite' product_id=product.id %}">
-											<img src="{% if product.id in request.session.favorites %}
-                          {% static './img/icons/favorites_fill.svg' %}
-                        {% else %}{% static './img/icons/favorites.svg' %}{% endif %}" alt="favorites"
-                      >	
-										</a>               
+                    </div>
                   </div>
               </div>
               <div class="product__company">
@@ -112,5 +91,6 @@
     </span>
 </div>
 
+<script src="{% static '/assets/js/ajax_favorite.js'%}"></script>
 {% include 'svg_processing.html' %}
 {% endblock content %}

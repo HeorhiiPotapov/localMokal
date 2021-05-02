@@ -29,7 +29,7 @@ class ProductListView(generic.ListView):
     """
     model = Product
     template_name = 'products/list.html'
-    paginate_by = 2
+    paginate_by = 8
 
     def get_queryset(self, **kwargs):
         category = None

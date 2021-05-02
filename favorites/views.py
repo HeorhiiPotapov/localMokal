@@ -24,4 +24,4 @@ def add_to_favorite(request, product_id):
     else:
         favorites.append(int(product_id))
     request.session.modified = True
-    return redirect('products:favorite_list')
+    return product_id == favorites[product_id]

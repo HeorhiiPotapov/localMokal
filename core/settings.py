@@ -20,13 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'tv79k&dm$v594zivqdi==*t6(5yuv8ram*cbd1zz)tro8rc$)-'
+# SECRET_KEY = 'tv79k&dm$v594zivqdi==*t6(5yuv8ram*cbd1zz)tro8rc$)-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-# SECRET_KEY = os.environ.get('SECRET_KEY')
-# DEBUG = (os.environ.get('DEBUG') == 'True')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = (os.environ.get('DEBUG') == 'True')
 
 ALLOWED_HOSTS = []
 
@@ -159,7 +159,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'bayjel13@gmail.com'  # os.environ.get('GMAIL_USER')
-EMAIL_HOST_PASSWORD = 'edstswyjbhpdthlg'  # os.environ.get('GMAIL_PASS')
+EMAIL_HOST_USER =  os.environ.get('GMAIL_USER')
+EMAIL_HOST_PASSWORD =  os.environ.get('GMAIL_PASS')
 
 CORS_ORIGIN_ALLOW_ALL = True
