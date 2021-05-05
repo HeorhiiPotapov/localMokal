@@ -14,8 +14,9 @@ city = City()
 
 
 def set_discount_expiry():
-    result = str(datetime.now) + str(timedelta(days=30))
-    return result
+    # result = str(datetime.now) + str(timedelta(days=30))
+    # return result
+    return str(datetime.now) + str(timedelta(days=30))
 
 
 class Category(MPTTModel):
@@ -100,7 +101,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Товар/Акция"
         verbose_name_plural = "Товары/Акции"
-        # ordering = ('-timestamp',)
+        ordering = ('-timestamp',)
 
     def price_after_discount(self):
         new_price = self.price

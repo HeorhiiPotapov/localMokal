@@ -55,6 +55,20 @@ class ProductListView(generic.ListView):
         return context
 
 
+class ProductSearchReasult(generic.ListView):
+    model = Product
+    template_name = 'products/list.html'
+    paginate_by = 8
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset()
+        query = self.request.GET.get('query')
+        if query:
+            print('HIIIIII')
+            qs = qs.filter(name__icontains=query)
+        return qs
+
+
 class ProductDetailView(generic.DetailView):
     model = Product
     template_name = 'products/detail.html'

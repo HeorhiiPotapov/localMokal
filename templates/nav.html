@@ -14,10 +14,9 @@
 				<div class="header-main__items">
 					<div class="header-main__items__item search-form">
 
-						<form action="" id="search-form" class="search-form">
-							<input type="hidden" id='region' name='region' value="">
+						<form action="{% url 'products:by_query' %}" id="search-form" class="search-form">
 							<div class="search-form__input-block">
-								<input type="text" placeholder="Что ищите?">
+								<input type="text" placeholder="Что ищите?" name="query">
 								<img class="loupe" src="{% static './img/icons/loupe.svg' %}" alt="loupe">
 							</div>
 							<div class="search-form__input-block _region">
@@ -44,10 +43,12 @@
 					</div>
 					<div class="header-main__items__item favorites">
 						{% if request.session.favorites|length > 0 %}
-							<small class="text-muted">{{ request.session.favorites|length }}</small>
+							<small id="favorites_count" class="text-muted">{{ request.session.favorites|length }}</small>
+						{% else %}
+							<small id="favorites_count" class="text-muted">0</small>
 						{% endif %}
 						<a href="{% url 'favorites:favorite_list' %}">
-							<img src="{% if request.session.favorites|length > 0 %}
+							<img id="nav_fav_img" src="{% if request.session.favorites|length > 0 %}
 							  {% static './img/icons/favorites_fill.svg' %}
 							{% else %}{% static './img/icons/favorites.svg' %}{% endif %}" alt="favorites">	
 						</a>
@@ -62,5 +63,5 @@
 			</div>
 		</div>
 	</div>
+	
 </header>
-

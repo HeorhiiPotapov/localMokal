@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 
 	<div id="content">
@@ -175,7 +176,7 @@
 											</div>
 										</div>
 										<div class="product__name">
-											{{ item.name }}
+											<a href="{{ item.get_absolute_url }}" style="color: inherit;">{{ item.name }}</a>
 										</div>
 										<div class="product__price-favorite">
 											<div class="product__price-favorite__price">
@@ -185,14 +186,15 @@
 											<div class="product__price-favorite__price__with-discount">{{ item.price_after_discount }}<span class="sumbol">грн.</span></div>
 											</div>
 											<div class="product__price-favorite__favorite">
-												<a href="{% url 'favorites:add_to_favorite' product_id=item.id %}">
-													<div class="add_to_favorites">
-													<img src="{% if item.id in request.session.favorites %}
-														{% static './img/icons/favorites_fill.svg' %}
-														{% else %}{% static './img/icons/favorites.svg' %}{% endif %}" alt="favorites">	
-													</div>
-												</a> 
-											</div>
+												<div class="add_to_favorites" id="item-{{ item.id }}" data-itemid="{{ item.id }}" >
+												  <img id="item-img-{{ item.id }}" class="favorite-button" 
+													src="{% if item.id in request.session.favorites %}
+															{% static './img/icons/favorites_fill.svg' %}
+														  {% else %}
+															{% static './img/icons/favorites.svg' %}
+														  {% endif %}" alt="favorites">
+												  </div>
+												</div>
 										</div>
 										<div class="product__company">
 											<div class="product__company__logo">

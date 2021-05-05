@@ -6,6 +6,7 @@ User = get_user_model()
 
 
 class Feedback(models.Model):
+
     username = models.CharField("Имя", max_length=30)
     email = models.EmailField()
     text = models.TextField()
@@ -15,4 +16,5 @@ class Feedback(models.Model):
         ordering = ('-timestamp',)
 
     def __str__(self):
+
         return self.username

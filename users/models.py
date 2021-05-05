@@ -57,8 +57,6 @@ class Profile(models.Model):
                                max_length=100,
                                null=True,
                                blank=True)
-    favorites = models.ManyToManyField(Product,
-                                       verbose_name="Избранное")
 
     def __str__(self):
         return self.user.email

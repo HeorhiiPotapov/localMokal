@@ -33,10 +33,13 @@
                   <div class="product__price-favorite__price__with-discount">{{ product.price_after_discount|floatformat:"0" }}<span class="sumbol"> грн</span></div>
                 </div>
                 <div class="product__price-favorite__favorite">
-                  <div class="add_to_favorites" id="item-1" data-itemid="1" data-itemurl="/favorite/">
-                    <img id="{{ product.id }}" class="favorite-button" src="{% if product.id in request.session.favorites %}
-                            {% static './img/icons/favorites_fill.svg' %}
-                        {% else %}{% static './img/icons/favorites.svg' %}{% endif %}" alt="favorites">
+                  <div class="add_to_favorites" id="item-{{ product.id }}" data-itemid="{{ product.id }}" >
+                    <img id="item-img-{{ product.id }}" class="favorite-button" 
+                      src="{% if product.id in request.session.favorites %}
+                              {% static './img/icons/favorites_fill.svg' %}
+                            {% else %}
+                              {% static './img/icons/favorites.svg' %}
+                            {% endif %}" alt="favorites">
                     </div>
                   </div>
               </div>
@@ -91,6 +94,6 @@
     </span>
 </div>
 
-<script src="{% static '/assets/js/ajax_favorite.js'%}"></script>
+
 {% include 'svg_processing.html' %}
 {% endblock content %}
