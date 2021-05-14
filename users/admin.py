@@ -10,7 +10,7 @@ User = get_user_model()
 class ProfileInlines(admin.StackedInline):
     model = Profile
     can_delete = False
-    fields = ['image', 'brand', 'city', 'address', 'phone', 'favorites']
+    fields = ['image', 'logo', 'brand', 'city', 'address', 'phone']
 
 
 @admin.register(CustomUser)

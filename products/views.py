@@ -4,10 +4,12 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Category, Product
 from .forms import ProductForm
-from .mixins import IsOwnerMixin
+# from .mixins import IsOwnerMixin
 from django.contrib.auth.models import AnonymousUser
-from django.http import HttpResponseRedirect
+# from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from .utils import City
 
 
 class MainPageView(generic.TemplateView):
@@ -29,11 +31,11 @@ class ProductListView(generic.ListView):
     """
     model = Product
     template_name = 'products/list.html'
-    paginate_by = 8
+    paginate_by = 12
 
     def get_queryset(self, **kwargs):
         category = None
-        qs = super().get_queryset()
+        qs = super().get_queryset(**kwargs)
         cat_slug = self.kwargs.get('cat_slug')
         if cat_slug:
             """
@@ -55,7 +57,7 @@ class ProductListView(generic.ListView):
         return context
 
 
-class ProductSearchReasult(generic.ListView):
+class ProductSearchResult(generic.ListView):
     model = Product
     template_name = 'products/list.html'
     paginate_by = 8
@@ -63,10 +65,20 @@ class ProductSearchReasult(generic.ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset()
         query = self.request.GET.get('query')
+        region = self.request.GET.get('region')
+
+        print(query, region)
         if query:
-            print('HIIIIII')
-            qs = qs.filter(name__icontains=query)
+            qs = qs.filter(
+                Q(name__icontains=query) | Q(city=region)
+            )
         return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(*kwargs)
+        context['query'] = self.request.GET.get('query')
+        context['region'] = self.request.GET.get('region')
+        return context
 
 
 class ProductDetailView(generic.DetailView):
@@ -75,32 +87,42 @@ class ProductDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['images'] = self.get_object().images.all()
         cat = self.get_object().category
-        context['user'] = self.request.user.is_authenticated or AnonymousUser()
-
         context['sugested'] = Product.objects.filter(
             category=cat).order_by('-timestamp')[:2]
         return context
 
 
-class ProductCreateView(LoginRequiredMixin, generic.CreateView):
-    form_class = ProductForm
-    template_name = 'products/create.html'
-    success_url = reverse_lazy('products:all')
-
-    def form_valid(self, form):
-        if form.is_valid():
-            p_form = form.save(commit=False)
-            p_form.owner = self.request.user
-            p_form.save()
-            return super().form_valid(form)
-
-
 @login_required
-def add_product(request):
+def add_product(request, **kwargs):
     if request.method == 'POST':
-        request_obj = request.POST
-        for key in request_obj:
-            print(key + '==>>' + request_obj.get(key))
-        pass
-    return render(request, 'products/create.html')
+        form = ProductForm(request.POST, request.FILES)
+
+        first_img = [i for i in request.FILES.keys()][0]
+        main_img = request.FILES[first_img]
+
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.main_image = main_img
+            new.owner = request.user
+            new.save()
+            return redirect(reverse('products:detail', kwargs={'pk': new.pk}))
+    form = ProductForm()
+    categories = Category.objects.all()
+    return render(request, 'products/add_page.html', {
+        'form': form,
+        'categories': categories
+    })
+
+# disc_exp = data['discount_expiry']
+# disc = data['discount']
+# disc_text = data['discount_overview']
+# overview = data['overview']
+# city = data['city']
+# cat = data['category']
+# name = data['name']
+# price = data['price']
+# disc_exp = data['discount_expiry']
+# disc = data['discount']
+# disc_text = data['discount_overview']

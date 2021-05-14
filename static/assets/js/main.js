@@ -8,6 +8,10 @@ window.onload = function() {
 		// 	})
 		// }
 		// /burger header menu
+		fixed_block_from('.header-main', 99999, 'top')
+		fixed_block_from('.mobile_menu_on_bottom', 992, 'bottom')
+
+
 
 		// slider home page
 		if( document.querySelector('.slider-temp-wrapper__slider-temp') ) {
@@ -120,7 +124,6 @@ window.onload = function() {
 						$('.product-page__content__header').css('width', $('.product-page__content').width() -17 + "px")
 					}else {
 						$('.product-page__content__header').css('width', '100%')
-
 					}
 				})
 				if($('body').width() > 992) {
@@ -135,7 +138,7 @@ window.onload = function() {
 				
 				// развирнуть при клике 
 				$('.product-page__content__product-info__description__expand').on('click',function() {
-					$('.product-page__content__product-info__description__text').toggleClass('open')
+					$('.product-page__content__product-info__description__text',).toggleClass('open')
 					$('.product-page__content__product-info__description__expand').toggleClass('open')
 				})
 				// /развирнуть при клике 
@@ -143,36 +146,22 @@ window.onload = function() {
 			// подробнее
 			
 			// скрыть шапку если скролится вниз и показать если скролится наверх
-		
+			fixed_block_from('.product-page__content__header', 992, 'top')
 			if($('body').width() < 992) {
-				let prev_offset_y;
-				document.querySelector('body').addEventListener('scroll', function(e) {
-					let header_pos_top = parseInt($('.product-page__content__header').css('top'))
-					
-					if(prev_offset_y > document.body.scrollTop) { // это скрол наверх
-						// показать шапку при скроле наверх
-						if(header_pos_top < 0) { 
-							$('.product-page__content__header').css('top', header_pos_top +3 + 'px')
-						}
-					}else { // это скрол вниз
-						// скриывать шапку при скроле вниз
-						if(header_pos_top > -90) { 
-							$('.product-page__content__header').css('top', header_pos_top -3 + 'px')
-						}
-					}
-
-					prev_offset_y = document.body.scrollTop
-				})
-
 				// кнопки позвонить и сообщения переместить в футер
 				$('.product-page__content__header__buttons button').appendTo('.mobile_menu_on_bottom')
-
 				// share переместить в шапку
 				$('.product-page__content__product-info__price-and-favorites__share').appendTo('.product-page__content__header__buttons')
 			}
+
 		}else {
 			
 		}
+		// раздел с номерами 
+		$('#btn_call, .product-page__content__header__phones__close-btn').on('click', function() {
+			$('.product-page__content__header').toggleClass('active')
+			$('.product-page__content__header__phones').toggleClass('active')
+		})
 		// страница товара 
 
 
@@ -275,31 +264,36 @@ window.onload = function() {
 
 
 		// search form
-		$('#search-inp').on('input', function(){
-			let val = document.querySelector('#search-inp').value,
-				city = document.querySelector('#region-inp').value
-
-			if(val.length >= 3) {
-				$.ajax({
-					url: "https://e22f0f4a0a13.ngrok.io/search/",
-					data: { "q": val, "city": city },
-					async: false,
-					success: function( data ){
-						console.log( data )
-						let keys = Object.keys(data)
-						// keys.forEach( key_ => {
-						// 	console.log(data.key_)
-						// })
-						data.forEach( el => {
-							console.log(el)
-						})
-						// for (i = 0; i < data.length; i++) {
-						// 	console.log(data[i])
-						// }
-					}
-				})
-			}
-		})
+		if(document.querySelector('#search-inp')) {
+			$('.search-form__input-block img').on('click', function() {
+				$('#search-form').submit()
+			})
+			$('#search-inp').on('input', function(){
+				let val = document.querySelector('#search-inp').value,
+					city = document.querySelector('#region-inp').value
+	
+				if(val.length >= 3) {
+					$.ajax({
+						url: "https://e22f0f4a0a13.ngrok.io/search/",
+						data: { "q": val, "city": city },
+						async: false,
+						success: function( data ){
+							console.log( data )
+							let keys = Object.keys(data)
+							// keys.forEach( key_ => {
+							// 	console.log(data.key_)
+							// })
+							data.forEach( el => {
+								console.log(el)
+							})
+							// for (i = 0; i < data.length; i++) {
+							// 	console.log(data[i])
+							// }
+						}
+					})
+				}
+			})
+		}
 		// search form 
 		// $('#search-inp').on('input', function(){
 		// 	let val = document.querySelector('#search-inp').value,
@@ -317,6 +311,23 @@ window.onload = function() {
 		// 	}
 		// })
 	})();
+}
+function fixed_block_from( selector, max_width, position ) {
+	
+	if($('body').width() < max_width) {
+		
+		let prev_offset_y;
+		document.querySelector('body').addEventListener('scroll', function(e) {
+			if(prev_offset_y > document.body.scrollTop) { // это скрол наверх
+				// показать при скроле наверх
+				$(selector).css(position, '0')
+			}else { // это скрол вниз
+				// скриывать шапку при скроле вниз
+				$(selector).css(position, '-50%')
+			}
+			prev_offset_y = document.body.scrollTop
+		})
+	}
 }
 
 function dropdown_input( for_input ) { // for_input - id скрытого инпута, куда выводить значение

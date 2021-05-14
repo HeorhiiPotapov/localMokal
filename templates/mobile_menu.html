@@ -1,43 +1,43 @@
+{% load static %}
 <div class="mobile-menu-on-bottom">
-    <div class="mobile-menu-on-bottom__item">
-        <div class="mobile-menu-on-bottom__item__icon">
-            <img src="./img/icons/heart_grey.svg" alt="home">
-        </div>
-        <div class="mobile-menu-on-bottom__item__text">
-            Главная
-        </div>
+  <div class="mobile-menu-on-bottom__item">
+    <div class="mobile-menu-on-bottom__item__icon cont_with_same_icon">
+      <img class='just_icon' src="{% static './img/icons/home_grey.svg' %}" alt="home">
+      <img class='icon_active' src="{% static './img/icons/home_hover.svg' %}" alt="home">
     </div>
-    <div class="mobile-menu-on-bottom__item">
-        <div class="mobile-menu-on-bottom__item__icon">
-            <img src="./img/icons/heart_grey.svg" alt="home">
-        </div>
-        <div class="mobile-menu-on-bottom__item__text">
-            Избранное
-        </div>
+    <div class="mobile-menu-on-bottom__item__text">Главная</div>
+  </div>
+  <div class="mobile-menu-on-bottom__item">
+    <div class="mobile-menu-on-bottom__item__icon cont_with_same_icon">
+      <img class='just_icon' src="{% static './img/icons/home_grey.svg' %}" alt="home">
+      <img class='icon_active' src="{% static './img/icons/home_hover.svg' %}" alt="home">
     </div>
-    <div class="mobile-menu-on-bottom__item">
-        <div class="mobile-menu-on-bottom__item__icon">
-            <img src="./img/icons/home.svg" alt="home">
-        </div>
-        <div class="mobile-menu-on-bottom__item__text">
-            добавить
-        </div>
+    <div class="mobile-menu-on-bottom__item__text">Избранное</div>
+  </div>
+  <div class="mobile-menu-on-bottom__item">
+    <div class="mobile-menu-on-bottom__item__icon">
+      <div class="mobile-menu-on-bottom__item__icon cont_with_same_icon">
+        <img class='just_icon' src="{% static './img/icons/heart_grey.svg' %}" alt="heart">
+        <img class='icon_active' src="{% static './img/icons/heart_hover.svg' %}" alt="heart">
+      </div>
     </div>
-    <div class="mobile-menu-on-bottom__item">
-        <div class="mobile-menu-on-bottom__item__icon">
-            <img src="./img/icons/user_grey.svg" alt="home">
-        </div>
-        <div class="mobile-menu-on-bottom__item__text">
-            профиль
-        </div>
+    <div class="mobile-menu-on-bottom__item__text">добавить</div>
+  </div>
+  <div class="mobile-menu-on-bottom__item">
+    <div class="mobile-menu-on-bottom__item__icon cont_with_same_icon">
+      <img class='just_icon' src="{% static './img/icons/user_grey.svg' %}" alt="home">
+      <img class='icon_active' src="{% static './img/icons/user_hover.svg' %}" alt="home">
     </div>
-    <div class="mobile-menu-on-bottom__item _open-right-bar">
-        <div class="mobile-menu-on-bottom__item__icon">
-            <img src="./img/icons/home.svg" alt="home">
+    <div class="mobile-menu-on-bottom__item__text">профиль</div>
+  </div>
+  <div class="mobile-menu-on-bottom__item _open-right-bar">
+    <div class="mobile-menu-on-bottom__item__icon">
+      <div class="header-main__items__item hamburger">
+        <div class="wrapper-menu-hamburger">
+          <div class="wrapper-menu-hamburger__hamburger-menu"></div>
         </div>
-        <div class="mobile-menu-on-bottom__item__text">
-            еще
-        </div>
+      </div>
     </div>
+    <div class="mobile-menu-on-bottom__item__text">еще</div>
+  </div>
 </div>
-	

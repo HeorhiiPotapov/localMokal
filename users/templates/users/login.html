@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load widget_tweaks %}
 
 {% block content %}
 
@@ -13,36 +12,41 @@
                         <h2>Вход</h2>
 
                         <div class="register-form__inp-block">
-                            <i class="fa fa-envelope register-form__inp-block__icon" ></i>
-                            <input type="email" class='register-form__email tmp-input-text' name='username' placeholder="Электронная почта">
+                            <i class="fa fa-envelope register-form__inp-block__icon"></i>
+                            <input type="email" class='register-form__email tmp-input-text' name='username'
+                                placeholder="Электронная почта">
                         </div>
                         <div class="register-form__inp-block view-password">
                             <i class="fa fa-lock register-form__inp-block__icon _icon__password"></i>
                             <i class="fa fa-eye register-form__inp-block__icon _show-passw"></i>
-                            <input type="password" class='register-form__passw tmp-input-text' name='password' placeholder="Пароль">
+                            <input type="password" class='register-form__passw tmp-input-text' name='password'
+                                placeholder="Пароль">
                         </div>
                         {% if form.errors %}
-                            <p class=" label label-danger">
-                                Your username and password didn't match. 
-                                Please try again.
-                            </p>
+                        <p class=" label label-danger">
+                            Your username and password didn't match.
+                            Please try again.
+                        </p>
                         {% endif %}
-                        
+
                         <div class="register-form__inp-block _remember-block">
                             <label for="register-form__remember_inp">
-                                <input id='register-form__remember_inp' type="checkbox" class='register-form__remember_inp' name='remember'>
+                                <input id='register-form__remember_inp' type="checkbox"
+                                    class='register-form__remember_inp' name='remember'>
                                 <span class='register-form__remember__castom-checkbox'></span>
                                 Запомнить меня
                             </label>
                         </div>
                         <div class="register-form__inp-block">
                             <input type="hidden" name="next" value="{{ next }}" />
-                            <input class='button button-with-gradient register-form__submit' type="submit" value='Войти'>
+                            <input class='button button-with-gradient register-form__submit' type="submit"
+                                value='Войти'>
                         </div>
                     </form>
 
                     <a href="{% url 'password_reset' %}" class='forget_pasw'>Забыли пароль?</a>
-                    <a href="{% url 'users:new' %}" class='button button-transperent register-button'>Зарегистрироваться</a>
+                    <a href="{% url 'users:new' %}"
+                        class='button button-transperent register-button'>Зарегистрироваться</a>
                 </div>
             </div>
         </div>
@@ -51,14 +55,13 @@
 
 {% endblock content %}
 
-{% comment %} 
+{% comment %}
 <div class="register-form__inp-block">
     <i class="fa fa-envelope register-form__inp-block__icon" aria-hidden="true"></i>
     {% render_field form.email type="email" class='register-form__email tmp-input-text' name='email' placeholder="Электронная почта" %}
 </div>
 <div class="register-form__inp-block">
-    <i class="fa fa-lock register-form__inp-block__icon _icon__pasw"
-        aria-hidden="true"></i>
+    <i class="fa fa-lock register-form__inp-block__icon _icon__pasw" aria-hidden="true"></i>
     {% render_field form.password type="password" class='register-form__passw tmp-input-text' name='pasw' placeholder="Пароль" %}
-</div> 
+</div>
 {% endcomment %}

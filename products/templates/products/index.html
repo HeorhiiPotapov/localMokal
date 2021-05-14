@@ -1,24 +1,25 @@
+<!-- prettier-ignore -->
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 <div id="page">
 	<div id="content">
-
 		{% include './parts/slider.html' %}
 
 		<div class="block-name">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h2>Рубрики </h2>
+						<h2>{% trans 'Рубрики' %}</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 
 
-		<div id="response"></div>
 
+		<div id="response"></div>
 
 		{% include './parts/category.html' %}
 
@@ -26,18 +27,32 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h2>Новое</h2>
+						<h2>{% trans 'Новое' %}</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		{% include './parts/product.html' %}
-
 		{% include './parts/buttons.html' %}
-		
-	</div> <!-- content -->
+		{% load i18n %}
 
-	{% include 'footer.html' %}
+		<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+			<input name="next" type="hidden" value="{{ redirect_to }}">
+			<select name="language">
+				{% get_current_language as LANGUAGE_CODE %}
+				{% get_available_languages as LANGUAGES %}
+				{% get_language_info_list for LANGUAGES as languages %}
+				{% for language in languages %}
+				<option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+					{{ language.name_local }} ({{ language.code }})
+				</option>
+				{% endfor %}
+			</select>
+			<input type="submit" value="Go">
+		</form>
+	</div>
+	<!-- content -->
 
-{% endblock content %}
+	{% include 'footer.html' %} {% endblock content %}
+</div>

@@ -14,9 +14,7 @@ city = City()
 
 
 def set_discount_expiry():
-    # result = str(datetime.now) + str(timedelta(days=30))
-    # return result
-    return str(datetime.now) + str(timedelta(days=30))
+    return datetime.now() + timedelta(days=30)
 
 
 class Category(MPTTModel):
@@ -53,7 +51,8 @@ class Category(MPTTModel):
 
     def get_absolute_url(self):
         return reverse("products:by_category",
-                       kwargs={"slug": self.slug})
+                       kwargs={"slug": self.slug}
+                       )
 
 
 class Product(models.Model):
@@ -71,8 +70,11 @@ class Product(models.Model):
                                    validators=[MinValueValidator(0),
                                                MaxValueValidator(100)])
     discount_expiry = models.DateTimeField("Дата окончания акции",
-                                           default=set_discount_expiry)
+                                           default=set_discount_expiry())
+    discount_overview = models.TextField(null=True, blank=True)
     main_image = models.ImageField("Изображение",
+                                   null=True,
+                                   blank=True,
                                    upload_to="product_img")
     video = models.URLField("Ссылка на видео",
                             null=True,
@@ -88,13 +90,14 @@ class Product(models.Model):
     overview = models.TextField("Описание",
                                 max_length=2000)
     is_active = models.BooleanField("Статус",
-                                    default=False)
+                                    default=True)
     timestamp = models.DateTimeField("Дата добавления",
                                      default=timezone.now)
     city = models.CharField("Город",
                             max_length=20,
                             choices=city.CITY_LIST,
                             default=city.ANY)
+    keywords = models.CharField(max_length=100, null=True, blank=True)
 
     objects = ProductManager()
 

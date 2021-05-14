@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="page">
+	<div id="content">
+
+		{% include './parts/slider.html' %}
+
+		<div class="block-name">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h2>Рубрики </h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="response"></div>
+
+
+		{% include './parts/category.html' %}
+
+		<div class="block-name">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h2>Новое</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include './parts/product.html' %}
+
+		{% include './parts/buttons.html' %}
+		
+	</div> <!-- content -->
+
+	{% include 'footer.html' %}
+
+{% endblock content %}

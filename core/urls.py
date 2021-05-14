@@ -19,14 +19,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from products.views import MainPageView
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('users/', include('users.urls', namespace='users')),
-    path('products/', include('products.urls', namespace='products')),
     path('subscribes/', include('subscribes.urls', namespace='subscribes')),
     path('favorites/', include('favorites.urls', namespace='favorites')),
     path('infopages/', include('infopages.urls', namespace='infopages')),
+    path('feedback/', include('feedback.urls', namespace="feedback")),
 
     # ################  password_reset #####################
 
@@ -44,9 +46,13 @@ urlpatterns = [
              template_name='users/passwd/reset_complete.html'), name='password_reset_complete'),
 
     # ################ end password_reset ##################
-
-    path('', MainPageView.as_view(), name='index'),
 ]
+
+urlpatterns += i18n_patterns(
+    path('products/', include('products.urls', namespace='products')),
+    path('', MainPageView.as_view(), name='index'),
+)
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

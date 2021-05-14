@@ -1,0 +1,78 @@
+[
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "name": "product item? created first",
+    "price": "20000.00",
+    "discount": 20,
+    "discount_expiry": "2021-04-30T09:00:00Z",
+    "code": "172d5e3a-71c7-4994-b1be-29399f6b31cd",
+    "main_image": "/product_img/1608911733.511991_B41odav.jpeg",
+    "video": null,
+    "owner": 1,
+    "category": 1,
+    "overview": "Little text about product Lorem",
+    "is_active": true,
+    "timestamp": "2021-04-16T15:01:56Z",
+    "city": "1"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "name": "product item? created first",
+    "price": "20000.00",
+    "discount": 20,
+    "discount_expiry": "2021-04-30T09:00:00Z",
+    "code": "172d5e3a-71c7-4994-b1be-29399f6b31cd",
+    "main_image": "/product_img/1608911733.511991_B41odav.jpeg",
+    "video": null,
+    "owner": 1,
+    "category": 1,
+    "overview": "Little text about product Lorem",
+    "is_active": true,
+    "timestamp": "2021-04-16T15:01:56Z",
+    "city": "1"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "product item? created first",
+    "price": "20000.00",
+    "discount": 20,
+    "discount_expiry": "2021-04-30T09:00:00Z",
+    "code": "172d5e3a-71c7-4994-b1be-29399f6b31cd",
+    "main_image": "/product_img/1608911733.511991_B41odav.jpeg",
+    "video": null,
+    "owner": 1,
+    "category": 1,
+    "overview": "Little text about product Lorem",
+    "is_active": true,
+    "timestamp": "2021-04-16T15:01:56Z",
+    "city": "1"
+  }
+}
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "name": "product item? created first",
+    "price": "20000.00",
+    "discount": 20,
+    "discount_expiry": "2021-04-30T09:00:00Z",
+    "code": "172d5e3a-71c7-4994-b1be-29399f6b31cd",
+    "main_image": "/product_img/1608911733.511991_B41odav.jpeg",
+    "video": null,
+    "owner": 1,
+    "category": 1,
+    "overview": "Little text about product Lorem",
+    "is_active": true,
+    "timestamp": "2021-04-16T15:01:56Z",
+    "city": "1"
+  }
+}
+]

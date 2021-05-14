@@ -93,10 +93,17 @@
 							<form class='register-form' action="">
 								<h2>Зарегистрироваться</h2>
 								<div class="register-form__inp-block">
+									<!-- ERROR -->
+									<span class='register-form__inp-block__error'>пустое поле</span>
+									<!-- ERROR -->
 									<i class="fa fa-envelope register-form__inp-block__icon" aria-hidden="true"></i>
 									<input type="email" class='register-form__email tmp-input-text' name='email' placeholder="Электронная почта">
 								</div>
 								<div class="register-form__inp-block view-password">
+									<!-- ERROR -->
+									<span class='register-form__inp-block__error'>пароль неверный</span>
+									<!-- ERROR -->
+
 									<i class="fa fa-lock register-form__inp-block__icon _icon__pasw" aria-hidden="true"></i>
 									<input type="password" class='register-form__passw tmp-input-text' name='pasw' placeholder="Пароль">
 									<i class="fa fa-eye register-form__inp-block__icon _show-passw" aria-hidden="true"></i>

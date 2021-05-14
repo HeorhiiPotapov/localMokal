@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="message-form-wrapper">
+                    <form class='message-form' action="{% url 'users:send_feedback' %}" method="POST">
+                        {% csrf_token %}
+                        <h2>Напишите нам</h2>
+                        <div class="message-form__inp-block">
+                            <i class="fa fa-user message-form__inp-block__icon" aria-hidden="true"></i>
+                            <input type="text" class='message-form__name tmp-input-text' name='name' placeholder="Имя">
+                        </div>
+                        <div class="message-form__inp-block">
+                            <i class="fa fa-envelope message-form__inp-block__icon" aria-hidden="true"></i>
+                            <input type="email" class='message-form__email tmp-input-text' name='email' placeholder="Электронная почта">
+                        </div>
+                        <div class="message-form__inp-block">
+                            <i class="fa fa-comment message-form__inp-block__icon" aria-hidden="true"></i>
+                            <textarea name="message" class='tmp-input-text' id="message" cols="15" rows="4" placeholder="Комментарий"></textarea>
+                        </div>
+                        <div class="message-form__inp-block">
+                            <input class='button button-with-gradient message-form__submit' type="submit" value='Отправить'>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

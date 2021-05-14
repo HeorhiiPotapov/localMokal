@@ -10,7 +10,7 @@ def city_list():
     list = []
     cities = City()
     for c in cities.CITY_LIST:
-        list.append(c[1])
+        list.append(c)
     return list
 
 

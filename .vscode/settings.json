@@ -1,9 +1,12 @@
 {
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "/home/whoami/.local/share/virtualenvs/ecomService-vBEr_n_y/bin/python",
+    "python.pythonPath": "/home/whoami/.local/share/virtualenvs/localMokal-9ubdzj8u/bin/python",
     "editor.fontFamily": "'Source Code Pro', 'monospace', monospace, 'Droid Sans Fallback'",
     "terminal.explorerKind": "external",
-    "terminal.integrated.shellArgs.osx": []
+    "terminal.integrated.shellArgs.osx": [],
+    "python.linting.pycodestyleEnabled": false,
+    "python.linting.banditEnabled": false,
+    "python.linting.mypyEnabled": false
 }
