@@ -24,14 +24,22 @@
 
 <body>
 
-  <div id="page">
-    {% include 'nav.html' %}
-    {% include 'menu.html' %}
-    {% include 'mobile_menu.html' %}
-    {% block content %}
-    {% endblock content %}
-    {% include 'svg_processing.html' %}
-  </div>
+  {% block content %}
+  {% endblock content %}
+
+  {% include 'menu.html' %}
+  {% include 'mobile_menu.html' %}
+
+  <!-- FOR SVG GRADIENT -->
+  <svg class='hide-svg'>
+    <defs>
+      <linearGradient id="icon_gradient" gradientUnits="userSpaceOnUse" x1="2.1" y1="0.39" x2="11.06" y2="9.36">
+        <stop offset="0" stop-opacity="1" stop-color="#07DC58" />
+        <stop offset="1" stop-opacity="1" stop-color="#048B3B" />
+      </linearGradient>
+    </defs>
+  </svg>
+  <!-- /FOR SVG GRADIENT -->
 
   <script src="{% static './assets/js/main.js' %}"></script>
   <script src="{% static './assets/js/add_page.js' %}"></script>

@@ -1,8 +1,6 @@
-import json
 from products.models import Product
 from django.views import generic
-from django.http import JsonResponse, HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.http import JsonResponse
 
 
 class FavoriteListView(generic.TemplateView):
@@ -29,4 +27,3 @@ def add_to_favorite(request, product_id):
         request.session.modified = True
         return JsonResponse({'is_favorite': int(product_id) in favorites})
     return JsonResponse({'is_favorite': int(product_id) in request.session})
-    # return HttpResponseRedirect(reverse_lazy('favorites:favorite_list'))

@@ -1,26 +1,23 @@
-from django.views import generic
-from .models import Subscribtion
+from django.views.generic import TemplateView
+from .forms import SubscribtionAddForm
 from products.models import Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
 
-class SubscribeView(LoginRequiredMixin, generic.TemplateView):
+class SubscribeView(LoginRequiredMixin, TemplateView):
     template_name = 'subscribe/subscribe.html'
 
     def post(self, *args, **kwargs):
-        data = self.request.POST
-        data_cat = data.getlist('subscriptions_cat')
-        cat_ids = [int(i) for i in data_cat]
-        cat_qs = Category.objects.filter(id__in=cat_ids)
-        new_subscribe = Subscribtion.objects.create(
-            user=self.request.user,
-            region=data.get('subscription-to-shares__region'),
-            social=data.get('socials_subscriptions')
-        )
-        new_subscribe.save()
-        new_subscribe.categories.add(*cat_qs)
-        print(data)
+        form = SubscribtionAddForm(self.request.POST)
+        if form.is_valid():
+            new = form.save(commit=False)
+            cat_ids = [int(i) for i in self.request.POST.getlist('category')]
+            cat_qs = Category.objects.filter(id__in=cat_ids)
+            new.categories.add(*cat_qs)
+            new.save()
+        else:
+            print(form.errors)
         return HttpResponseRedirect('/')
 
     def get_context_data(self, **kwargs):

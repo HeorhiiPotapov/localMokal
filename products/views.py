@@ -99,6 +99,8 @@ def add_product(request, **kwargs):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
 
+        # iterate over multivaluedict to retrieve first image
+        # and save it as the main image
         first_img = [i for i in request.FILES.keys()][0]
         main_img = request.FILES[first_img]
 
@@ -115,14 +117,14 @@ def add_product(request, **kwargs):
         'categories': categories
     })
 
-# disc_exp = data['discount_expiry']
-# disc = data['discount']
-# disc_text = data['discount_overview']
-# overview = data['overview']
-# city = data['city']
-# cat = data['category']
-# name = data['name']
-# price = data['price']
-# disc_exp = data['discount_expiry']
-# disc = data['discount']
-# disc_text = data['discount_overview']
+# discount_expiry
+# discount
+# discount_overview
+# overview
+# city
+# category
+# name
+# price
+# discount_expiry
+# discount
+# discount_overview

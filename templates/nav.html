@@ -1,4 +1,3 @@
-<!-- prettier-ignore -->
 {% load static %}
 {% load products_tags %}
 <header class="header-main" id="heading">
@@ -21,16 +20,16 @@
                 <img class="loupe icon_active" src="{% static './img/icons/loupe_hover.svg' %}" alt="loupe">
               </div>
               <div class="search-form__input-block _region">
+                <input type="hidden" id="region-inp" name="region-inp" value="">
                 <div class="dropdown tmp-dropdown-menu">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Регион
                   </button>
-                  <input type="hidden" id="region-inp" name="region-inp" value="" />
-                  <ul class="dropdown-menu" data-for="region" aria-labelledby="dropdownMenuButton1">
+                  <ul class="dropdown-menu" data-for="region-inp" aria-labelledby="dropdownMenuButton1">
                     {% city_list as c_list %}
                     {% for key, value in c_list %}
-                    <li class="dropdown-item" data-value="{{ key }}">
+                    <li class="dropdown-item" data-value="{{ value }}" value="heell">
                       {{ value }}
                     </li>
                     {% endfor %}
@@ -40,7 +39,7 @@
             </form>
           </div>
           <div class="header-main__items__item follow-sale cont_with_same_icon">
-            <a href="{% url 'subscribes:list' %}">
+            <a href="{% url 'subscribes:create' %}">
               <img class='just_icon' src="{% static './img/icons/follow_sale.svg' %}" alt="follow_sale" />
               <img class='icon_active' src="{% static './img/icons/follow_sale_hover.svg' %}" alt="follow_sale" />
               подписка на акции
@@ -54,8 +53,10 @@
             {% endif %}
             <a href="{% url 'favorites:favorite_list' %}">
               <img id="nav_fav_img" src="{% if request.session.favorites|length > 0 %}
-							  {% static './img/icons/favorites_fill.svg' %}
-							{% else %}{% static './img/icons/favorites.svg' %}{% endif %}" alt="favorites" />
+							    {% static './img/icons/favorites_fill.svg' %}
+							  {% else %}
+                  {% static './img/icons/favorites.svg' %}
+                {% endif %}" alt="favorites" />
             </a>
           </div>
           <div class="header-main__items__item hamburger">
@@ -64,7 +65,6 @@
             </div>
           </div>
         </div>
-        <!-- header-main__items -->
       </div>
     </div>
   </div>

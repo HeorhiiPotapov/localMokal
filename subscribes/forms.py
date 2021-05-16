@@ -1,10 +1,8 @@
-from django import forms
-from products.utils import City
-
-city = City()
+from django.forms import ModelForm
+from .models import Subscribtion
 
 
-class SubscribeForm(forms.Form):
-    name = forms.CharField()
-    val = forms.CharField()
-    cho = forms.MultipleChoiceField(choices=city.CITY_LIST, widget=forms.CheckboxSelectMultiple())
+class SubscribtionAddForm(ModelForm):
+    class Meta:
+        model = Subscribtion
+        exclude = ['user', 'timestamp']

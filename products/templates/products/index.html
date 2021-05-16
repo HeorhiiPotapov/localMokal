@@ -1,58 +1,218 @@
 <!-- prettier-ignore -->
 {% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
 {% block content %}
 <div id="page">
+	{% include 'nav.html' %}
 	<div id="content">
-		{% include './parts/slider.html' %}
-
-		<div class="block-name">
+		<div class="slider-temp-wrapper">
 			<div class="container">
 				<div class="row">
-					<div class="col-12">
-						<h2>{% trans 'Рубрики' %}</h2>
+					<div class="col-lg-12 d-flex justify-content-center">
+						<div class="slider-temp-wrapper__slider-temp">
+							<div class="slider-temp-wrapper__slider-temp__slide-item">
+								<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+							</div>
+							<div class="slider-temp-wrapper__slider-temp__slide-item">
+								<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+							</div>
+							<div class="slider-temp-wrapper__slider-temp__slide-item">
+								<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-
-
-		<div id="response"></div>
-
-		{% include './parts/category.html' %}
-
 		<div class="block-name">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h2>{% trans 'Новое' %}</h2>
+						<h2>Рубрики</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		{% include './parts/product.html' %}
-		{% include './parts/buttons.html' %}
-		{% load i18n %}
+		<div class="categories-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="categories">
+							<div class="category">
+								<div class="category__top-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.7264mm" height="12.4633mm"
+										version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+										image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 13.13 9.78"
+										xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
 
-		<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-			<input name="next" type="hidden" value="{{ redirect_to }}">
-			<select name="language">
-				{% get_current_language as LANGUAGE_CODE %}
-				{% get_available_languages as LANGUAGES %}
-				{% get_language_info_list for LANGUAGES as languages %}
-				{% for language in languages %}
-				<option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-					{{ language.name_local }} ({{ language.code }})
-				</option>
-				{% endfor %}
-			</select>
-			<input type="submit" value="Go">
-		</form>
-	</div>
-	<!-- content -->
+										<g id="Слой_x0020_1">
+											<metadata id="CorelCorpID_0Corel-Layer" />
+											<path fill="url(#icon_gradient)"
+												d="M-0 6.75l7.11 -5.51 2.53 5.94 -9.2 0.99 -0.44 -1.42zm8.09 -6.23l0 -0 2.73 6.41 -0 0 0 0.01c0.08,0.2 -0.01,0.42 -0.21,0.51 -0.2,0.08 -0.43,-0.01 -0.52,-0.21l-0 -0.01 -0 0 -2.72 -6.39 -0.01 -0.02c-0.08,-0.2 0.01,-0.42 0.21,-0.51 0.2,-0.08 0.43,0.01 0.52,0.21l0 0zm-0.29 7.3c0.03,0.12 0.05,0.25 0.05,0.38 0,0.87 -0.72,1.58 -1.61,1.58 -0.89,0 -1.61,-0.71 -1.61,-1.58 0,-0.01 0,-0.03 0,-0.04l0.58 -0.06c-0,0.03 -0.01,0.07 -0.01,0.1 0,0.56 0.46,1.02 1.03,1.02 0.57,0 1.03,-0.46 1.03,-1.02 0,-0.11 -0.02,-0.22 -0.05,-0.32l0.58 -0.06zm2.93 -4.53l-0 -0 1.2 -0.48 0 0 0 -0c0.14,-0.06 0.31,0.01 0.37,0.15 0.06,0.14 -0.01,0.31 -0.16,0.37l-0 0 0 0 -1.18 0.48 -0.01 0c-0.15,0.06 -0.31,-0.01 -0.37,-0.15 -0.06,-0.14 0.01,-0.31 0.16,-0.37l0 0zm0.11 -2.88l0 0 -0.58 1.13 -0 -0 -0 0c-0.07,0.14 -0.24,0.2 -0.38,0.13 -0.14,-0.07 -0.2,-0.24 -0.13,-0.38l0 -0 -0 -0 0.57 -1.12 0.01 -0.01c0.07,-0.14 0.24,-0.2 0.38,-0.13 0.14,0.07 0.2,0.24 0.13,0.38l0 0zm1.93 5.97l-0 0 -1.25 -0.32 0 -0 -0 -0c-0.15,-0.04 -0.24,-0.19 -0.2,-0.34 0.04,-0.15 0.2,-0.24 0.35,-0.2l0 0 0 -0 1.24 0.32 0.01 0c0.15,0.04 0.24,0.19 0.2,0.34 -0.04,0.15 -0.2,0.24 -0.35,0.2l0 -0z" />
+										</g>
+									</svg>
+								</div>
+								<div class="category__bottom-text">
+									{{ category.name }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	{% include 'footer.html' %} {% endblock content %}
+		{% comment %} <div id="response"></div> {% endcomment %}
+		<div class="block-name">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h2>Новое</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="products-wrapper">
+			<div class="container">
+				<div class="row">
+					{% for product in products %}
+					<div class="col-6 col-md-4 col-lg-3 product-wrapper">
+						<div class="product">
+							<div class="product__header-image-wrapper">
+								<div class="product__header-image-wrapper__header-image">
+									{% if product.discount %}
+									<div class="product__header-image-wrapper__header-image__sale-block">
+										<img class="product__header-image-wrapper__header-image__sale-block__bg"
+											src="{% static './img/icons/sale_bg.svg' %}" alt="" />
+										<span class="product__header-image-wrapper__header-image__sale-block__text">
+											АКЦИЯ!
+										</span>
+									</div>
+									{% endif %}
+									<img class="product__header-image-wrapper__header-image__product-img"
+										src="{{ product.main_image.url }}" alt="product_name" />
+								</div>
+							</div>
+							<div class="product__name">
+								<a style="color: inherit" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+							</div>
+							<div class="product__price-favorite">
+								<div class="product__price-favorite__price">
+									{% if product.discount %}
+									<div class="product__price-favorite__price__without-discount">
+										{{ product.price|floatformat:"0" }}
+										<!--<span class="sumbol">грн.</span>-->
+									</div>
+									{% endif %}
+									<div class="product__price-favorite__price__with-discount">
+										{{ product.price_after_discount|floatformat:"0" }}<span class="sumbol">
+											грн</span>
+									</div>
+								</div>
+								<div class="product__price-favorite__favorite">
+									<div class="add_to_favorites" id="item-{{ product.id }}" data-itemid="{{ product.id }}">
+										<img id="item-img-{{ product.id }}" class="favorite-button" src="
+											{% if product.id in request.session.favorites %}
+												{% static './img/icons/favorites_fill.svg' %}
+											{% else %}
+												{% static './img/icons/favorites.svg' %}
+											{% endif %}" alt="favorites" />
+									</div>
+								</div>
+							</div>
+							<div class="product__company">
+								<div class="product__company__logo">
+									<div class="row">
+										<div class="col-lg-6">
+											{% if product.owner.profile.logo %}
+											<img src="{{ product.owner.profile.logo.url }}" alt="some_logo" />
+											{% elif product.owner.profile.brand %}
+											<p>{{ product.owner.email }}</p>
+											{% endif %}
+										</div>
+										<div class="col-lg-6">
+											<p class="text-end"
+												style="{% if product.discount %}margin-left: 40px{% else %}margin-left: 80px{% endif %}; margin-top: 15px; color: #048439">
+												{% if product.discount %}
+												{{ product.timestamp|date:"d/m" }}-{{ product.discount_expiry|date:"d/m" }}
+												{% endif %}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="products-wrapper__see-all">
+							<a href="{% url 'products:all' %}" class="button button-grey">
+								Показать все
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="buyers-and-suppliers-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="buyers-and-suppliers-cards">
+							<div class="buyers-and-suppliers-cards__card">
+								<div class="buyers-and-suppliers-cards__card__title">
+									<h2>Покупателям</h2>
+								</div>
+								<div class="buyers-and-suppliers-cards__card__block">
+									<div class="buyers-and-suppliers-cards__card__block__content">
+										<div class="buyers-and-suppliers-cards__card__block__content__icon">
+											<img src="{% static './img/icons/follow_sale.svg' %}" alt="follow_sale">
+										</div>
+										<div class="buyers-and-suppliers-cards__card__block__content__text">
+											Подписывайтесь на рассылку <b>акций, скидок распродаж</b>
+										</div>
+									</div>
+									<div class="buyers-and-suppliers-cards__card__block__button">
+										<a href="{% url 'subscribes:create' %}" class='button button-with-gradient'>
+											Добавить
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="buyers-and-suppliers-cards__card">
+								<div class="buyers-and-suppliers-cards__card__title">
+									<h2>Поставщикам</h2>
+								</div>
+								<div class="buyers-and-suppliers-cards__card__block">
+									<div class="buyers-and-suppliers-cards__card__block__content">
+										<div class="buyers-and-suppliers-cards__card__block__content__icon">
+											<img src="{% static './img/icons/icon_plus.svg' %}" alt="icon_plus">
+										</div>
+										<div class="buyers-and-suppliers-cards__card__block__content__text">
+											Размещайте свои <b>акции, товары и услуги</b> на сайте NAZVANIE.COM
+										</div>
+									</div>
+									<div class="buyers-and-suppliers-cards__card__block__button">
+										<a href="{% url 'products:add_product' %}" class='button button-with-gradient'>
+											Добавить
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- buyers-and-suppliers-wrapper -->
+	</div> <!-- content -->
 </div>
+{% include 'footer.html' %}
+{% endblock content %}

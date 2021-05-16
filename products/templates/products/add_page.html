@@ -2,222 +2,222 @@
 {% extends 'base.html' %}
 {% load products_tags %}
 {% block content %}
-
-<div id="content">
-  <div class="add-page-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="add-page">
-          {% comment %} <header class="add-page__header">
-            <div class="add-page__header__left-side">
-              <div class="add-page__header__left-side__go-back">
-                <a href="#"></a>
+<div id="page">
+  <div id="content">
+    <div class="add-page-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="add-page">
+            {% comment %} <header class="add-page__header">
+              <div class="add-page__header__left-side">
+                <div class="add-page__header__left-side__go-back">
+                  <a href="#"></a>
+                </div>
+                <div class="add-page__header__left-side__name-page">Заполнение
+                  страницы</div>
               </div>
-              <div class="add-page__header__left-side__name-page">Заполнение
-                страницы</div>
-            </div>
-            <div class="add-page__header__right-side">
-              <div class="header-main__items__item hamburger">
-                <div class="wrapper-menu-hamburger">
-                  <div class="wrapper-menu-hamburger__hamburger-menu"></div>
+              <div class="add-page__header__right-side">
+                <div class="header-main__items__item hamburger">
+                  <div class="wrapper-menu-hamburger">
+                    <div class="wrapper-menu-hamburger__hamburger-menu"></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </header> {% endcomment %}
+            </header> {% endcomment %}
 
-          <form action="{% url 'products:add_product' %}" method="POST" enctype="multipart/form-data"
-            id="form_add_page">
-            {% csrf_token %}
-            <table>
-              <tbody>
-                <tr class="add-page__photo add-page__section">
-                  <!-- PHOTO -->
-                  <td class="add-page__section__description">Добывьте минимум 1
-                    фото или ссылку на
-                    видео Youtube:</td>
+            <form action="{% url 'products:add_product' %}" method="POST" enctype="multipart/form-data"
+              id="form_add_page">
+              {% csrf_token %}
+              <table>
+                <tbody>
+                  <tr class="add-page__photo add-page__section">
+                    <!-- PHOTO -->
+                    <td class="add-page__section__description">Добывьте минимум 1
+                      фото или ссылку на
+                      видео Youtube:</td>
 
-                  <!-- ТУТ ИЗМЕНЕНИЯ -->
-                  <td class="add-page__section__main-content">
-                    <div class="tmp_block_add_photo_for_clone" data-pos="">
-                      <div class="help_line_left"></div>
-                      <div class="del_block"></div>
-                      <img src="" alt="loaded img" />
-                      <input type="file" name="" disabled class="file_input" accept="image/*" />
-                      <div class="help_line_right"></div>
-                    </div>
-                    <div class="tmp_block_add_url_ytb_for_clone">
-                      <div class="help_line_left"></div>
-                      <div class="del_block"></div>
-                      <img src="" alt="preview" />
-                      <input type="hidden" disabled name="video" />
-                      <div class="help_line_right"></div>
-                    </div>
-                    <div class="add-page__photo__container-for-loaded-files">
-                    </div>
-                    <div class="add-page__photo__load-image-or-urlYouT">
-                      <img class="load_photo_btn" src="Url_to_ icon" alt="load photo" />
-                      <img class="load_url_ytb_btn" src="Url_to_ icon" alt="load yout" />
-                    </div>
-                  </td>
-                  <!-- ТУТ ИЗМЕНЕНИЯ -->
-                </tr>
-                <tr class="add-page__heading add-page__section">
-                  <!-- HEADING -->
-                  <td class="add-page__section__description">Выбирите рубрику:
-                  </td>
-                  <td class="add-page__section__main-content">
-                    <div class="subscription-to-shares">
-                      <div class="categories-wrapper">
-                        <div class="categories">
-                          {% for i in categories %}
-                          {% if i.parent.id == None %}
-                          <div class="category_h">
-                            <input type="checkbox" class="subscription-to-shares__category-checkbox" disabled
-                              name="product_cat" value="{{ i.id  }}" />
-                            <div class="category_h__top-icon">
-                              <div class="category_h__top-icon__X"></div>
-                              <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.7264mm"
-                                height="12.4633mm" version="1.1" shape-rendering="geometricPrecision"
-                                text-rendering="geometricPrecision" image-rendering="optimizeQuality"
-                                fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 13.13 9.78">
-                                <g id="Слой_x0020_1">
-                                  <metadata id="CorelCorpID_0Corel-Layer" />
-                                  <path fill="url(#icon_gradient)"
-                                    d="M-0 6.75l7.11 -5.51 2.53 5.94 -9.2 0.99 -0.44 -1.42zm8.09 -6.23l0 -0 2.73 6.41 -0 0 0 0.01c0.08,0.2 -0.01,0.42 -0.21,0.51 -0.2,0.08 -0.43,-0.01 -0.52,-0.21l-0 -0.01 -0 0 -2.72 -6.39 -0.01 -0.02c-0.08,-0.2 0.01,-0.42 0.21,-0.51 0.2,-0.08 0.43,0.01 0.52,0.21l0 0zm-0.29 7.3c0.03,0.12 0.05,0.25 0.05,0.38 0,0.87 -0.72,1.58 -1.61,1.58 -0.89,0 -1.61,-0.71 -1.61,-1.58 0,-0.01 0,-0.03 0,-0.04l0.58 -0.06c-0,0.03 -0.01,0.07 -0.01,0.1 0,0.56 0.46,1.02 1.03,1.02 0.57,0 1.03,-0.46 1.03,-1.02 0,-0.11 -0.02,-0.22 -0.05,-0.32l0.58 -0.06zm2.93 -4.53l-0 -0 1.2 -0.48 0 0 0 -0c0.14,-0.06 0.31,0.01 0.37,0.15 0.06,0.14 -0.01,0.31 -0.16,0.37l-0 0 0 0 -1.18 0.48 -0.01 0c-0.15,0.06 -0.31,-0.01 -0.37,-0.15 -0.06,-0.14 0.01,-0.31 0.16,-0.37l0 0zm0.11 -2.88l0 0 -0.58 1.13 -0 -0 -0 0c-0.07,0.14 -0.24,0.2 -0.38,0.13 -0.14,-0.07 -0.2,-0.24 -0.13,-0.38l0 -0 -0 -0 0.57 -1.12 0.01 -0.01c0.07,-0.14 0.24,-0.2 0.38,-0.13 0.14,0.07 0.2,0.24 0.13,0.38l0 0zm1.93 5.97l-0 0 -1.25 -0.32 0 -0 -0 -0c-0.15,-0.04 -0.24,-0.19 -0.2,-0.34 0.04,-0.15 0.2,-0.24 0.35,-0.2l0 0 0 -0 1.24 0.32 0.01 0c0.15,0.04 0.24,0.19 0.2,0.34 -0.04,0.15 -0.2,0.24 -0.35,0.2l0 -0z" />
-                                </g>
-                              </svg>
+                    <!-- ТУТ ИЗМЕНЕНИЯ -->
+                    <td class="add-page__section__main-content">
+                      <div class="tmp_block_add_photo_for_clone" data-pos="">
+                        <div class="help_line_left"></div>
+                        <div class="del_block"></div>
+                        <img src="" alt="loaded img" />
+                        <input type="file" name="" disabled class="file_input" accept="image/*" />
+                        <div class="help_line_right"></div>
+                      </div>
+                      <div class="tmp_block_add_url_ytb_for_clone">
+                        <div class="help_line_left"></div>
+                        <div class="del_block"></div>
+                        <img src="" alt="preview" />
+                        <input type="hidden" disabled name="video" />
+                        <div class="help_line_right"></div>
+                      </div>
+                      <div class="add-page__photo__container-for-loaded-files">
+                      </div>
+                      <div class="add-page__photo__load-image-or-urlYouT">
+                        <img class="load_photo_btn" src="Url_to_ icon" alt="load photo" />
+                        <img class="load_url_ytb_btn" src="Url_to_ icon" alt="load yout" />
+                      </div>
+                    </td>
+                    <!-- ТУТ ИЗМЕНЕНИЯ -->
+                  </tr>
+                  <tr class="add-page__heading add-page__section">
+                    <!-- HEADING -->
+                    <td class="add-page__section__description">Выбирите рубрику:
+                    </td>
+                    <td class="add-page__section__main-content">
+                      <div class="subscription-to-shares">
+                        <div class="categories-wrapper">
+                          <div class="categories">
+                            {% for i in categories %}
+                            {% if i.parent.id == None %}
+                            <div class="category_h">
+                              <input type="checkbox" class="subscription-to-shares__category-checkbox" disabled
+                                name="product_cat" value="{{ i.id  }}" />
+                              <div class="category_h__top-icon">
+                                <div class="category_h__top-icon__X"></div>
+                                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.7264mm"
+                                  height="12.4633mm" version="1.1" shape-rendering="geometricPrecision"
+                                  text-rendering="geometricPrecision" image-rendering="optimizeQuality"
+                                  fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 13.13 9.78">
+                                  <g id="Слой_x0020_1">
+                                    <metadata id="CorelCorpID_0Corel-Layer" />
+                                    <path fill="url(#icon_gradient)"
+                                      d="M-0 6.75l7.11 -5.51 2.53 5.94 -9.2 0.99 -0.44 -1.42zm8.09 -6.23l0 -0 2.73 6.41 -0 0 0 0.01c0.08,0.2 -0.01,0.42 -0.21,0.51 -0.2,0.08 -0.43,-0.01 -0.52,-0.21l-0 -0.01 -0 0 -2.72 -6.39 -0.01 -0.02c-0.08,-0.2 0.01,-0.42 0.21,-0.51 0.2,-0.08 0.43,0.01 0.52,0.21l0 0zm-0.29 7.3c0.03,0.12 0.05,0.25 0.05,0.38 0,0.87 -0.72,1.58 -1.61,1.58 -0.89,0 -1.61,-0.71 -1.61,-1.58 0,-0.01 0,-0.03 0,-0.04l0.58 -0.06c-0,0.03 -0.01,0.07 -0.01,0.1 0,0.56 0.46,1.02 1.03,1.02 0.57,0 1.03,-0.46 1.03,-1.02 0,-0.11 -0.02,-0.22 -0.05,-0.32l0.58 -0.06zm2.93 -4.53l-0 -0 1.2 -0.48 0 0 0 -0c0.14,-0.06 0.31,0.01 0.37,0.15 0.06,0.14 -0.01,0.31 -0.16,0.37l-0 0 0 0 -1.18 0.48 -0.01 0c-0.15,0.06 -0.31,-0.01 -0.37,-0.15 -0.06,-0.14 0.01,-0.31 0.16,-0.37l0 0zm0.11 -2.88l0 0 -0.58 1.13 -0 -0 -0 0c-0.07,0.14 -0.24,0.2 -0.38,0.13 -0.14,-0.07 -0.2,-0.24 -0.13,-0.38l0 -0 -0 -0 0.57 -1.12 0.01 -0.01c0.07,-0.14 0.24,-0.2 0.38,-0.13 0.14,0.07 0.2,0.24 0.13,0.38l0 0zm1.93 5.97l-0 0 -1.25 -0.32 0 -0 -0 -0c-0.15,-0.04 -0.24,-0.19 -0.2,-0.34 0.04,-0.15 0.2,-0.24 0.35,-0.2l0 0 0 -0 1.24 0.32 0.01 0c0.15,0.04 0.24,0.19 0.2,0.34 -0.04,0.15 -0.2,0.24 -0.35,0.2l0 -0z" />
+                                  </g>
+                                </svg>
+                              </div>
+                              <div class="category_h__bottom-text">
+                                {{ i.name|truncatechars:9 }}</div>
                             </div>
-                            <div class="category_h__bottom-text">
-                              {{ i.name|truncatechars:9 }}</div>
+                            {% endif %}
+                            {% endfor %}
                           </div>
-                          {% endif %}
-                          {% endfor %}
                         </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="add-page__subheading add-page__section">
-                  <!-- SUBHEADING -->
-                  <td class="add-page__section__description">Выберите
-                    подрубрику:</td>
-                  <td class="add-page__section__main-content">
-                    <div class="add-page__section__main-content__inp-wrapper">
-                      <select id="sub-cat-select" name="category">
-                        {% for i in categories %}
-                        {% if i.parent.id != None %}
-                        <option value="{{ i.id }}" data-main-cat="{{ i.parent.id }}">
-                          {{ i.name }}
-                        </option>
-                        {% endif %}
+                    </td>
+                  </tr>
+                  <tr class="add-page__subheading add-page__section">
+                    <!-- SUBHEADING -->
+                    <td class="add-page__section__description">Выберите
+                      подрубрику:</td>
+                    <td class="add-page__section__main-content">
+                      <div class="add-page__section__main-content__inp-wrapper">
+                        <select id="sub-cat-select" name="category">
+                          {% for i in categories %}
+                          {% if i.parent.id != None %}
+                          <option value="{{ i.id }}" data-main-cat="{{ i.parent.id }}">
+                            {{ i.name }}
+                          </option>
+                          {% endif %}
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="add-page__name-product add-page__section">
+                    <!-- NAME PRODUCT -->
+                    <td class="add-page__section__description">Назовите ваш товар
+                      или услугу:</td>
+                    <td class="add-page__section__main-content">
+                      <input type="text" name="name" id="name-product" class="tmp-input-text" />
+                    </td>
+                  </tr>
+                  <tr class="add-page__price add-page__section">
+                    <!-- PRICE -->
+                    <td class="add-page__section__description">Дайте цену:</td>
+                    <td class="add-page__section__main-content">
+                      <div class="add-page__section__main-content__inp-wrapper">
+                        <input type="number" min="1" name="price" id="price" class="tmp-input-text" />
+                        <div class="sumbol">грн.</div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="add-page__discount add-page__section">
+                    <!--DISCOUNT -->
+                    <td class="add-page__section__description">Объявите акцию -
+                      получите больше
+                      продаж:</td>
+                    <td class="add-page__section__main-content">
+                      <div class="add-page__section__main-content__inp-wrapper">
+                        <div class="add-page__section__main-content__inp-wrapper__description">
+                          Срок
+                          окончания акции</div>
+                        <div class="add-page__section__main-content__inp-wrapper__input">
+                          <input type="date" id="discount_to" name="discount_expiry" class="tmp-input-text" />
+                        </div>
+                      </div>
+                      <div class="add-page__section__main-content__inp-wrapper">
+                        <div class="add-page__section__main-content__inp-wrapper__description">
+                          Процент
+                          скидки</div>
+                        <input type="number" id="discount_percent" name="discount" class="tmp-input-text" />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="add-page__keywords add-page__section">
+                    <!-- discount description -->
+                    <td class="add-page__section__description">Описание акции:
+                    </td>
+                    <td class="add-page__section__main-content">
+                      <textarea name="discount_overview" placeholder="Описание акции" id="discount_description"
+                        cols="60" class="tmp-input-text" rows="4"></textarea>
+                    </td>
+                  </tr>
+
+                  <tr class="add-page__keywords add-page__section">
+                    <!-- description -->
+                    <td class="add-page__section__description">Описание товара:
+                    </td>
+                    <td class="add-page__section__main-content">
+                      <textarea name="overview" id="pr_description" placeholder="Описание товара" cols="60"
+                        class="tmp-input-text" rows="10"></textarea>
+                    </td>
+                  </tr>
+
+                  <tr class="add-page__keywords add-page__section">
+                    <!-- CITY -->
+                    <td class="add-page__section__description">Город</td>
+                    <td class="add-page__section__main-content">
+                      <select name="city" id="id_city">
+                        {% city_list as c_list %}
+                        {% for key, value in c_list %}
+                        <option value="{{ key }}">{{ value }}</option>
                         {% endfor %}
                       </select>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="add-page__name-product add-page__section">
-                  <!-- NAME PRODUCT -->
-                  <td class="add-page__section__description">Назовите ваш товар
-                    или услугу:</td>
-                  <td class="add-page__section__main-content">
-                    <input type="text" name="name" id="name-product" class="tmp-input-text" />
-                  </td>
-                </tr>
-                <tr class="add-page__price add-page__section">
-                  <!-- PRICE -->
-                  <td class="add-page__section__description">Дайте цену:</td>
-                  <td class="add-page__section__main-content">
-                    <div class="add-page__section__main-content__inp-wrapper">
-                      <input type="number" min="1" name="price" id="price" class="tmp-input-text" />
-                      <div class="sumbol">грн.</div>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
 
-                <tr class="add-page__discount add-page__section">
-                  <!--DISCOUNT -->
-                  <td class="add-page__section__description">Объявите акцию -
-                    получите больше
-                    продаж:</td>
-                  <td class="add-page__section__main-content">
-                    <div class="add-page__section__main-content__inp-wrapper">
-                      <div class="add-page__section__main-content__inp-wrapper__description">
-                        Срок
-                        окончания акции</div>
-                      <div class="add-page__section__main-content__inp-wrapper__input">
-                        <input type="date" id="discount_to" name="discount_expiry" class="tmp-input-text" />
-                      </div>
-                    </div>
-                    <div class="add-page__section__main-content__inp-wrapper">
-                      <div class="add-page__section__main-content__inp-wrapper__description">
-                        Процент
-                        скидки</div>
-                      <input type="number" id="discount_percent" name="discount" class="tmp-input-text" />
-                    </div>
-                  </td>
-                </tr>
-
-                <tr class="add-page__keywords add-page__section">
-                  <!-- discount description -->
-                  <td class="add-page__section__description">Описание акции:
-                  </td>
-                  <td class="add-page__section__main-content">
-                    <textarea name="discount_overview" placeholder="Описание акции" id="discount_description" cols="60"
-                      class="tmp-input-text" rows="4"></textarea>
-                  </td>
-                </tr>
-
-                <tr class="add-page__keywords add-page__section">
-                  <!-- description -->
-                  <td class="add-page__section__description">Описание товара:
-                  </td>
-                  <td class="add-page__section__main-content">
-                    <textarea name="overview" id="pr_description" placeholder="Описание товара" cols="60"
-                      class="tmp-input-text" rows="10"></textarea>
-                  </td>
-                </tr>
-
-                <tr class="add-page__keywords add-page__section">
-                  <!-- CITY -->
-                  <td class="add-page__section__description">Город</td>
-                  <td class="add-page__section__main-content">
-                    <select name="city" id="id_city">
-                      {% city_list as c_list %}
-                      {% for key, value in c_list %}
-                      <option value="{{ key }}">{{ value }}</option>
-                      {% endfor %}
-                    </select>
-                  </td>
-                </tr>
-
-                <tr class="add-page__keywords add-page__section">
-                  <!-- KEYWORDS -->
-                  <td class="add-page__section__description">
-                    Подберите ключевые слова. Пишите через запятую с пробелом:
-                  </td>
-                  <td class="add-page__section__main-content">
-                    <textarea name="keywords" id="keywords" cols="60" class="tmp-input-text" rows="4"></textarea>
-                  </td>
-                </tr>
-                <tr class="add-page__submit add-page__section">
-                  <!-- submit	 -->
-                  <td colspan="2" align="center" class="add-page__section__main-content">
-                    <input type="submit" class="button button-with-gradient" value="Загрузить на сайт" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </form>
-          <!-- form add page -->
+                  <tr class="add-page__keywords add-page__section">
+                    <!-- KEYWORDS -->
+                    <td class="add-page__section__description">
+                      Подберите ключевые слова. Пишите через запятую с пробелом:
+                    </td>
+                    <td class="add-page__section__main-content">
+                      <textarea name="keywords" id="keywords" cols="60" class="tmp-input-text" rows="4"></textarea>
+                    </td>
+                  </tr>
+                  <tr class="add-page__submit add-page__section">
+                    <!-- submit	 -->
+                    <td colspan="2" align="center" class="add-page__section__main-content">
+                      <input type="submit" class="button button-with-gradient" value="Загрузить на сайт" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+            <!-- form add page -->
+          </div>
+          <!-- add-page -->
         </div>
-        <!-- add-page -->
+        <!-- row -->
       </div>
-      <!-- row -->
+      <!-- container -->
     </div>
-    <!-- container -->
+    <!-- add-page-wrapper -->
   </div>
-  <!-- add-page-wrapper -->
+  <!-- content -->
 </div>
-<!-- content -->
-
 {% endblock content %}

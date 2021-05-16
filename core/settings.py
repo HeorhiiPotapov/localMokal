@@ -52,7 +52,6 @@ INSTALLED_APPS = [
 
     # soft
     'mptt',
-    'storages',
     'corsheaders',
 ]
 

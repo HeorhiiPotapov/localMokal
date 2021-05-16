@@ -61,7 +61,7 @@ window.onload = function() {
 		}
 		// categories
 
-		// страница товара 
+		// страница товара
 		if(document.querySelector('.product-page')) {
 			$('#content').css('padding','0')
 			$('.header-main').css('display','none')
@@ -78,7 +78,7 @@ window.onload = function() {
 					})
 					$('.product-page').css('margin-top', '80px')
 
-				}else { 
+				}else {
 					$('.product-page').css('margin-top', '0')
 					set_full_height_product_page()
 				}
@@ -135,16 +135,16 @@ window.onload = function() {
 
 				hide_or_show_expand_btn()
 				// /скрыть кнопку если пекст занимает меньше 90px height
-				
-				// развирнуть при клике 
+
+				// развирнуть при клике
 				$('.product-page__content__product-info__description__expand').on('click',function() {
 					$('.product-page__content__product-info__description__text',).toggleClass('open')
 					$('.product-page__content__product-info__description__expand').toggleClass('open')
 				})
-				// /развирнуть при клике 
+				// /развирнуть при клике
 
 			// подробнее
-			
+
 			// скрыть шапку если скролится вниз и показать если скролится наверх
 			fixed_block_from('.product-page__content__header', 992, 'top')
 			if($('body').width() < 992) {
@@ -155,18 +155,18 @@ window.onload = function() {
 			}
 
 		}else {
-			
+
 		}
-		// раздел с номерами 
+		// раздел с номерами
 		$('#btn_call, .product-page__content__header__phones__close-btn').on('click', function() {
 			$('.product-page__content__header').toggleClass('active')
 			$('.product-page__content__header__phones').toggleClass('active')
 		})
-		// страница товара 
+		// страница товара
 
 
 
-		// поля с паролем 
+		// поля с паролем
 		let all_passw_block = document.querySelectorAll('.view-password')
 		all_passw_block.forEach( block => {
 			let eye = block.querySelector('._show-passw'),
@@ -241,8 +241,8 @@ window.onload = function() {
 			let sub_menu_btns = document.querySelectorAll('.right-bar__menu__item._with-sub-menu > a')
 			sub_menu_btns.forEach( btn => {
 				btn.addEventListener('click', function(){
-					
-					// открыть текущее 
+
+					// открыть текущее
 					let sub_menu = btn.parentNode.querySelector('.right-bar__menu__item__sub-menu')
 					$(sub_menu).toggleClass('_open')
 					$(btn.parentNode).toggleClass('_active')
@@ -256,7 +256,7 @@ window.onload = function() {
 						prev_open_menu.classList.remove('_prev_open_menu')
 						prev_open_menu.classList.remove('_open')
 					}
-					
+
 				})
 			})
 		}
@@ -271,7 +271,7 @@ window.onload = function() {
 			$('#search-inp').on('input', function(){
 				let val = document.querySelector('#search-inp').value,
 					city = document.querySelector('#region-inp').value
-	
+
 				if(val.length >= 3) {
 					$.ajax({
 						url: "https://e22f0f4a0a13.ngrok.io/search/",
@@ -294,7 +294,7 @@ window.onload = function() {
 				}
 			})
 		}
-		// search form 
+		// search form
 		// $('#search-inp').on('input', function(){
 		// 	let val = document.querySelector('#search-inp').value,
 		// 		city = document.querySelector('#region-inp').value
@@ -313,9 +313,9 @@ window.onload = function() {
 	})();
 }
 function fixed_block_from( selector, max_width, position ) {
-	
+
 	if($('body').width() < max_width) {
-		
+
 		let prev_offset_y;
 		document.querySelector('body').addEventListener('scroll', function(e) {
 			if(prev_offset_y > document.body.scrollTop) { // это скрол наверх
@@ -339,7 +339,7 @@ function dropdown_input( for_input ) { // for_input - id скрытого инп
 			hidden_input = document.querySelector(`input#${for_input}`)
 			hidden_input.value = item_value
 
-			// сменить самой кнопки содержимое кнопки 
+			// сменить самой кнопки содержимое кнопки
 			let button_dropdown = document.querySelector(`.dropdown-menu[data-for="${for_input}"]`).parentNode.querySelector('button')
 			button_dropdown.innerHTML = item_value
 		})

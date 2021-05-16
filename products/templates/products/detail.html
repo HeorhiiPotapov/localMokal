@@ -165,7 +165,7 @@
 					<div class="container">
 						<div class="row">
 							{% for item in sugested %}
-							<div class="col-12 col-md-6 col-lg-6 product-wrapper">
+							<div class="col-6 col-md-5 col-lg-5 product-wrapper">
 								<div class="product">
 									<div class="product__header-image-wrapper">
 										<div class="product__header-image-wrapper__header-image">
@@ -173,8 +173,7 @@
 											<div class="product__header-image-wrapper__header-image__sale-block">
 												<img class="product__header-image-wrapper__header-image__sale-block__bg"
 													src="{% static './img/icons/sale_bg.svg' %}" alt="" />
-												<span
-													class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ!</span>
+												<span class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ!</span>
 											</div>
 											{% endif %}
 											<img class="product__header-image-wrapper__header-image__product-img"
@@ -197,25 +196,35 @@
 											</div>
 										</div>
 										<div class="product__price-favorite__favorite">
-											<div class="add_to_favorites" id="item-{{ item.id }}"
-												data-itemid="{{ item.id }}">
-												<img id="item-img-{{ item.id }}" class="favorite-button" src="{% if item.id in request.session.favorites %}
-															{% static './img/icons/favorites_fill.svg' %}
-														  {% else %}
-															{% static './img/icons/favorites.svg' %}
-														  {% endif %}" alt="favorites" />
+											<div class="add_to_favorites" id="item-{{ item.id }}" data-itemid="{{ item.id }}">
+												<img id="item-img-{{ item.id }}" class="favorite-button" src="
+                            {% if item.id in request.session.favorites %}
+                              {% static './img/icons/favorites_fill.svg' %}
+                            {% else %}
+                              {% static './img/icons/favorites.svg' %}
+                            {% endif %}" alt="favorites" />
 											</div>
 										</div>
 									</div>
 									<div class="product__company">
 										<div class="product__company__logo">
-											{% if item.owner.profile.logo %}
-											<img src="{{ item.owner.profile.logo.url }}" alt="some_logo" />
-											{% elif item.owner.profile.brand %}
-											<p>{{ item.owner.profile.brand }}</p>
-											{% else %}
-											<p>{{ item.profile.user.name }}</p>
-											{% endif %}
+											<div class="row">
+												<div class="col-lg-6">
+													{% if product.owner.profile.logo %}
+													<img src="{{ product.owner.profile.logo.url }}" alt="some_logo" />
+													{% elif product.owner.profile.brand %}
+													<p>{{ product.owner.email }}</p>
+													{% endif %}
+												</div>
+												<div class="col-lg-6">
+													<p class="text-end"
+														style="{% if product.discount %}margin-left: 40px{% else %}margin-left: 80px{% endif %}; margin-top: 15px; color: #048439">
+														{% if product.discount %}
+														{{ product.timestamp|date:"d/m" }}-{{ product.discount_expiry|date:"d/m" }}
+														{% endif %}
+													</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -235,10 +244,4 @@
 	<!-- product-page -->
 </div>
 <!-- content -->
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		document.getElementById('heading').remove
-		console.log(document.getElementById('heading'))
-	});
-</script>
 {% endblock content %}

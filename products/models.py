@@ -7,14 +7,9 @@ from decimal import Decimal
 from mptt.models import MPTTModel, TreeForeignKey
 from .utils import City
 from django.conf import settings
-from datetime import datetime, timedelta
 from .managers import ProductManager
 
 city = City()
-
-
-def set_discount_expiry():
-    return datetime.now() + timedelta(days=30)
 
 
 class Category(MPTTModel):
@@ -51,8 +46,7 @@ class Category(MPTTModel):
 
     def get_absolute_url(self):
         return reverse("products:by_category",
-                       kwargs={"slug": self.slug}
-                       )
+                       kwargs={"slug": self.slug})
 
 
 class Product(models.Model):
@@ -70,7 +64,7 @@ class Product(models.Model):
                                    validators=[MinValueValidator(0),
                                                MaxValueValidator(100)])
     discount_expiry = models.DateTimeField("Дата окончания акции",
-                                           default=set_discount_expiry())
+                                           default=timezone.now)
     discount_overview = models.TextField(null=True, blank=True)
     main_image = models.ImageField("Изображение",
                                    null=True,
@@ -97,7 +91,10 @@ class Product(models.Model):
                             max_length=20,
                             choices=city.CITY_LIST,
                             default=city.ANY)
-    keywords = models.CharField(max_length=100, null=True, blank=True)
+    keywords = models.CharField("Ключевые слова",
+                                max_length=100,
+                                null=True,
+                                blank=True)
 
     objects = ProductManager()
 

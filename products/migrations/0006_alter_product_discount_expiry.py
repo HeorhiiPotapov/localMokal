@@ -2,6 +2,7 @@
 
 from django.db import migrations, models
 import products.models
+from django.utils import timezone
 
 
 class Migration(migrations.Migration):
@@ -14,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='product',
             name='discount_expiry',
-            field=models.DateTimeField(default=products.models.set_discount_expiry, verbose_name='Дата окончания акции'),
+            field=models.DateTimeField(
+                default=timezone.now, verbose_name='Дата окончания акции'),
         ),
     ]

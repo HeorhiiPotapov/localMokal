@@ -3,5 +3,5 @@ from . import views
 
 app_name = "subscribes"
 urlpatterns = [
-    path('', views.SubscribeView.as_view(), name="list"),
+    path('', views.SubscribeView.as_view(), name="create"),
 ]

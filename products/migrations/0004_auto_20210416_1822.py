@@ -3,6 +3,7 @@
 from django.db import migrations, models
 import products.models
 import uuid
+from django.utils import timezone
 
 
 class Migration(migrations.Migration):
@@ -15,11 +16,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='product',
             name='code',
-            field=models.CharField(blank=True, default=uuid.uuid4, editable=False, max_length=100, null=True, unique=True),
+            field=models.CharField(blank=True, default=uuid.uuid4,
+                                   editable=False, max_length=100, null=True, unique=True),
         ),
         migrations.AlterField(
             model_name='product',
             name='discount_expiry',
-            field=models.DateTimeField(default=products.models.set_discount_expiry),
+            field=models.DateTimeField(default=timezone.now),
         ),
     ]
