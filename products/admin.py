@@ -28,19 +28,21 @@ class ImageInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     list_filter = ('category', 'city', 'is_active', 'timestamp')
-
-    fields = ['main_image',
-              'video',
-              'owner',
-              'name',
-              'city',
-              'category',
-              'price',
-              'overview',
-              'discount',
-              'is_active',
-              'timestamp',
-              'discount_expiry']
+    readonly_fields = ['slug', ]
+    fields = [
+        # 'main_image',
+        # 'video',
+        'slug',
+        'owner',
+        'name',
+        'city',
+        'category',
+        'price',
+        'overview',
+        # 'discount',
+        'is_active',
+        'timestamp',]
+        #'discount_expiry']
     list_display = ('name',
                     'category',
                     'price',

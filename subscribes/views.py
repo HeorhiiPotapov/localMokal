@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from .forms import SubscribtionAddForm
+
 from products.models import Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -9,16 +9,15 @@ class SubscribeView(LoginRequiredMixin, TemplateView):
     template_name = 'subscribe/subscribe.html'
 
     def post(self, *args, **kwargs):
-        form = SubscribtionAddForm(self.request.POST)
-        if form.is_valid():
-            new = form.save(commit=False)
-            cat_ids = [int(i) for i in self.request.POST.getlist('category')]
-            cat_qs = Category.objects.filter(id__in=cat_ids)
-            new.categories.add(*cat_qs)
-            new.save()
-        else:
-            print(form.errors)
-        return HttpResponseRedirect('/')
+        cat_id = self.request.POST.getlist('subscribe')
+        print(self.request.POST)
+        for i in cat_id:
+            cat = Category.objects.get(id=int(i))
+            if cat:
+                self.request.user.profile.subscribed_to.add(cat)
+            else:
+                self.request.user.profile.subscribed_to.remove(cat)
+        return HttpResponseRedirect(self.request.path_info)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

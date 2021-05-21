@@ -4,10 +4,7 @@ from .managers import CustomUserManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from products.utils import City
-from products.models import Product
-
-
-city = City()
+from products.models import Category
 
 
 class CustomUser(AbstractUser):
@@ -25,39 +22,17 @@ class CustomUser(AbstractUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser,
-                                primary_key=True,
+    user = models.OneToOneField(CustomUser, primary_key=True,
                                 related_name='profile',
-                                on_delete=models.CASCADE,
-                                verbose_name="Пользователь")
-    image = models.ImageField("Фото профиля",
-                              upload_to="profile_img",
-                              default="profile_img/default_profile_img.jpg")
-    logo = models.ImageField("Лого",
-                             upload_to="profile_logo",
-                             null=True,
-                             blank=True)
-    brand = models.CharField("Бренд",
-                             max_length=100,
-                             null=True,
-                             blank=True)
-    city = models.CharField("Город",
-                            choices=City.CITY_LIST,
-                            max_length=50,
-                            null=True,
-                            blank=True)
-    address = models.CharField("Адресс",
-                               max_length=300,
-                               null=True,
-                               blank=True)
-    phone = models.CharField("Телефон",
-                             max_length=100,
-                             null=True,
-                             blank=True)
-    country = models.CharField("Страна",
-                               max_length=100,
-                               null=True,
-                               blank=True)
+                                on_delete=models.CASCADE)
+    image = models.ImageField(default="profile_img/default_profile_img.jpg",
+                              upload_to="profile_img")
+    logo = models.ImageField(upload_to="profile_logo", null=True, blank=True)
+    brand = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(choices=City.CITY_LIST, max_length=50,
+                            null=True, blank=True, default=City.ANY)
+    address = models.CharField(max_length=300, null=True, blank=True)
+    subscribed_to = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
         return self.user.email
@@ -65,6 +40,22 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'
+
+
+class ContactPhone(models.Model):
+    TELEGRAM = 1
+    VIBER = 2
+    SOCIAL_CHOICES = ((1, 'Telegram'),
+                      (2, 'Viber'))
+    social = models.CharField(max_length=2,
+                              choices=SOCIAL_CHOICES)
+    profile = models.ForeignKey(Profile,
+                                on_delete=models.CASCADE,
+                                related_name="contact_phone")
+    phone = models.CharField(max_length=13)
+
+    def __str__(self):
+        return f"{self.social} - {self.phone}"
 
 
 @receiver(post_save, sender=CustomUser)

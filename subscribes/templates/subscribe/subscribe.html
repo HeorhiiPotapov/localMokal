@@ -34,10 +34,12 @@
 
 							<div class="subscription-to-shares__top-inputs__input _viber">
 								<img src="{% static './img/icons/viber.svg' %}" alt="viber-logo" />
+
 								<input type="text" class="tmp-input-text" id="subscription-to-shares__viber"
-									name="viber" placeholder="Viber" />
+									name="viber" placeholder="Viber" readonly value="{{ request.user.viber }}" />
 								<input type="checkbox" class="tmp-checkbox-btn-input"
-									id="subscription-to-shares__viber-checkbox" />
+									id="subscription-to-shares__viber-checkbox" {% if request.user.profile.viber %}
+									checked {% else %} disabled {% endif %} />
 								<label for="subscription-to-shares__viber-checkbox" class="tmp-checkbox-btn-label">
 								</label>
 							</div>
@@ -45,19 +47,23 @@
 							<div class="subscription-to-shares__top-inputs__input _telegram">
 								<img src="{% static './img/icons/telegram.svg' %}" alt="telegram-logo" />
 								<input type="text" class="tmp-input-text" id="subscription-to-shares__telegram"
-									name="telegram" placeholder="Telegram" />
+									name="telegram" placeholder="Telegram" readonly
+									value="{{ request.user.telegram }}" />
 								<input type="checkbox" class="tmp-checkbox-btn-input"
-									id="subscription-to-shares__telegram-checkbox" />
+									id="subscription-to-shares__telegram-checkbox"
+									{% if not request.user.profile.telegram %}disabled {% else %} checked {% endif %} />
 								<label for="subscription-to-shares__telegram-checkbox"
 									class="tmp-checkbox-btn-label"></label>
 							</div>
 
 							<div class="subscription-to-shares__top-inputs__input _email">
-								<i class="fa fa-envelope" aria-hidden="true"></i>
+								{% comment %} <i class="fa fa-envelope" aria-hidden="true"></i> {% endcomment %}
+								<img src="{% static '/img/icons/contact_hover.svg' %}" alt="email_icon">
 								<input type="text" class="tmp-input-text" id="subscription-to-shares__email"
 									name="email" value="{{ request.user.email }}" readonly />
 								<input type="checkbox" class="tmp-checkbox-btn-input"
-									id="subscription-to-shares__email-checkbox" checked />
+									id="subscription-to-shares__email-checkbox" {% if request.user.email %} checked
+									{% else %} disabled {% endif %} />
 								<label for="subscription-to-shares__email-checkbox" class="tmp-checkbox-btn-label">
 								</label>
 							</div>
@@ -73,8 +79,8 @@
 							<div class="categories">
 								{% for category in categories %}
 								<div class="category_h">
-									<input type="checkbox" class="subscription-to-shares__category-checkbox"
-										name="category" value="{{ category.id }}" />
+									<input type="hidden" name="subscribe" value="{{ category.id }}" />
+									<input type="checkbox" class="subscription-to-shares__category-checkbox" />
 									<div class="category_h__top-icon">
 										<div class="category_h__top-icon__X"></div>
 										<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.7264mm"

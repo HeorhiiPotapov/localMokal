@@ -7,14 +7,23 @@ register = Library()
 
 @register.simple_tag
 def city_list():
-    list = []
-    cities = City()
-    for c in cities.CITY_LIST:
-        list.append(c)
-    return list
+    city_list = [c for c in City.CITY_LIST]
+    return city_list
 
 
-@register.simple_tag
-def current_user_products(user):
-    object_list = Product.objects.filter(owner=user)
-    return [item.name for item in object_list]
+@register.simple_tag(takes_context=True)
+def favorite_items(context):
+    request = context['request']
+    favorites = request.session.get('favorites')
+    product_ids = []
+    if favorites:
+        product_ids = Product.objects.filter(
+            id__in=[item_id for item_id in favorites])
+    return product_ids
+
+
+@register.simple_tag(takes_context=True)
+def user_products(context):
+    request = context['request']
+    if request.user.is_authenticated:
+        return Product.objects.filter(owner=request.user)

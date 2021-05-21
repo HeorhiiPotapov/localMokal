@@ -12,6 +12,6 @@ class ProductManager(Manager):
 
     def with_discount(self):
         qs = self.all().filter(
-            Q(discount__gt=0) | Q(disount__lte=100)
+            discount__isnull=False
         )
         return qs

@@ -4,23 +4,42 @@
 <div id="page">
   {% include 'nav.html' %}
   <div id="content">
-    <div class="products-wrapper">
-      <div class="container">
-        <div class="row mb-3">
-          <div class="col-lg-12">
-            <div class="product-page__content__breadcrumbs-wrapper">
-              <div class="product-page__content__breadcrumbs-wrapper__breadcrumbs">
-                Главная / {% if cat_obj %} {{ cat_obj.name }} {% elif query %} {{ query }} {% else %} Все {% endif %}/
-              </div>
+    <div class="container">
+      <div class="row mt-4 mb-3">
+        <div class="col-lg-12">
+          <div class="product-page__content__breadcrumbs-wrapper _in_cat_page">
+            <div class="product-page__content__breadcrumbs-wrapper__subcat-descr">
+              {% for c in cat_obj.children.all %}
+              {% if c.products.count > 0 %}
+              <span class='product-page__content__breadcrumbs-wrapper__subcat-descr__subcat'>
+                <a href="{{ c.get_absolute_url }}">
+                  {{ c.name }}
+                </a>
+                {{ c.products.count }}
+              </span>
+              {% endif %}
+              {% endfor %}
+            </div>
+            <div class="product-page__content__breadcrumbs-wrapper__breadcrumbs">
+              <a style="color: inherit; margin-left: auto" href="{% url 'index' %}">Главная</a> / {% if cat_obj %}
+              {{ cat_obj.name }}
+              {% elif query %} {{ query }} {% else %} Все {% endif %}/
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="products-wrapper">
+      <div class="container">
         <div class="row">
           {% for product in page_obj %}
           <div class="col-6 col-md-4 col-lg-3 product-wrapper">
             <div class="product">
               <div class="product__header-image-wrapper">
                 <div class="product__header-image-wrapper__header-image">
+                  {% for cat, value in product.owner.profile.subscribed_to.items %}
+                  {{ cat }}{{  value  }}
+                  {% endfor %}
                   {% if product.discount %}
                   <div class="product__header-image-wrapper__header-image__sale-block">
                     <img class="product__header-image-wrapper__header-image__sale-block__bg"
@@ -30,7 +49,7 @@
                   </div>
                   {% endif %}
                   <img class="product__header-image-wrapper__header-image__product-img"
-                    src="{{ product.main_image.url }}" alt="product_name" />
+                    src="{{ product.images.first.image.url }}" alt="product_name" />
                 </div>
               </div>
               <div class="product__name">
@@ -43,20 +62,26 @@
                     {{ product.price|floatformat:"0" }}
                     <!--<span class="sumbol">грн.</span>-->
                   </div>
-                  {% endif %}
+
                   <div class="product__price-favorite__price__with-discount">
                     {{ product.price_after_discount|floatformat:"0" }}<span class="sumbol">
                       грн</span>
                   </div>
+                  {% else %}
+                  <div class="product__price-favorite__price__with-discount">
+                    {{ product.price|floatformat:"0" }}<span class="sumbol">
+                      грн</span>
+                  </div>
+                  {% endif %}
                 </div>
                 <div class="product__price-favorite__favorite">
                   <div class="add_to_favorites" id="item-{{ product.id }}" data-itemid="{{ product.id }}">
                     <img id="item-img-{{ product.id }}" class="favorite-button" src="
-                            {% if product.id in request.session.favorites %}
-                              {% static './img/icons/favorites_fill.svg' %}
-                            {% else %}
-                              {% static './img/icons/favorites.svg' %}
-                            {% endif %}" alt="favorites" />
+                      {% if product.id in request.session.favorites %}
+                        {% static './img/icons/favorites_fill.svg' %}
+                      {% else %}
+                        {% static './img/icons/favorites.svg' %}
+                      {% endif %}" alt="favorites" />
                   </div>
                 </div>
               </div>
@@ -67,16 +92,19 @@
                       {% if product.owner.profile.logo %}
                       <img src="{{ product.owner.profile.logo.url }}" alt="some_logo" />
                       {% elif product.owner.profile.brand %}
-                      <p>{{ product.owner.email }}</p>
+                      <p>{{ product.owner.profile.brand }}</p>
                       {% endif %}
                     </div>
                     <div class="col-lg-6">
-                      <p class="text-end"
-                        style="{% if product.discount %}margin-left: 40px{% else %}margin-left: 80px{% endif %}; margin-top: 15px; color: #048439">
-                        {% if product.discount %}
-                        {{ product.timestamp|date:"d/m" }}-{{ product.discount_expiry|date:"d/m" }}
-                        {% endif %}
+                      {% if product.discount %}
+                      <p style="margin-left: 40px; margin-top: 15px; color: #048439">
+                        {{ product.timestamp|date:"d.m" }}-{{ product.discount.expiry_date|date:"d.m" }}
                       </p>
+                      {% else %}
+                      <p style="margin-left: 90px; margin-top: 15px; color: #048439">
+                        {{ product.timestamp|date:"d.m" }}
+                      </p>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
@@ -110,5 +138,4 @@
     </span>
   </div>
 </div>
-{% include 'svg_processing.html' %}
 {% endblock content %}

@@ -14,6 +14,7 @@ from .forms import (CustomUserCreationForm,
 from .tokens import account_activation_token
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 User = get_user_model()
 
@@ -39,11 +40,15 @@ class SignUpView(CreateView):
         email = EmailMessage(mail_subject,
                              message,
                              to=[to_email])
+        email.content_subtype = 'html'
         email.send()
         messages.success(self.request,
                          """Проверьте указанный при регистрации email адресс.
             Мы отправили вам сообщение с дальнейшими инструкциями.""")
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
 
 
 class ActivationView(View):
@@ -59,38 +64,41 @@ class ActivationView(View):
             user.save()
             login(request, user)
             messages.success(
-                request, "Ваш профиль успешно зарегистрирован.")
+                request, "Activation success.")
             return redirect('users:profile')
         else:
             messages.warning(
-                request, "Ошибка прав доступа! Возможно введены не верные данные.")
+                request, "Activation error!")
         return redirect('users:login')
 
 
 @login_required
 def profile(request):
     if request.method == 'POST':
-        user_form = UserEditForm(request.POST,
-                                 instance=request.user)
-        profile_form = ProfileEditForm(request.POST,
-                                       request.FILES,
-                                       instance=request.user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            return redirect('users:profile')
-    user_form = UserEditForm(instance=request.user)
-    profile_form = ProfileEditForm(instance=request.user.profile)
-    context = {'user_form': user_form,
-               'profile_form': profile_form}
-    return render(request, 'users/profile.html', context)
+        #     user_form = UserEditForm(request.POST,
+        #                              instance=request.user)
+        #     profile_form = ProfileEditForm(request.POST,
+        #                                    request.FILES,
+        #                                    instance=request.user.profile)
+        #     if user_form.is_valid() and profile_form.is_valid():
+        #         user_form.save()
+        #         profile_form.save()
+        #         return redirect('users:profile')
+        # user_form = UserEditForm(instance=request.user)
+        # profile_form = ProfileEditForm(instance=request.user.profile)
+        # context = {'user_form': user_form,
+        #            'profile_form': profile_form}
+
+        context = {'data': request.POST}
+        print(context['data'])
+    return render(request, 'users/profile.html')  # context)
 
 
-class CustomPasswordChangeView(PasswordChangeView):
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'users/passwd/change.html'
     success_url = reverse_lazy('users:profile')
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, "Пароль был успешно изменен.")
+        messages.success(self.request, "Password reset success.")
         return super().form_valid(form)

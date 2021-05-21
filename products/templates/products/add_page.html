@@ -1,6 +1,10 @@
 <!-- prettier-ignore -->
 {% extends 'base.html' %}
 {% load products_tags %}
+
+{% load static %}
+
+{{ request.STATIC_ROOT }}
 {% block content %}
 <div id="page">
   <div id="content">
@@ -8,22 +12,22 @@
       <div class="container">
         <div class="row">
           <div class="add-page">
-            {% comment %} <header class="add-page__header">
+            <header class="add-page__header">
               <div class="add-page__header__left-side">
                 <div class="add-page__header__left-side__go-back">
-                  <a href="#"></a>
+                  <a href="{% url 'products:all' %}"></a>
                 </div>
                 <div class="add-page__header__left-side__name-page">Заполнение
                   страницы</div>
               </div>
               <div class="add-page__header__right-side">
-                <div class="header-main__items__item hamburger">
+                <div class="header-main__items__item 6hamburger">
                   <div class="wrapper-menu-hamburger">
                     <div class="wrapper-menu-hamburger__hamburger-menu"></div>
                   </div>
                 </div>
               </div>
-            </header> {% endcomment %}
+            </header>
 
             <form action="{% url 'products:add_product' %}" method="POST" enctype="multipart/form-data"
               id="form_add_page">
@@ -54,9 +58,11 @@
                       </div>
                       <div class="add-page__photo__container-for-loaded-files">
                       </div>
-                      <div class="add-page__photo__load-image-or-urlYouT">
-                        <img class="load_photo_btn" src="Url_to_ icon" alt="load photo" />
-                        <img class="load_url_ytb_btn" src="Url_to_ icon" alt="load yout" />
+                      <div class="add-page__photo__load-image-or-urlYouT ">
+                        <img class="load_photo_btn mx-3" src="{% static '/img/icons/add_image.svg' %}"
+                          alt="load photo" />
+                        <img class="load_url_ytb_btn mx-3" src="{% static '/img/icons/add_youtube.svg' %}"
+                          alt="load yout" />
                       </div>
                     </td>
                     <!-- ТУТ ИЗМЕНЕНИЯ -->
@@ -70,12 +76,11 @@
                         <div class="categories-wrapper">
                           <div class="categories">
                             {% for i in categories %}
-                            {% if i.parent.id == None %}
+                            {% if not i.parent %}
                             <div class="category_h">
                               <input type="checkbox" class="subscription-to-shares__category-checkbox" disabled
                                 name="product_cat" value="{{ i.id  }}" />
                               <div class="category_h__top-icon">
-                                <div class="category_h__top-icon__X"></div>
                                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.7264mm"
                                   height="12.4633mm" version="1.1" shape-rendering="geometricPrecision"
                                   text-rendering="geometricPrecision" image-rendering="optimizeQuality"
@@ -105,7 +110,7 @@
                       <div class="add-page__section__main-content__inp-wrapper">
                         <select id="sub-cat-select" name="category">
                           {% for i in categories %}
-                          {% if i.parent.id != None %}
+                          {% if i.parent %}
                           <option value="{{ i.id }}" data-main-cat="{{ i.parent.id }}">
                             {{ i.name }}
                           </option>

@@ -2,15 +2,18 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
 from .forms import CustomUserCreationForm, CustomUserEditForm
-from .models import CustomUser, Profile
+from .models import CustomUser, Profile, ContactPhone
 
 User = get_user_model()
+
+admin.site.register(ContactPhone)
 
 
 class ProfileInlines(admin.StackedInline):
     model = Profile
     can_delete = False
-    fields = ['image', 'logo', 'brand', 'city', 'address', 'phone']
+    fields = ['image', 'logo', 'brand', 'city',
+              'address', 'subscribed_to']
 
 
 @admin.register(CustomUser)

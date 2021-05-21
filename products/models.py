@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.urls import reverse
 from django.core.validators import MinValueValidator, \
     MaxValueValidator
@@ -8,127 +9,121 @@ from mptt.models import MPTTModel, TreeForeignKey
 from .utils import City
 from django.conf import settings
 from .managers import ProductManager
-
-city = City()
+from datetime import timedelta
+from django.utils.text import slugify
+import hashlib
 
 
 class Category(MPTTModel):
-    """
-    Product category class
-    """
-    image = models.FileField("Лого категории",
-                             upload_to="category_img",
-                             null=True,
-                             blank=True)
-    name = models.CharField("Название",
-                            max_length=300)
-    slug = models.SlugField("Url",
-                            max_length=300,
-                            unique=True)
-    parent = TreeForeignKey("self",
-                            on_delete=models.CASCADE,
-                            null=True,
-                            blank=True,
-                            related_name='children',
-                            verbose_name="Категория верхнего уровня")
-    is_active = models.BooleanField("Статус",
-                                    default=True)
+    image = models.FileField(upload_to="category_img",
+                             null=True, blank=True)
+    name = models.CharField(max_length=300)
+    slug = models.SlugField(max_length=300, unique=True)
+    parent = TreeForeignKey("self", on_delete=models.CASCADE,
+                            null=True, blank=True,
+                            related_name='children')
+    is_active = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(default=timezone.now)
 
     class MPTTMeta:
-        order_insertion_by = ['slug']
+        order_insertion_by = ['-timestamp']
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        ordering = ('-timestamp',)
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse("products:by_category",
-                       kwargs={"slug": self.slug})
+                       kwargs={'pk': self.pk,
+                               "cat_slug": self.slug})
+
+
+def default_discount_expiry():
+    return timezone.now() + timedelta(days=30)
 
 
 class Product(models.Model):
-    """
-    Product class
-    """
-    name = models.CharField("Название", max_length=300)
-    price = models.DecimalField("Цена",
-                                max_digits=10,
+    name = models.CharField(max_length=300)
+    price = models.DecimalField(max_digits=10,
                                 decimal_places=2,
                                 default=0)
-    discount = models.IntegerField("Дисконт",
-                                   null=True,
-                                   blank=True,
-                                   validators=[MinValueValidator(0),
-                                               MaxValueValidator(100)])
-    discount_expiry = models.DateTimeField("Дата окончания акции",
-                                           default=timezone.now)
-    discount_overview = models.TextField(null=True, blank=True)
-    main_image = models.ImageField("Изображение",
-                                   null=True,
-                                   blank=True,
-                                   upload_to="product_img")
-    video = models.URLField("Ссылка на видео",
-                            null=True,
+    slug = models.SlugField(unique=True,
+                            editable=False)
+    video = models.URLField(null=True,
                             blank=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
-                              related_name="products",
-                              verbose_name="Владелец")
+                              related_name="products")
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE,
-                                 related_name='products',
-                                 verbose_name="Категория")
-    overview = models.TextField("Описание",
-                                max_length=2000)
-    is_active = models.BooleanField("Статус",
-                                    default=True)
-    timestamp = models.DateTimeField("Дата добавления",
-                                     default=timezone.now)
-    city = models.CharField("Город",
-                            max_length=20,
-                            choices=city.CITY_LIST,
-                            default=city.ANY)
-    keywords = models.CharField("Ключевые слова",
-                                max_length=100,
+                                 related_name='products')
+    overview = models.TextField(max_length=2000)
+    is_active = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+    city = models.CharField(max_length=20,
+                            default=City.ANY,
+                            choices=City.CITY_LIST)
+    keywords = models.CharField(max_length=100,
                                 null=True,
                                 blank=True)
 
     objects = ProductManager()
 
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(
+            self.name + '-' + str(self.id))
+        return super(Product, self).save(*args, **kwargs)
+
     class Meta:
-        verbose_name = "Товар/Акция"
-        verbose_name_plural = "Товары/Акции"
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
         ordering = ('-timestamp',)
+
+    def get_absolute_url(self):
+        return reverse("products:detail",
+                       kwargs={"pk": self.pk,
+                               'slug': self.slug})
 
     def price_after_discount(self):
         new_price = self.price
         if self.discount is not None:
             new_price = self.price - self.price * \
-                (self.discount / Decimal('100'))
+                (self.discount.discount / Decimal('100'))
         return new_price
 
-    def get_absolute_url(self):
-        return reverse("products:detail",
-                       kwargs={"pk": self.pk})
+
+class Discount(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE,
+                                   related_name="discount")
+    discount = models.IntegerField(default=0, validators=[MinValueValidator(0),
+                                                          MaxValueValidator(100)])
+    start_date = models.DateTimeField(default=timezone.now)
+    expiry_date = models.DateTimeField(default=default_discount_expiry)
+    overview = models.TextField()
+
+    def __str__(self):
+        return self.product.name
 
 
 class Image(models.Model):
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
                                 related_name="images")
-    image = models.ImageField("Изображение",
-                              upload_to="product_img")
-    is_active = models.BooleanField("Статус",
-                                    default=True)
-    timestamp = models.DateTimeField("Дата добавления",
-                                     default=timezone.now)
+    image = models.ImageField(upload_to="product_img")
+    is_active = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        verbose_name = "Дополнительное фото"
-        verbose_name_plural = "Дополнительные фото"
+        verbose_name = "Image"
+        verbose_name_plural = "Images"
+        ordering = ('timestamp',)
 
     def __str__(self):
-        return f"{self.product.id}"
+        return f"{self.product.name}"

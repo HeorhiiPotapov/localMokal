@@ -28,6 +28,7 @@ urlpatterns = [
     path('infopages/', include('infopages.urls', namespace='infopages')),
     path('feedback/', include('feedback.urls', namespace="feedback")),
     path('products/', include('products.urls', namespace='products')),
+    path('links/', include('sociallinks.urls', namespace="sociallinks")),
 
     # ################  password_reset #####################
 

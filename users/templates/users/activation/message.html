@@ -1,8 +1,84 @@
-{% autoescape off %}  
-Здравствуйте {{ user.email }},  
+{% comment %} {% autoescape off %}
+Здравствуйте {{ user.email }},
 Для подтверждения регистрации воспользуйтесь ссылкой ниже,
 
-http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}  
+http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
 
 Если вы не запрашивали это письмо, просто игнорируйте его.
-{% endautoescape %}
+{% endautoescape %} {% endcomment %}
+
+{% load static %}
+<!DOCTYPE HTML PUBLIC «-//W3C//DTD HTML 4.0 Transitional//EN»> <html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="x-apple-disable-message-reformatting">
+</head>
+
+<body>
+	<table border="0" cellpading="0" cellsplasing="0"
+		style="max-width:600px; font-family: Arial, Helvetica, sans-serif; width:100%; background: #CDFFCC;  margin: o auto; padding: 30px 0;">
+		<tbody>
+			<tr>
+				<td>
+					<table style='width: 70%; margin: 0 auto;'>
+						<tr>
+							<td>
+								<img style="width:150px" src="{% static './img/logo.png' %}" alt="logo">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="0" cellpading="0" cellsplasing="0"
+						style="max-width:600px; font-family: Arial, Helvetica, sans-serif; width:80%; background: #ffffff; margin: 20px auto 0 auto; border-radius: 30px; padding: 30px;">
+						<tbody>
+							<tr>
+								<td>
+									<p style='color: #798181;'>Уважаемый <b>{{ user.email }},</b> </p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p style='color: #798181;'>Для востановления пароля вам нужно перейти по этой
+										ссылке: </p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %} </p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<center>
+										<img src="" alt="Тут картинка замка">
+									</center>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<center>
+										<a href="https://instagram.com" style='display: inline-block;'>
+											<img width="30px" height="30px"
+												src="{% static './img/icons/facebook_green.svg' %}" alt="">
+										</a>
+										<a href="https://instagram.com" style='display: inline-block;'>
+											<img width="30px" height="30px"
+												src="{% static './img/icons/instagram_green.svg' %}" alt="">
+										</a>
+									</center>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+	</table>
+	</table>
+</body>
+
+</html>

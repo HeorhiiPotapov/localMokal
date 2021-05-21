@@ -33,6 +33,10 @@ if (document.querySelector("form#form_add_page")) {
       sub_cat_options.forEach((option) => {
         let name_parent_cat = option.getAttribute("data-main-cat");
 
+        if (name_parent_cat == '-1') {
+          return
+        }
+
         if (name_parent_cat != main_cat_name) {
           // скрыть подрубрики которые пренадлежат другой родительской группе
           option.style.display = "none";
@@ -40,13 +44,18 @@ if (document.querySelector("form#form_add_page")) {
           option.style.display = "block";
         }
 
-        // сменить value(подкатегорию) в select на ту подкатегорию которая имеется у родительской группы
-        if (this_checkbox.value == name_parent_cat) {
-          sub_cat.value = option.value;
-        }
+        // скріть value(подкатегорию)
+        sub_cat.value = ''
       });
     });
+
   });
+  // при запуске страницы скрыть все подкатегории
+  let sub_cat_options = document.querySelectorAll("#sub-cat-select option")
+  document.querySelector("#sub-cat-select").value = ''
+  sub_cat_options.forEach((option) => {
+    option.style.display = "none";
+  })
 
   let form_add_page = document.querySelector("form#form_add_page");
   // form_add_page.addEventListener("submit", function (e) {
@@ -267,8 +276,8 @@ if (document.querySelector("form#form_add_page")) {
       // получаю на какой стороне находится курсор, на левой или правой
       let part_on_el = parseInt(
         (get_pos_cursor_to_the_parent(e).x / 160 + "")
-          .split(".")[1]
-          .substr(0, 1)
+        .split(".")[1]
+        .substr(0, 1)
       );
       // получаю елемен, поторый в данный момент назодится под этим data-pos
       let elem_on_the_cursor = document.querySelector(
@@ -325,8 +334,8 @@ if (document.querySelector("form#form_add_page")) {
       // получаю на какой стороне находится курсор, на левой или правой
       var part_on_el = parseInt(
         (get_pos_cursor_to_the_parent(e).x / 160 + "")
-          .split(".")[1]
-          .substr(0, 1)
+        .split(".")[1]
+        .substr(0, 1)
       );
       let clone_elmnt = elmnt.cloneNode(true);
 
@@ -399,9 +408,13 @@ if (document.querySelector("form#form_add_page")) {
       var bounds = event.target.parentNode.getBoundingClientRect();
       var x = event.clientX - bounds.left;
       var y = event.clientY - bounds.top;
-      return { x: x, y: y };
+      return {
+        x: x,
+        y: y
+      };
     }
   }
+
   function toggle_yout_btn() {
     let alredy_loaded_count = get_pos_for_block(
       ".add-page__photo__container-for-loaded-files"
@@ -412,6 +425,7 @@ if (document.querySelector("form#form_add_page")) {
       load_url_ytb_btn.style.display = "none";
     }
   }
+
   function set_new_pos_for_all_block(selector) {
     // устанавливает нормальный порядок для всех блоков внутри селектора
     let container = document.querySelector(selector),
@@ -424,6 +438,7 @@ if (document.querySelector("form#form_add_page")) {
       }
     });
   }
+
   function insert_loaded_image_intu_block(new_block, input_with_files) {
     let curFiles = input_with_files.files;
     if (curFiles.length != 0) {
@@ -438,10 +453,12 @@ if (document.querySelector("form#form_add_page")) {
       return false;
     }
   }
+
   function get_count_loaded_files_or_url(selector) {
     let container = document.querySelector(selector);
     return container.querySelectorAll("div").length;
   }
+
   function get_pos_for_block(selector) {
     let container = document.querySelector(selector),
       container_elements = container.childNodes,

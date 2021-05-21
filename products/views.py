@@ -1,15 +1,11 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import generic
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Category, Product
+from .models import Category, Product, Image, Discount
 from .forms import ProductForm
-# from .mixins import IsOwnerMixin
-from django.contrib.auth.models import AnonymousUser
-# from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from .utils import City
 
 
 class MainPageView(generic.TemplateView):
@@ -18,9 +14,7 @@ class MainPageView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categories"] = Category.objects.filter(parent__isnull=True)
-        count = [i for i in range(1, 101)]
-        """ create model method for discount products """
-        context["products"] = Product.objects.filter(discount__in=count)[:8]
+        context["products"] = Product.objects.with_discount()[:8]
         return context
 
 
@@ -31,7 +25,7 @@ class ProductListView(generic.ListView):
     """
     model = Product
     template_name = 'products/list.html'
-    paginate_by = 12
+    paginate_by = 24
 
     def get_queryset(self, **kwargs):
         category = None
@@ -60,18 +54,14 @@ class ProductListView(generic.ListView):
 class ProductSearchResult(generic.ListView):
     model = Product
     template_name = 'products/list.html'
-    paginate_by = 8
+    paginate_by = 24
 
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset()
         query = self.request.GET.get('query')
-        region = self.request.GET.get('region')
-
-        print(query, region)
-        if query:
-            qs = qs.filter(
-                Q(name__icontains=query) | Q(city=region)
-            )
+        region = self.request.GET.get('region-inp')
+        if region or query:
+            qs = qs.filter(Q(name__icontains=query, city=region))
         return qs
 
     def get_context_data(self, **kwargs):
@@ -97,34 +87,34 @@ class ProductDetailView(generic.DetailView):
 @login_required
 def add_product(request, **kwargs):
     if request.method == 'POST':
+        # start creating product
         form = ProductForm(request.POST, request.FILES)
-
-        # iterate over multivaluedict to retrieve first image
-        # and save it as the main image
-        first_img = [i for i in request.FILES.keys()][0]
-        main_img = request.FILES[first_img]
-
-        if form.is_valid():
+        if form.is_valid() and len(request.FILES) > 0:
             new = form.save(commit=False)
-            new.main_image = main_img
             new.owner = request.user
             new.save()
-            return redirect(reverse('products:detail', kwargs={'pk': new.pk}))
+
+        # start saving image/images
+            files = request.FILES
+            file_list = list(request.FILES.keys())
+            for f in file_list:
+                Image.objects.create(product=new, image=files[f]).save()
+
+        # start creating discount for product
+            discount = request.POST.get('discount')
+            discount_expiry = request.POST.get('discount_expiry')
+            discount_overview = request.POST.get('discount_overview')
+            if discount:
+                new_discount = Discount.objects.create(
+                    product=new,
+                    expiry_date=discount_expiry,
+                    overview=discount_overview
+                )
+                new_discount.save()
+
+            return redirect(reverse('products:detail',
+                                    kwargs={'pk': new.pk, 'slug': new.slug}))
     form = ProductForm()
     categories = Category.objects.all()
-    return render(request, 'products/add_page.html', {
-        'form': form,
-        'categories': categories
-    })
-
-# discount_expiry
-# discount
-# discount_overview
-# overview
-# city
-# category
-# name
-# price
-# discount_expiry
-# discount
-# discount_overview
+    return render(request, 'products/add_page.html', {'form': form,
+                                                      'categories': categories})

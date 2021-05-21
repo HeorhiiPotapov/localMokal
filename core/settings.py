@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'infopages.apps.InfopagesConfig',
     'subscribes.apps.SubscribesConfig',
     'feedback.apps.FeedbackConfig',
+    'sociallinks.apps.SociallinksConfig',
 
     # soft
     'mptt',
@@ -169,3 +170,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('GMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('GMAIL_PASS')
 CORS_ORIGIN_ALLOW_ALL = True
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

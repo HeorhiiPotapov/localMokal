@@ -1,41 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-<div id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="register-form-wrapper">
+<div id="page">
+	{% include 'nav.html' %}
+	<div id="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="register-form-wrapper">
+						<form class='register-form' action="{% url 'users:new' %}" method="POST">{% csrf_token %}
+							<h2>Регистрация</h2>
 
-          <form class='register-form' action="">
-            <h2>Вход</h2>
-            <div class="register-form__inp-block">
-              <i class="fa fa-envelope register-form__inp-block__icon" aria-hidden="true"></i>
-              <input type="email" class='register-form__email tmp-input-text' name='email'
-                placeholder="Электронная почта">
-            </div>
-            <div class="register-form__inp-block">
-              <i class="fa fa-lock register-form__inp-block__icon _icon__pasw" aria-hidden="true"></i>
-              <input type="password" class='register-form__passw tmp-input-text' name='pasw' placeholder="Пароль">
-            </div>
-            <div class="register-form__inp-block _remember-block">
-              <label for="register-form__remember_inp">
-                <input id='register-form__remember_inp' type="checkbox" class='register-form__remember_inp'
-                  name='remember'>
-                <span class='register-form__remember__castom-checkbox'></span>
-
-                Запомнить меня
-              </label>
-            </div>
-            <div class="register-form__inp-block">
-              <input class='button button-with-gradient register-form__submit' type="submit" value='Войти'>
-            </div>
-          </form>
-
-          <a href="#" class='forget_pasw'>Забыли пароль?</a>
-          <a href="#" class='button button-transperent register-button'>Зарегистрироваться</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+							<div class="register-form__inp-block">
+								<i class="fa fa-envelope register-form__inp-block__icon" aria-hidden="true"></i>
+								<input type="email" class='register-form__email tmp-input-text' name='email'
+									placeholder="Электронная почта">
+							</div>
+							<div class="register-form__inp-block view-password">
+								<i class="fa fa-lock register-form__inp-block__icon _icon__pasw" aria-hidden="true"></i>
+								<input type="password" class='register-form__passw tmp-input-text' name='password1'
+									placeholder="Пароль">
+								<i class="fa fa-eye register-form__inp-block__icon _show-passw" aria-hidden="true"></i>
+							</div>
+							<div class="register-form__inp-block view-password">
+								<i class="fa fa-lock register-form__inp-block__icon _icon__pasw" aria-hidden="true"></i>
+								<input type="password" class='register-form__passw_verify tmp-input-text '
+									name='password2' placeholder="Подтвердить Пароль">
+								<i class="fa fa-eye register-form__inp-block__icon _show-passw" aria-hidden="true"></i>
+							</div>
+							<div class="register-form__inp-block">
+								<input class='button button-with-gradient register-form__submit' type="submit"
+									value='Зарегистрироваться' style="margin-top: 30px;">
+							</div>
+						</form>
+						<a href="{% url 'password_reset' %}" class='forget_pasw'>Забыли пароль?</a>
+						<div style="height: 30px"></div>
+						<p>Уже есть профиль? <a href="{% url 'users:login' %}" class='forget_pasw'>Войдите</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- page -->
 {% endblock content %}

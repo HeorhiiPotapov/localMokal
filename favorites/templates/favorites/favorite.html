@@ -4,17 +4,20 @@
 <div id="page">
   {% include 'nav.html' %}
   <div id="content">
-    <div class="products-wrapper ">
-      <div class="container">
-        <div class="row mb-3">
-          <div class="col-lg-12">
-            <div class="product-page__content__breadcrumbs-wrapper">
-              <div class="product-page__content__breadcrumbs-wrapper__breadcrumbs">
-                Главная / Избранное /
-              </div>
+    <div class="container">
+      <div class="row mt-4 mb-3">
+        <div class="col-lg-12">
+          <div class="product-page__content__breadcrumbs-wrapper">
+            <div class="product-page__content__breadcrumbs-wrapper__breadcrumbs">
+              Главная / Избранное /
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="products-wrapper ">
+      <div class="container">
+
         <div class="row">
           {% for product in products %}
           <div class="col-6 col-md-4 col-lg-3 product-wrapper">
@@ -29,7 +32,7 @@
                   </div>
                   {% endif %}
                   <img class='product__header-image-wrapper__header-image__product-img'
-                    src="{{ product.main_image.url }}" alt="product_name">
+                    src="{{ product.images.first.image.url }}" alt="product_name">
                 </div>
               </div>
               <div class="product__name">
@@ -72,12 +75,15 @@
                       {% endif %}
                     </div>
                     <div class="col-lg-6">
-                      <p class="text-end"
-                        style="{% if product.discount %}margin-left: 40px{% else %}margin-left: 80px{% endif %}; margin-top: 15px; color: #048439">
-                        {% if product.discount %}
-                        {{ product.timestamp|date:"d/m" }}-{{ product.discount_expiry|date:"d/m" }}
-                        {% endif %}
+                      {% if product.discount > 0 %}
+                      <p style="margin-left: 40px; margin-top: 15px; color: #048439">
+                        {{ product.timestamp|date:"d.m" }}-{{ product.discount_expiry|date:"d.m" }}
                       </p>
+                      {% else %}
+                      <p style="margin-left: 90px; margin-top: 15px; color: #048439">
+                        {{ product.timestamp|date:"d.m" }}
+                      </p>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
