@@ -1,4 +1,5 @@
 {% load static %}
+{% load sociallinks_tags %}
 {% load i18n %}
 <footer class="footer-main">
   <div class="container">
@@ -29,42 +30,15 @@
 
         <div class="footer-main__logo-and-socials">
           <div class="footer-main__logo-and-socials__socials">
-            <!--
-                            ссылкам добавить атрибут  rel="nofollow" для SEO
-                            'link_to_social' : 'url'
-                            'img_social': 'url'
-                            'alt_social': 'name' SEO
-                            -->
+            {% social_links as links %}
+            {% for link in links %}
             <div class="footer-main__logo-and-socials__socials__social">
-              <a href="#" rel="nofollow">
-                <img src="{% static './img/icons/youtube.svg' %}" alt="youtube" />
+              <a href="{{ link.url }}" rel="nofollow">
+                <img src="{{ link.image.url }}" alt="{{ link.name }}" />
               </a>
             </div>
-            <div class="footer-main__logo-and-socials__socials__social">
-              <a href="#" rel="nofollow">
-                <img src="{% static './img/icons/facebook.svg' %}" alt="facebook" />
-              </a>
-            </div>
-            <div class="footer-main__logo-and-socials__socials__social">
-              <a href="#" rel="nofollow">
-                <img src="{% static './img/icons/twitter.svg' %}" alt="twitter" />
-              </a>
-            </div>
-            <div class="footer-main__logo-and-socials__socials__social">
-              <a href="#" rel="nofollow">
-                <img src="{% static './img/icons/instagram.svg' %}" alt="instagram" />
-              </a>
-            </div>
-            <div class="footer-main__logo-and-socials__socials__social">
-              <a href="#" rel="nofollow">
-                <img src="{% static './img/icons/pinterest.svg' %}" alt="pinterest" />
-              </a>
-            </div>
-            <div class="footer-main__logo-and-socials__socials__social">
-              <a href="#" rel="nofollow">
-                <img src="{% static './img/icons/linkedin.svg' %}" alt="linkedin" />
-              </a>
-            </div>
+            {% endfor %}
+
           </div>
           <div class="footer-main__logo-and-socials__logo">
             <a href="{% url 'index' %}">

@@ -11,12 +11,16 @@ from django.conf import settings
 from .managers import ProductManager
 from datetime import timedelta
 from django.utils.text import slugify
-import hashlib
+from django.core.validators import FileExtensionValidator
 
 
 class Category(MPTTModel):
-    image = models.FileField(upload_to="category_img",
-                             null=True, blank=True)
+    image = models.FileField(
+        upload_to="category_img",
+        null=True,
+        blank=True,
+        validators=[FileExtensionValidator(['pdf', 'doc', 'svg'])]
+    )
     name = models.CharField(max_length=300)
     slug = models.SlugField(max_length=300, unique=True)
     parent = TreeForeignKey("self", on_delete=models.CASCADE,
@@ -70,6 +74,9 @@ class Product(models.Model):
     keywords = models.CharField(max_length=100,
                                 null=True,
                                 blank=True)
+    discount = models.IntegerField(default=0, validators=[MinValueValidator(0),
+                                                          MaxValueValidator(100)])
+    expiry_date = models.DateTimeField(default=default_discount_expiry)
 
     objects = ProductManager()
 
@@ -95,21 +102,8 @@ class Product(models.Model):
         new_price = self.price
         if self.discount is not None:
             new_price = self.price - self.price * \
-                (self.discount.discount / Decimal('100'))
+                (self.discount / Decimal('100'))
         return new_price
-
-
-class Discount(models.Model):
-    product = models.OneToOneField(Product, on_delete=models.CASCADE,
-                                   related_name="discount")
-    discount = models.IntegerField(default=0, validators=[MinValueValidator(0),
-                                                          MaxValueValidator(100)])
-    start_date = models.DateTimeField(default=timezone.now)
-    expiry_date = models.DateTimeField(default=default_discount_expiry)
-    overview = models.TextField()
-
-    def __str__(self):
-        return self.product.name
 
 
 class Image(models.Model):

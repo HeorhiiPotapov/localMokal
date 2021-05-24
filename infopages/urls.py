@@ -4,5 +4,6 @@ from . import views
 
 app_name = 'infopages'
 urlpatterns = [
-    path('', views.AboutUsPage.as_view(), name="about_us"),
+    path('about/', views.AboutUsPage.as_view(), name="about_us"),
+    path('about/create/', views.AboutUsPageCreate.as_view(), name="about_create"),
 ]

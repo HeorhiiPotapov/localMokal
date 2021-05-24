@@ -1,48 +1,51 @@
-<div id="content">
-	<div class="page-about">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="page-about__breadcrumbs">
-						<a href="#">О проекте</a>
-						<a href="#">Поставщикам</a>
-					</div>
-					<div class="page-about__content-right">
-						<div class="page-about__content-right__image">
-							<img src="https://cdn.splashmath.com/web_ui/assets/images/loggedout/shared/section_divider_left-d6b435eb3b6fe55c63b95c837175f1fa.png"
-								alt="">
-						</div>
-						<div class="page-about__content-right__text">
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste laboriosam beatae quod
-								expedita. Voluptatum aperiam iure, optio cum esse accusamus.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio blanditiis necessitatibus
-								q
-						</div>
-					</div>uo illum voluptas tenetur.</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus aspernatur cumque nisi
-						unde mollitia laborum, incidunt velit ipsa ad exercitationem id aut labore consequuntur
-						suscipit impedit similique. Reiciendis sit deserunt dolores dolorem, a voluptates,
-						aliquid soluta perferendis laboriosam doloribus veniam.</p>
-				</div>
-			</div>
-			<div class="page-about__content-left">
-				<div class="page-about__content-left__image">
-					<img src="https://lh3.googleusercontent.com/proxy/pfvH_0ZshebvLxYsibR8xirzzo-6DDxYXx4nzMAQVuJOTUXmJki9JEpGL97uTibeXjBxvo4YgAXO-kdcjIF9vBR_1LB8g8AUNt6cBADmsLY1w3dhY8DB-a--zmJ-R0mSuWt1FnXcq6YLC_oONUMTtBeY_0E"
-						alt="">
-				</div>
-				<div class="page-about__content-left__text">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste laboriosam beatae quod
-						expedita. Voluptatum aperiam iure, optio cum esse accusamus.</p>
-					<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio blanditiis necessitatibus
-						quo illum voluptas tenetur.</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus aspernatur cumque nisi
-						unde mollitia laborum, incidunt velit ipsa ad exercitationem id aut labore consequuntur
-						suscipit impedit similique. Reiciendis sit deserunt dolores dolorem, a voluptates,
-						aliquid soluta perferendis laboriosam doloribus veniam.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+{% extends 'base.html' %}
+{% block content %}
+<div id="page">
+  {% include 'nav.html' %}
+  <div id="content">
+    <div class="page-about">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-about__breadcrumbs">
+              <a href="#">О проекте</a>
+              <a href="#">Поставщикам</a>
+            </div>
+            <div class="page-about__content-right">
+              <div class="page-about__content-right__image">
+                <img
+                  src="https://cdn.splashmath.com/web_ui/assets/images/loggedout/shared/section_divider_left-d6b435eb3b6fe55c63b95c837175f1fa.png"
+                  alt="">
+              </div>
+              <div class="page-about__content-right__text">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste laboriosam beatae quod
+                  expedita. Voluptatum aperiam iure, optio cum esse accusamus.</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio blanditiis
+                  necessitatibus
+                  q
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-about__content-left">
+          <div class="page-about__content-left__image">
+            <img
+              src="https://lh3.googleusercontent.com/proxy/pfvH_0ZshebvLxYsibR8xirzzo-6DDxYXx4nzMAQVuJOTUXmJki9JEpGL97uTibeXjBxvo4YgAXO-kdcjIF9vBR_1LB8g8AUNt6cBADmsLY1w3dhY8DB-a--zmJ-R0mSuWt1FnXcq6YLC_oONUMTtBeY_0E"
+              alt="">
+          </div>
+          <div class="page-about__content-left__text">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste laboriosam beatae quod
+              expedita. Voluptatum aperiam iure, optio cum esse accusamus.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio blanditiis necessitatibus
+              quo illum voluptas tenetur.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus aspernatur cumque nisi
+              unde mollitia laborum, incidunt velit ipsa ad exercitationem id aut labore consequuntur
+              suscipit impedit similique. Reiciendis sit deserunt dolores dolorem, a voluptates,
+              aliquid soluta perferendis laboriosam doloribus veniam.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- content -->
 </div>
-</div>
-</div> <!-- content -->
+{% endblock content %}

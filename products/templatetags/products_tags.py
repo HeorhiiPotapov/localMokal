@@ -12,17 +12,6 @@ def city_list():
 
 
 @register.simple_tag(takes_context=True)
-def favorite_items(context):
-    request = context['request']
-    favorites = request.session.get('favorites')
-    product_ids = []
-    if favorites:
-        product_ids = Product.objects.filter(
-            id__in=[item_id for item_id in favorites])
-    return product_ids
-
-
-@register.simple_tag(takes_context=True)
 def user_products(context):
     request = context['request']
     if request.user.is_authenticated:

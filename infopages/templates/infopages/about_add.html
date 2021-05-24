@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="page">
+	{% include 'nav.html' %}
+	<div id="content">
+		<form action="" id='about_add'>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="page-about-wrapper">
+							<div class="page-about__content-right _tmp-block-right">
+								<div class="page-about__content-right__image _admin">
+									<input type="file" class='add-image-inp' disabled name="" id="">
+									<input type="text" class='add-youtobe-inp' disabled name="" id="">
+
+									<div class="page-about__image__add-image">
+										<img class='add-youtube-btn' data-block-id='1' src="./img/icons/youtube.svg"
+											alt="">
+										<img class='add-image-btn' data-block-id='1' src="./img/icons/add-image.svg"
+											alt="">
+
+									</div>
+								</div>
+								<div class="page-about__content-right__text">
+									<div class="transition_textarea_wrapper">
+										<input type="text" class="page-about__content-right__text__title _inp" disabled
+											placeholder="заголовок" name="">
+										<textarea class='transition_textarea' name="" disabled placeholder="текст"
+											id=""></textarea>
+									</div>
+									<div class="transition_textarea_wrapper">
+										<input type="text" class="page-about__content-right__text__title _inp" disabled
+											placeholder="заголовок" name="">
+										<textarea class='transition_textarea' name="" disabled placeholder="текст"
+											id=""></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="page-about__content-left _tmp-block-left">
+								<div class="page-about__content-left__image _admin">
+									<input type="file" class='add-image-inp' disabled name="" id="">
+									<input type="text" class='add-youtobe-inp' disabled name="" id="">
+
+									<div class="page-about__image__add-image">
+										<img class='add-youtube-btn' data-block-id='1' src="./img/icons/youtube.svg"
+											alt="">
+										<img class='add-image-btn' data-block-id='1' src="./img/icons/add-image.svg"
+											alt="">
+
+									</div>
+								</div>
+								<div class="page-about__content-left__text">
+									<div class="transition_textarea_wrapper">
+										<input type="text" class="page-about__content-left__text__title _inp" disabled
+											placeholder="заголовок" name="">
+										<textarea class='transition_textarea' placeholder="текст" name="" disabled
+											id=""></textarea>
+									</div>
+									<div class="transition_textarea_wrapper">
+										<input type="text" class="page-about__content-left__text__title _inp" disabled
+											placeholder="заголовок" name="">
+										<textarea class='transition_textarea' placeholder="текст" name="" disabled
+											id=""></textarea>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="page-about__content-right">
+								<div class="page-about__content-right__image _admin">
+									<input type="file" class='add-image-inp' disabled name="img_1" id="">
+									<input type="text" class='add-youtobe-inp' disabled name="youtube_1" id="">
+
+									<div class="page-about__image__add-image">
+										<img class='add-youtube-btn' data-block-id='1' src="./img/icons/youtube.svg"
+											alt="">
+										<img class='add-image-btn' data-block-id='1' src="./img/icons/add-image.svg"
+											alt="">
+
+									</div>
+								</div>
+								<div class="page-about__content-right__text">
+									<div class="transition_textarea_wrapper">
+										<input type="text" class="page-about__content-right__text__title _inp"
+											placeholder="заголовок" name="title1_1">
+										<textarea class='transition_textarea' name="p1_1" id=""
+											placeholder="текст"></textarea>
+									</div>
+									<div class="transition_textarea_wrapper">
+										<input type="text" class="page-about__content-right__text__title _inp"
+											placeholder="заголовок" name="title2_1">
+										<textarea class='transition_textarea' name="p2_1" id=""
+											placeholder="текст"></textarea>
+									</div>
+								</div>
+							</div>
+						</div> <!-- page-about-wrapper -->
+						<div class="page-about__save-form">
+							<div class="page-about__save-form__btn-add-content-block">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</div>
+							<input type="submit" class="button button-with-gradient" value="сохранить">
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div> <!-- content -->
+</div> <!-- page -->
+<script>
+	// ЗАГРУЗКА КАРТИНКУ ИЛИ УРЛ НА YOUTUBE
+	let photo_btn_all = document.querySelectorAll('.add-image-btn'),
+		url_ytb_all = document.querySelectorAll('.add-youtube-btn')
+	for (let i = 0; i <= photo_btn_all.length - 1; i++) {
+		set_events(photo_btn_all[i], url_ytb_all[i])
+	}
+	document.querySelector('.page-about__save-form__btn-add-content-block').addEventListener('click', create_content_block)
+
+	function create_content_block() {
+		let count_content_block = document.querySelectorAll('.page-about__content-right, .page-about__content-left')
+			.length - 1
+		let left_or_right = ''
+		console.log(count_content_block)
+		if (count_content_block % 2 == 0) {
+			left_or_right = 'left'
+		} else {
+			left_or_right = 'right'
+		}
+
+		let new_content_block = document.querySelector(`.page-about__content-${left_or_right}._tmp-block-${left_or_right}`)
+			.cloneNode(true)
+
+		let textarea = new_content_block.querySelectorAll('textarea'),
+			title = new_content_block.querySelectorAll('.page-about__content-right__text__title._inp'),
+			file_inp = new_content_block.querySelector('.add-image-inp'),
+			youtube_inp = new_content_block.querySelector('.add-youtobe-inp'),
+			textarea_id = 1,
+			title_id = 1
+
+
+		youtube_inp.setAttribute('name', `youtube_${count_content_block}`)
+		file_inp.setAttribute('name', `img_${count_content_block}`)
+		new_content_block.classList.remove(`_tmp-block-${left_or_right}`)
+		title.forEach(inp => {
+			inp.setAttribute('name', `title${textarea_id}_${count_content_block}`)
+			inp.removeAttribute('disabled')
+			title_id += 1
+		})
+		textarea.forEach(inp => {
+			inp.setAttribute('name', `p${textarea_id}_${count_content_block}`)
+			inp.removeAttribute('disabled')
+			textarea_id += 1
+		})
+
+		let photo_btn = new_content_block.querySelector('.add-image-btn'),
+			url_ytb_btn = new_content_block.querySelector('.add-youtube-btn')
+		photo_btn.setAttribute('data-block-id', count_content_block)
+		set_events(photo_btn, url_ytb_btn)
+		document.querySelector('.page-about-wrapper').appendChild(new_content_block)
+	}
+
+	function set_events(load_photo_btn, load_url_ytb_btn) {
+		// при клике на кнопку загрузки картинки
+		load_photo_btn.addEventListener('click', function () {
+			let block_id = this.getAttribute('data-block-id')
+			let new_block_loaded_image = document.createElement('img')
+
+			// добавляю блоку с картинкой и инпутом нужные классы
+			new_block_loaded_image.classList.add('content-image')
+			let input_file = document.querySelector(`input[name="img_${block_id}"]`)
+			input_file.removeAttribute('disabled')
+
+			// активировать окно загрузки файлов
+			input_file.click()
+
+			// выполнитсяы только после загрузки файла
+			input_file.addEventListener('change', f_event_change)
+
+			function f_event_change() {
+				let new_block = insert_loaded_image_intu_block(new_block_loaded_image, input_file)
+
+
+				let del_block = document.createElement('div')
+				del_block.classList.add('del_block')
+				this.parentNode.parentNode.querySelector('.page-about__image__add-image').style.display = 'none'
+				// добавить возможность удалить блок
+				del_block.addEventListener('click', function () {
+					this.parentNode.querySelector('.content-image').remove()
+					input_file.removeEventListener('change', f_event_change)
+					input_file.value = ''
+					tuggle_add_image_block(this.parentNode.parentNode.querySelector(
+						'.page-about__image__add-image'))
+					this.parentNode.querySelector('.del_block').remove()
+
+				})
+				// вывести блок
+
+				document.querySelector(`input[name="img_${block_id}"]`).parentNode.appendChild(del_block)
+				document.querySelector(`input[name="img_${block_id}"]`).parentNode.appendChild(new_block)
+			}
+		})
+
+		// end при клике на кнопку загрузки картинки
+
+		// при клике на кнопку загрузки url youtobe
+		load_url_ytb_btn.addEventListener('click', function () {
+			let block_id = this.getAttribute('data-block-id')
+
+			let new_block_loaded_image = document.createElement('img')
+
+			// добавляю нужные классы
+			new_block_loaded_image.classList.add('content-image')
+
+			// добавляю атрибут name инпуту
+			let input_url = document.querySelector(`input[name="youtube_${block_id}"]`)
+
+			input_url.removeAttribute('disabled')
+
+			// получаю от пользователя url на виде и достаю параметны из ссыдки
+			let url_yout_vid = prompt('Вставьте URL на видео YouTube')
+			url_param = get_param_from_link(url_yout_vid)
+
+			if (url_param.v != '') {
+				let url_to_preview = `https://img.youtube.com/vi/${url_param.v}/hqdefault.jpg`
+				new_block_loaded_image.setAttribute('src', url_to_preview)
+
+
+				// добавить возможность удалить блок
+				let del_block = document.createElement('div')
+				del_block.classList.add('del_block')
+
+				del_block.addEventListener('click', function () {
+					this.parentNode.querySelector('.content-image').remove()
+					input_file.value = ''
+					tuggle_add_image_block(this.parentNode.parentNode.querySelector(
+						'.page-about__image__add-image'))
+					this.parentNode.querySelector('.del_block').remove()
+
+				})
+
+				// вывести блок
+				document.querySelector(`input[name="img_${block_id}"]`).parentNode.appendChild(del_block)
+				document.querySelector(`input[name="img_${block_id}"]`).parentNode.appendChild(
+					new_block_loaded_image)
+			}
+		})
+	}
+
+
+	// end при клике на кнопку загрузки url youtobe
+	function get_param_from_link(url) {
+		let url_ = url.split('?').pop()
+		var qa = [];
+		for (var prs of url_.split('&')) {
+			var pra = prs.split('=');
+			qa[pra[0]] = pra[1];
+		}
+		return qa;
+	}
+
+	function tuggle_add_image_block(container) {
+		if (container.style.display == 'flex' || container.style.display == '') {
+			container.style.display = 'none'
+		} else {
+			container.style.display = 'flex'
+		}
+	}
+
+	function insert_loaded_image_intu_block(img, input_with_files) {
+		let curFiles = input_with_files.files;
+		if (curFiles.length != 0) { // если файл загрузили
+			// добавить картинку в new_block
+			img.src = window.URL.createObjectURL(curFiles[0]);
+			return img
+		} else { // если файл не был загружен
+			return false
+		}
+	}
+</script>
+{% endblock content %}

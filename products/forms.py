@@ -1,15 +1,9 @@
 from django import forms
-from .models import Product, Image
+from .models import Product
 
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = ('is_active', 'owner', 'timestamp',
-                   'slug', 'discount', 'discount_expiry')
-
-
-class ImageForm(forms.ModelForm):
-    class Meta:
-        model = Image
-        fields = ('image',)
+                   'slug', 'expiry_date', 'discount')
