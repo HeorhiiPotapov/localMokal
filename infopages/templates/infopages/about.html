@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div id="page">
   {% include 'nav.html' %}
@@ -12,6 +13,10 @@
               <a href="#">Поставщикам</a>
             </div>
             <div class="page-about__content-right">
+              <a href="#" class='page-about__content-right__edit-block cont_with_same_icon'>
+                <img class='just_icon' src="{% static './img/icons/edit.svg' %}" alt="edit">
+                <img class='icon_active' src="{% static './img/icons/edit_active.svg' %}" alt="edit">
+              </a>
               <div class="page-about__content-right__image">
                 <img
                   src="https://cdn.splashmath.com/web_ui/assets/images/loggedout/shared/section_divider_left-d6b435eb3b6fe55c63b95c837175f1fa.png"

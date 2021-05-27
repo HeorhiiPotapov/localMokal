@@ -55,11 +55,11 @@
                   <div class="product__price-favorite__favorite">
                     <div class="add_to_favorites" id="item-{{ product.id }}" data-itemid="{{ product.id }}">
                       <img id="item-img-{{ product.id }}" class="favorite-button" src="
-                                        {% if product.id in request.session.favorites %}
-                                          {% static './img/icons/favorites_fill.svg' %}
-                                        {% else %}
-                                          {% static './img/icons/favorites.svg' %}
-                                        {% endif %}" alt="favorites">
+                        {% if product.id in request.session.favorites %}
+                          {% static './img/icons/favorites_fill.svg' %}
+                        {% else %}
+                          {% static './img/icons/favorites.svg' %}
+                        {% endif %}" alt="favorites">
                     </div>
                   </div>
                 </div>
@@ -75,9 +75,9 @@
                       {% endif %}
                     </div>
                     <div class="col-lg-6">
-                      {% if product.discount > 0 %}
+                      {% if product.discount %}
                       <p style="margin-left: 40px; margin-top: 15px; color: #048439">
-                        {{ product.timestamp|date:"d.m" }}-{{ product.discount_expiry|date:"d.m" }}
+                        {{ product.timestamp|date:"d.m" }}-{{ product.expiry_date|date:"d.m" }}
                       </p>
                       {% else %}
                       <p style="margin-left: 90px; margin-top: 15px; color: #048439">

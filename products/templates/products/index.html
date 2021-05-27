@@ -1,211 +1,212 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
 <div id="page">
-	{% include 'nav.html' %}
-	<div id="content">
-		<div class="slider-temp-wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 d-flex justify-content-center">
-						<div class="slider-temp-wrapper__slider-temp">
-							<div class="slider-temp-wrapper__slider-temp__slide-item">
-								<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
-							</div>
-							<div class="slider-temp-wrapper__slider-temp__slide-item">
-								<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
-							</div>
-							<div class="slider-temp-wrapper__slider-temp__slide-item">
-								<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+  {% include 'nav.html' %}
+  <div id="content">
+    <div class="slider-temp-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <div class="slider-temp-wrapper__slider-temp">
+              <div class="slider-temp-wrapper__slider-temp__slide-item">
+                <img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+              </div>
+              <div class="slider-temp-wrapper__slider-temp__slide-item">
+                <img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+              </div>
+              <div class="slider-temp-wrapper__slider-temp__slide-item">
+                <img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="block-name">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h2>Рубрики</h2>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="block-name">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>Рубрики</h2>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="categories-wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="categories">
-							{% for category in categories %}
+    <div class="categories-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="categories">
+              {% for category in categories %}
 
-							<div class="category">
-								<div class="category__top-icon">
-									<a href="{{ category.get_absolute_url }}">
-										{% if category.image %}
-										<img style="max-width: 50px;" src="{{ category.image.url }}" alt="category_image" />
-										{% endif %}
-									</a>
-								</div>
-								<div class="category__bottom-text">
-									<a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-								</div>
-							</div>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+              <div class="category">
+                <div class="category__top-icon">
+                  <a href="{{ category.get_absolute_url }}">
+                    {% if category.image %}
+                    <img style="max-width: 50px;" src="{{ category.image.url }}" alt="category_image" />
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="category__bottom-text">
+                  <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="block-name">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h2>Новое</h2>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="block-name">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>Новое</h2>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="products-wrapper">
-			<div class="container">
-				<div class="row">
-					{% for product in products %}
-					<div class="col-6 col-md-4 col-lg-3 product-wrapper">
-						<div class="product">
-							<div class="product__header-image-wrapper">
-								<div class="product__header-image-wrapper__header-image">
-									{% if product.discount > 0 %}
-									<div class="product__header-image-wrapper__header-image__sale-block">
-										<img class="product__header-image-wrapper__header-image__sale-block__bg"
-											src="{% static './img/icons/sale_bg.svg' %}" alt="" />
-										<span class="product__header-image-wrapper__header-image__sale-block__text">
-											АКЦИЯ!
-										</span>
-									</div>
-									{% endif %}
+    <div class="products-wrapper">
+      <div class="container">
+        <div class="row">
+          {% for product in products %}
+          <div class="col-6 col-md-4 col-lg-3 product-wrapper">
+            <div class="product">
+              <div class="product__header-image-wrapper">
+                <div class="product__header-image-wrapper__header-image">
+                  {% if product.discount > 0 %}
+                  <div class="product__header-image-wrapper__header-image__sale-block">
+                    <img class="product__header-image-wrapper__header-image__sale-block__bg"
+                      src="{% static './img/icons/sale_bg.svg' %}" alt="" />
+                    <span class="product__header-image-wrapper__header-image__sale-block__text">
+                      АКЦИЯ!
+                    </span>
+                  </div>
+                  {% endif %}
 
-									<img class="product__header-image-wrapper__header-image__product-img"
-										src="{{ product.images.first.image.url }}" alt="product_name" />
-								</div>
-							</div>
-							<div class="product__name">
-								<a style="color: inherit" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-							</div>
-							<div class="product__price-favorite">
-								<div class="product__price-favorite__price">
-									{% if product.discount %}
-									<div class="product__price-favorite__price__without-discount">
-										{{ product.price|floatformat:"0" }}
-										<!--<span class="sumbol">грн.</span>-->
-									</div>
-									{% endif %}
-									<div class="product__price-favorite__price__with-discount">
-										{{ product.price_after_discount|floatformat:"0" }}<span class="sumbol">
-											грн</span>
-									</div>
-								</div>
-								<div class="product__price-favorite__favorite">
-									<div class="add_to_favorites" id="item-{{ product.id }}" data-itemid="{{ product.id }}">
-										<img id="item-img-{{ product.id }}" class="favorite-button" src="
+                  <img class="product__header-image-wrapper__header-image__product-img"
+                    src="{{ product.images.first.image.url }}" alt="product_name" />
+                </div>
+              </div>
+              <div class="product__name">
+                <a style="color: inherit" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+              </div>
+              <div class="product__price-favorite">
+                <div class="product__price-favorite__price">
+                  {% if product.discount %}
+                  <div class="product__price-favorite__price__without-discount">
+                    {{ product.price|floatformat:"0" }}
+                    <!--<span class="sumbol">грн.</span>-->
+                  </div>
+                  {% endif %}
+                  <div class="product__price-favorite__price__with-discount">
+                    {{ product.price_after_discount|floatformat:"0" }}<span class="sumbol">
+                      грн</span>
+                  </div>
+                </div>
+                <div class="product__price-favorite__favorite">
+                  <div class="add_to_favorites" id="item-{{ product.id }}" data-itemid="{{ product.id }}">
+                    <img id="item-img-{{ product.id }}" class="favorite-button" src="
 											{% if product.id in request.session.favorites %}
 												{% static './img/icons/favorites_fill.svg' %}
 											{% else %}
 												{% static './img/icons/favorites.svg' %}
 											{% endif %}" alt="favorites" />
-									</div>
-								</div>
-							</div>
-							<div class="product__company">
-								<div class="product__company__logo">
-									<div class="row justify-content-center">
-										<div class="col-lg-6 my-1">
-											{% if product.owner.profile.logo %}
-											<img src="{{ product.owner.profile.logo.url }}" alt="some_logo" />
-											{% elif product.owner.profile.brand %}
-											<p>{{ product.owner.profile.brand }}</p>
-											{% endif %}
-										</div>
-										<div class="col-lg-6 ">
-											<p style="margin-left: 40px; margin-top: 15px; color: #048439">
-												{{ product.timestamp|date:"d.m" }}-{{ product.expiry_date|date:"d.m" }}
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					{% endfor %}
-				</div>
-			</div>
+                  </div>
+                </div>
+              </div>
+              <div class="product__company">
+                <div class="product__company__logo">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-6 my-1">
+                      {% if product.owner.profile.logo %}
+                      <img src="{{ product.owner.profile.logo.url }}" alt="some_logo" />
+                      {% elif product.owner.profile.brand %}
+                      <p>{{ product.owner.profile.brand }}</p>
+                      {% endif %}
+                    </div>
+                    <div class="col-lg-6 ">
+                      <p style="margin-left: 40px; margin-top: 15px; color: #048439">
+                        {{ product.timestamp|date:"d.m" }}-{{ product.expiry_date|date:"d.m" }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
 
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="products-wrapper__see-all">
-							<a href="{% url 'products:all' %}" class="button button-grey">
-								Показать все
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="buyers-and-suppliers-wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="buyers-and-suppliers-cards">
-							<div class="buyers-and-suppliers-cards__card">
-								<div class="buyers-and-suppliers-cards__card__title">
-									<h2>Покупателям</h2>
-								</div>
-								<div class="buyers-and-suppliers-cards__card__block">
-									<div class="buyers-and-suppliers-cards__card__block__content">
-										<div class="buyers-and-suppliers-cards__card__block__content__icon">
-											<img src="{% static './img/icons/follow_sale.svg' %}" alt="follow_sale">
-										</div>
-										<div class="buyers-and-suppliers-cards__card__block__content__text">
-											Подписывайтесь на рассылку <b>акций, скидок распродаж</b>
-										</div>
-									</div>
-									<div class="buyers-and-suppliers-cards__card__block__button">
-										<a href="{% url 'subscribes:create' %}" class='button button-with-gradient'>
-											Добавить
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="buyers-and-suppliers-cards__card">
-								<div class="buyers-and-suppliers-cards__card__title">
-									<h2>Поставщикам</h2>
-								</div>
-								<div class="buyers-and-suppliers-cards__card__block">
-									<div class="buyers-and-suppliers-cards__card__block__content">
-										<div class="buyers-and-suppliers-cards__card__block__content__icon">
-											<img src="{% static './img/icons/icon_plus.svg' %}" alt="icon_plus">
-										</div>
-										<div class="buyers-and-suppliers-cards__card__block__content__text">
-											Размещайте свои <b>акции, товары и услуги</b> на сайте NAZVANIE.COM
-										</div>
-									</div>
-									<div class="buyers-and-suppliers-cards__card__block__button">
-										<a href="{% url 'products:add_product' %}" class='button button-with-gradient'>
-											Добавить
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> <!-- buyers-and-suppliers-wrapper -->
-	</div> <!-- content -->
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="products-wrapper__see-all">
+              <a href="{% url 'products:all' %}" class="button button-grey">
+                Показать все
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buyers-and-suppliers-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="buyers-and-suppliers-cards">
+              <div class="buyers-and-suppliers-cards__card">
+                <div class="buyers-and-suppliers-cards__card__title">
+                  <h2>Покупателям</h2>
+                </div>
+                <div class="buyers-and-suppliers-cards__card__block">
+                  <div class="buyers-and-suppliers-cards__card__block__content">
+                    <div class="buyers-and-suppliers-cards__card__block__content__icon">
+                      <img src="{% static './img/icons/follow_sale.svg' %}" alt="follow_sale">
+                    </div>
+                    <div class="buyers-and-suppliers-cards__card__block__content__text">
+                      Подписывайтесь на рассылку <b>акций, скидок распродаж</b>
+                    </div>
+                  </div>
+                  <div class="buyers-and-suppliers-cards__card__block__button">
+                    <a href="{% url 'subscribes:create' %}" class='button button-with-gradient'>
+                      {% trans "Добавить" %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="buyers-and-suppliers-cards__card">
+                <div class="buyers-and-suppliers-cards__card__title">
+                  <h2>Поставщикам</h2>
+                </div>
+                <div class="buyers-and-suppliers-cards__card__block">
+                  <div class="buyers-and-suppliers-cards__card__block__content">
+                    <div class="buyers-and-suppliers-cards__card__block__content__icon">
+                      <img src="{% static './img/icons/icon_plus.svg' %}" alt="icon_plus">
+                    </div>
+                    <div class="buyers-and-suppliers-cards__card__block__content__text">
+                      Размещайте свои <b>акции, товары и услуги</b> на сайте NAZVANIE.COM
+                    </div>
+                  </div>
+                  <div class="buyers-and-suppliers-cards__card__block__button">
+                    <a href="{% url 'products:add_product' %}" class='button button-with-gradient'>
+                      {% trans "Добавить" %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- buyers-and-suppliers-wrapper -->
+  </div> <!-- content -->
 </div>
 {% include 'footer.html' %}
 {% endblock content %}

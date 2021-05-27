@@ -42,8 +42,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -94,12 +94,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOCALE_PATHS = [BASE_DIR / 'locale', ]
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+    # os.path.join(BASE_DIR / 'products/locale')
+]
 LANGUAGE_CODE = 'uk'
-LANGUAGES = (
-    ('uk', _('ua')),
-    ('ru', _('ru')),
-)
+LANGUAGES = [
+    ('uk', _('Ukrainian')),
+    ('ru', _('Russian')),
+]
 
 TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
@@ -109,7 +112,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
-    BASE_DIR, 'static',
+    BASE_DIR / 'static',
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

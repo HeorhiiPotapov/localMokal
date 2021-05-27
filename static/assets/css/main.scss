@@ -1044,14 +1044,14 @@ $footer-bg: #02592e;
         border-radius: 50%;
       }
 
-      // & i {
-      //   position: absolute;
-      //   left: 50%;
-      //   margin-right: -50%;
-      //   top: 50%;
-      //   transform: translate(-50%, -50%);
-      //   font-size: 24px;
-      // }
+      & i {
+        position: absolute;
+        left: 50%;
+        margin-right: -50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+      }
 
       &:after {
         content: "\f030";
@@ -1110,6 +1110,7 @@ $footer-bg: #02592e;
               width: 40px;
               height: 40px;
               margin-left: 5px;
+              cursor: pointer;
 
               & input[type="checkbox"] {
                 display: none;
@@ -3040,6 +3041,34 @@ $footer-bg: #02592e;
       background: $input-bg-grey;
       cursor: pointer;
       color: darken($input-bg-grey, 25%);
+    }
+  }
+
+  &__content-right {
+    position: relative;
+
+    &__edit-block {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      & img {
+        width: 30px;
+      }
+    }
+  }
+
+  &__content-left {
+    position: relative;
+
+    &__edit-block {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+
+      & img {
+        width: 30px;
+      }
     }
   }
 

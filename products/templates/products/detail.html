@@ -90,10 +90,14 @@
 						<div class="product-page__content__product-info__sale__title">
 							АКЦИЯ</div>
 						<div class="product-page__content__product-info__sale__desctiption">
+							{% if product.discount_overview %}
 							{{ product.discount_overview }}
+							{% else %}
+							Описание отсутствует
+							{% endif %}
 						</div>
 						<div class="product-page__content__product-info__sale__time">
-							<span> Заканчивается {{ product.discount.expiry_date|date }}</span>
+							<span> Заканчивается {{ product.expiry_date|date }}</span>
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
 						</div>
 					</div>
@@ -114,18 +118,17 @@
 								{% if product.owner.profile.logo %}
 								<div
 									class="product-page__content__product-info__contacts__content__name-and-logo__logo">
-									<img src="{{ product.owner.profile.logo.url }}" alt="" />
-								</div>
-								<div
-									class="product-page__content__product-info__contacts__content__name-and-logo__name">
-									{{ product.owner.profile.brand }}
-								</div>
-								{% else %}
-								<div
-									class="product-page__content__product-info__contacts__content__name-and-logo__name">
-									{{ product.owner.profile.brand }}
+									<img src="{{ product.owner.profile.logo.url }}" alt="profile_logo" />
 								</div>
 								{% endif %}
+								<div
+									class="product-page__content__product-info__contacts__content__name-and-logo__name">
+									{% if product.owner.profile.brand %}
+									{{ product.owner.profile.brand }}
+									{% else %}
+									Бренд не указан
+									{% endif %}
+								</div>
 							</div>
 							<div class="product-page__content__product-info__contacts__content__section">
 								<div class="product-page__content__product-info__contacts__content__section__title">

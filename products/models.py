@@ -74,8 +74,12 @@ class Product(models.Model):
     keywords = models.CharField(max_length=100,
                                 null=True,
                                 blank=True)
-    discount = models.IntegerField(default=0, validators=[MinValueValidator(0),
-                                                          MaxValueValidator(100)])
+    discount = models.IntegerField(default=0,
+                                   validators=[MinValueValidator(0),
+                                               MaxValueValidator(100)])
+    discount_overview = models.TextField(max_length=200,
+                                         null=True,
+                                         blank=True)
     expiry_date = models.DateTimeField(default=default_discount_expiry)
 
     objects = ProductManager()

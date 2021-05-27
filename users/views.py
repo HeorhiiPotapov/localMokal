@@ -10,7 +10,8 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .forms import (CustomUserCreationForm,
                     UserEditForm,
-                    ProfileEditForm)
+                    ProfileEditForm,
+                    AddPhoneForm)
 from .tokens import account_activation_token
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -75,23 +76,38 @@ class ActivationView(View):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        #     user_form = UserEditForm(request.POST,
-        #                              instance=request.user)
-        #     profile_form = ProfileEditForm(request.POST,
-        #                                    request.FILES,
-        #                                    instance=request.user.profile)
-        #     if user_form.is_valid() and profile_form.is_valid():
-        #         user_form.save()
-        #         profile_form.save()
-        #         return redirect('users:profile')
-        # user_form = UserEditForm(instance=request.user)
-        # profile_form = ProfileEditForm(instance=request.user.profile)
-        # context = {'user_form': user_form,
-        #            'profile_form': profile_form}
+        profile_form = ProfileEditForm(request.POST,
+                                       request.FILES,
+                                       instance=request.user.profile)
+        phone_form = AddPhoneForm(request.POST,
+                                  instance=request.user.profile)
+        if profile_form.is_valid() and phone_form.is_valid():
+            profile_form.save()
+            phone_form.save()
+            return redirect('users:profile')
+    profile_form = ProfileEditForm(instance=request.user.profile)
+    phone_form = AddPhoneForm(instance=request.user.profile)
+    context = {'profile_form': profile_form,
+               'phone_form': phone_form}
+    return render(request, 'users/profile.html', context)
 
-        context = {'data': request.POST}
-        print(context['data'])
-    return render(request, 'users/profile.html')  # context)
+# @login_required
+# def profile(request):
+#     if request.method == 'POST':
+#         user_form = UserEditForm(request.POST,
+#                                  instance=request.user)
+#         profile_form = ProfileEditForm(request.POST,
+#                                        request.FILES,
+#                                        instance=request.user.profile)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user_form.save()
+#             profile_form.save()
+#             return redirect('users:profile')
+#     user_form = UserEditForm(instance=request.user)
+#     profile_form = ProfileEditForm(instance=request.user.profile)
+#     context = {'user_form': user_form,
+#                'profile_form': profile_form}
+#     return render(request, 'users/profile.html', context)
 
 
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):

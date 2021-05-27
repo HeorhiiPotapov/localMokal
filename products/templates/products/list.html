@@ -98,7 +98,7 @@
                     <div class="col-lg-6">
                       {% if product.discount %}
                       <p style="margin-left: 40px; margin-top: 15px; color: #048439">
-                        {{ product.timestamp|date:"d.m" }}-{{ product.discount.expiry_date|date:"d.m" }}
+                        {{ product.timestamp|date:"d.m" }}-{{ product.expiry_date|date:"d.m" }}
                       </p>
                       {% else %}
                       <p style="margin-left: 90px; margin-top: 15px; color: #048439">

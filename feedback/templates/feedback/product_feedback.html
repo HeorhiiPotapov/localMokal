@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="page">
+  {% include 'nav.html' %}
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="message-form-wrapper">
+            <form action="{% url 'feedback:product_feedback' product_id %}" method="post">
+              {% csrf_token %}
+              {{ feed_form }}
+              <input type="submit" value="Send">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

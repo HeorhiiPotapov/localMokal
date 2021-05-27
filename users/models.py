@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from products.utils import City
 from products.models import Category
+from django.core.validators import FileExtensionValidator
 
 
 class CustomUser(AbstractUser):
@@ -25,12 +25,11 @@ class Profile(models.Model):
     user = models.OneToOneField(CustomUser, primary_key=True,
                                 related_name='profile',
                                 on_delete=models.CASCADE)
-    image = models.ImageField(default="profile_img/default_profile_img.jpg",
-                              upload_to="profile_img")
-    logo = models.ImageField(upload_to="profile_logo", null=True, blank=True)
+    logo = models.FileField(upload_to="profile_logo", null=True, blank=True,
+                            validators=[FileExtensionValidator(['svg'])])
     brand = models.CharField(max_length=100, null=True, blank=True)
-    city = models.CharField(choices=City.CITY_LIST, max_length=50,
-                            null=True, blank=True, default=City.ANY)
+    country = models.CharField(max_length=30, null=True, blank=True)
+    city = models.CharField(max_length=30, null=True, blank=True)
     address = models.CharField(max_length=300, null=True, blank=True)
     subscribed_to = models.ManyToManyField(Category, blank=True)
 
@@ -42,17 +41,26 @@ class Profile(models.Model):
         verbose_name_plural = 'Profiles'
 
 
-class ContactPhone(models.Model):
+# create phone for profile with
+# <profile.phone.create(social=0, phone="+1...")>
+class Phone(models.Model):
+    PRIMARY = 0
     TELEGRAM = 1
     VIBER = 2
-    SOCIAL_CHOICES = ((1, 'Telegram'),
-                      (2, 'Viber'))
-    social = models.CharField(max_length=2,
-                              choices=SOCIAL_CHOICES)
-    profile = models.ForeignKey(Profile,
-                                on_delete=models.CASCADE,
-                                related_name="contact_phone")
-    phone = models.CharField(max_length=13)
+    WHATSUP = 3
+    FACEBOOK = 4
+    SOCIAL_CHOICES = [
+        (0, 'Primary'),
+        (1, 'Telegram'),
+        (2, 'Viber'),
+        (3, 'Whatsup'),
+        (4, 'Facebook')
+    ]
+    social = models.CharField(max_length=2, choices=SOCIAL_CHOICES,
+                              default=PRIMARY)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,
+                                related_name="phone")
+    phone = models.CharField(unique=True, max_length=13)
 
     def __str__(self):
         return f"{self.social} - {self.phone}"
