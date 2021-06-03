@@ -1,0 +1,190 @@
+<div id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="my-contacts">
+					<h2>Мои контакты</h2>
+
+					<form class='my-contacts__form' action="">
+						<div class="my-contacts__form__left">
+							<div class="my-contacts__form__left__upload-file">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div class="my-contacts__form__center">
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-building my-contacts__form__center__block-fields__title__icon"
+										aria-hidden="true"></i>
+									Компания
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _company_name">
+									<input type="text" class='tmp-input-text' name='company_name'>
+								</div>
+							</div>
+
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-globe my-contacts__form__center__block-fields__title__icon"
+										aria-hidden="true"></i>
+									Страна
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _country">
+									<input type="text" class='tmp-input-text' name='country'>
+								</div>
+							</div>
+
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-map-marker my-contacts__form__center__block-fields__title__icon"
+										aria-hidden="true"></i>
+									Город / адрес
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _addres">
+									<input type="text" class='tmp-input-text' name='addres'>
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _addres1">
+									<input type="text" class='tmp-input-text' name='addres1'>
+								</div>
+							</div>
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-mobile my-contacts__form__center__block-fields__title__icon"
+										aria-hidden="true"></i>
+									Телефоны
+								</div>
+								<!-- ТУТ ИЗМЕНЕНИЯ -->
+
+								<div class="my-contacts__form__center__block-fields__inp-block _phone">
+									<input type="text" class='tmp-input-text' name='phone'>
+									<div class="phone_socials">
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone-socials" value='telegram' id="">
+											<img class='chenge_checkbox active' src="./img/icons/telegram.png"
+												alt="telegram">
+											<img class='chenge_checkbox grey' src="./img/icons/telegram_grey.png"
+												alt="">
+										</div>
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone-socials" value='viber' id="">
+											<img class='chenge_checkbox active' src="./img/icons/viber.png" alt="viber">
+											<img class='chenge_checkbox grey' src="./img/icons/viber_grey.png"
+												alt="viber">
+
+										</div>
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone-socials" value='whatsapp' id="">
+											<img class='chenge_checkbox active' src="./img/icons/whatsApp.png"
+												alt="whatsApp">
+											<img class='chenge_checkbox grey' src="./img/icons/whatsApp_grey.png"
+												alt="whatsApp">
+										</div>
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone-socials" value='facebook' id="">
+											<img class='chenge_checkbox active' src="./img/icons/facebook.png"
+												alt="facebook">
+											<img class='chenge_checkbox grey' src="./img/icons/facebook_grey.png"
+												alt="facebook">
+										</div>
+									</div>
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _phone">
+									<input type="text" class='tmp-input-text' name='phone1'>
+									<div class="phone_socials">
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone1-socials" value='telegram' id="">
+											<img class='chenge_checkbox active' src="./img/icons/telegram.png"
+												alt="telegram">
+											<img class='chenge_checkbox grey' src="./img/icons/telegram_grey.png"
+												alt="">
+										</div>
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone1-socials" value='viber' id="">
+											<img class='chenge_checkbox active' src="./img/icons/viber.png" alt="viber">
+											<img class='chenge_checkbox grey' src="./img/icons/viber_grey.png"
+												alt="viber">
+
+										</div>
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone1-socials" value='whatsapp' id="">
+											<img class='chenge_checkbox active' src="./img/icons/whatsApp.png"
+												alt="whatsApp">
+											<img class='chenge_checkbox grey' src="./img/icons/whatsApp_grey.png"
+												alt="whatsApp">
+										</div>
+										<div class="phone_socials__phone-social">
+											<input type="checkbox" name="phone1-socials" value='facebook' id="">
+											<img class='chenge_checkbox active' src="./img/icons/facebook.png"
+												alt="facebook">
+											<img class='chenge_checkbox grey' src="./img/icons/facebook_grey.png"
+												alt="facebook">
+										</div>
+									</div>
+								</div>
+								<script>
+									let all_img_event = document.querySelectorAll('.phone_socials__phone-social .chenge_checkbox')
+
+									function chenge_checkbox(img) {
+										let checkbox = img.parentNode.querySelector('input[type="checkbox"]')
+										let active_img = img.parentNode.querySelector('img.active'),
+											grey_img = img.parentNode.querySelector('img.grey')
+
+										if (checkbox.checked) {
+											checkbox.checked = false
+											active_img.style.display = 'none'
+											grey_img.style.display = 'block'
+										} else {
+											checkbox.checked = true
+											active_img.style.display = 'block'
+											grey_img.style.display = 'none'
+										}
+									}
+									all_img_event.forEach(img => {
+										img.addEventListener('click', function () {
+											chenge_checkbox(img)
+										})
+
+										// при загрузке страницы менять картинку в зависимости от checkbox
+										let checkbox = img.parentNode.querySelector('input[type="checkbox"]')
+										let active_img = img.parentNode.querySelector('img.active'),
+											grey_img = img.parentNode.querySelector('img.grey')
+										if (checkbox.checked) {
+											active_img.style.display = 'block'
+											grey_img.style.display = 'none'
+										} else {
+											active_img.style.display = 'none'
+											grey_img.style.display = 'block'
+										}
+
+									})
+								</script>
+								<!-- /ТУТ ИЗМЕНЕНИЯ -->
+							</div>
+							<div class="my-contacts__form__center__block-fields">
+								<div class="my-contacts__form__center__block-fields__title">
+									<i class="fa fa-envelope-o my-contacts__form__center__block-fields__title__icon"
+										aria-hidden="true"></i>
+									E-mail
+								</div>
+								<div class="my-contacts__form__center__block-fields__inp-block _email">
+									<input type="email" class='tmp-input-text' name='email'>
+								</div>
+
+							</div>
+
+
+						</div>
+						<div class="my-contacts__form__right">
+							<div class="my-contacts__form__inp-block">
+								<input class='button button-with-gradient my-contacts__submit' type="submit"
+									value='Сохранить'>
+							</div>
+						</div>
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

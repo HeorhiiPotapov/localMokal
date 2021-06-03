@@ -15,9 +15,13 @@
           <div class="header-main__items__item search-form">
             <form action="{% url 'products:by_query' %}" id="search-form" class="search-form">
               <div class="search-form__input-block cont_with_same_icon">
-                <input type="text" placeholder="Что ищите?" name="query" />
+                <input type="text" id='search-inp' placeholder="Что ищите?" required autocomplete='off' name="query" />
                 <img class="loupe just_icon" src="{% static './img/icons/loupe.svg' %}" alt="loupe">
                 <img class="loupe icon_active" src="{% static './img/icons/loupe_hover.svg' %}" alt="loupe">
+
+                <ul class='search-form__search-issue'>
+
+                </ul>
               </div>
               <div class="search-form__input-block _region">
                 <input type="hidden" id="region-inp" name="region-inp" value="">
@@ -66,6 +70,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
 </header>

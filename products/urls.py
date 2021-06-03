@@ -2,7 +2,9 @@ from django.urls import path
 from .views import (ProductDetailView,
                     ProductListView,
                     ProductSearchResult,
-                    add_product)
+                    ProductDeleteView,
+                    add_product,
+                    get_products_qs)
 
 app_name = 'products'
 urlpatterns = [
@@ -11,6 +13,8 @@ urlpatterns = [
          ProductListView.as_view(), name='by_category'),
     path('detail/<int:pk>/<str:slug>/',
          ProductDetailView.as_view(), name='detail'),
-    path('search/', ProductSearchResult.as_view(), name="by_query"),
-    path('create/', add_product, name='add_product')
+    path('search-results/', ProductSearchResult.as_view(), name="by_query"),
+    path('search/', get_products_qs, name="by_query_ajax"),
+    path('create/', add_product, name='add_product'),
+    path('delete/<int:pk>/', ProductDeleteView.as_view(), name="delete_product")
 ]

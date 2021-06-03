@@ -1,0 +1,2 @@
+save and render user's favorite categories
+add initial values to '/adminpanel/<id>/' form fields

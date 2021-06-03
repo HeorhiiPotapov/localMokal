@@ -1,0 +1,5 @@
+{% for category in childrens %}
+<a href='{{ category.get_absolute_url }}' class="category__subcat__link">
+    {{ category.name }}
+</a>
+{% endfor %}

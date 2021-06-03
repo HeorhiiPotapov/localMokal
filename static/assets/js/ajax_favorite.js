@@ -5,7 +5,9 @@ $(".add_to_favorites").click(function () {
 
 	$.ajax({
 		url: "/favorites/add_to_favorite/" + prod_id + "/",
-		data: { product_id: prod_id },
+		data: {
+			product_id: prod_id
+		},
 		success: function (data) {
 			let n = parseInt(favCount.text());
 			if (data["is_favorite"] === true) {
@@ -13,6 +15,10 @@ $(".add_to_favorites").click(function () {
 				navIcon.attr("src", imgLocation + "favorites_fill.svg");
 				favCount.text((n += 1));
 			} else {
+				if (window.location.pathname == '/favorites/favorite-list/') {
+					// console.log(this)
+					// deletion from favorite products list on render
+				}
 				img.attr("src", imgLocation + "favorites.svg");
 				favCount.text((n -= 1));
 			}

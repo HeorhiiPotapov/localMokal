@@ -16,8 +16,7 @@ urlpatterns = [
     path('feedback/', include('feedback.urls', namespace="feedback")),
     path('products/', include('products.urls', namespace='products')),
     path('links/', include('sociallinks.urls', namespace="sociallinks")),
-    path('banners/', include('banners.urls', namespace='banners')),
-
+    path('adminpanel/', include('adminpanel.urls', namespace="adminpanel")),
     # ################  password_reset #####################
 
     path('password-reset/',

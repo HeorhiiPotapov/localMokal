@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load products_tags %}
+
+{% load static %}
+
+{{ request.STATIC_ROOT }}
+{% block content %}
+<div id="page">
+	<div id="content">
+		<div class="add-page-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="add-page">
+
+						<header class="add-page__header">
+							<div class="add-page__header__left-side">
+								<div class="add-page__header__left-side__go-back">
+									<a href="{% url 'products:all' %}"></a>
+								</div>
+								<div class="add-page__header__left-side__name-page">Заполнение
+									страницы</div>
+							</div>
+							<div class="add-page__header__right-side">
+								<div class="header-main__items__item 6hamburger">
+									<div class="wrapper-menu-hamburger">
+										<div class="wrapper-menu-hamburger__hamburger-menu"></div>
+									</div>
+								</div>
+							</div>
+						</header>
+
+						<form action="{% url 'adminpanel:edit' pk=object.pk %}" method="POST" enctype="multipart/form-data" id="form_add_page">
+							{% csrf_token %}
+							<table>
+								<tbody>
+									<tr class="add-page__photo add-page__section">
+										<!-- PHOTO -->
+										<td class="add-page__section__description">Добывьте минимум 1
+											фото или ссылку на
+											видео Youtube:</td>
+
+										<!-- ТУТ ИЗМЕНЕНИЯ -->
+										<td class="add-page__section__main-content">
+											<div class="tmp_block_add_photo_for_clone" data-pos="">
+												<div class="help_line_left"></div>
+												<div class="del_block"></div>
+												<img src="" alt="loaded img" />
+												<input type="file" name="" disabled class="file_input" accept="image/*" />
+												<div class="help_line_right"></div>
+											</div>
+											<div class="tmp_block_add_url_ytb_for_clone">
+												<div class="help_line_left"></div>
+												<div class="del_block"></div>
+												<img src="" alt="preview" />
+												<input type="hidden" disabled name="video" />
+												<div class="help_line_right"></div>
+											</div>
+											<div class="add-page__photo__container-for-loaded-files">
+											</div>
+											<div class="add-page__photo__load-image-or-urlYouT ">
+												<img class="load_photo_btn mx-3" src="{% static '/img/icons/add_image.svg' %}" alt="load photo" />
+												<img class="load_url_ytb_btn mx-3" src="{% static '/img/icons/add_youtube.svg' %}" alt="load yout" />
+											</div>
+										</td>
+										<!-- ТУТ ИЗМЕНЕНИЯ -->
+									</tr>
+									<tr class="add-page__heading add-page__section">
+										<!-- HEADING -->
+										<td class="add-page__section__description">Выбирите рубрику:
+										</td>
+										<td class="add-page__section__main-content">
+											<div class="subscription-to-shares">
+												<div class="categories-wrapper">
+													<div class="categories">
+														{% for i in categories %}
+														{% if i.parent is None %}
+														<div class="category_h {% if i.pk == object.category.parent.pk %} _active{% endif %}">
+															<input type="checkbox" class="subscription-to-shares__category-checkbox" {% if i.pk == object.category.parent.pk %} checked {% endif %} name="product_cat" value="{{ i.id  }}" />
+															<div class="category_h__top-icon">
+																<img src="{{ i.image.url }}" alt="">
+															</div>
+															<div class="category_h__bottom-text">
+																{{ i.name|truncatechars:9 }}</div>
+														</div>
+														{% endif %}
+														{% endfor %}
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr class="add-page__subheading add-page__section">
+										<!-- SUBHEADING -->
+										<td class="add-page__section__description">Выберите
+											подрубрику:</td>
+										<td class="add-page__section__main-content">
+											<div class="add-page__section__main-content__inp-wrapper">
+												<select id="sub-cat-select" value="{{ object.category.name }}">
+													{% for i in categories %}
+													{% if i.parent is not None %}
+													<option value="{{ i.pk }}" data-main-cat="{{ i.parent.pk }}" {% if object.category.parent.pk == i.parent.pk %} class="_display-none" {% elif i.pk == object.category.pk %} selected {% endif %}>{{ i.name }}</option>
+													{% endif %}
+													{% endfor %}
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr class="add-page__name-product add-page__section">
+										<!-- NAME PRODUCT -->
+										<td class="add-page__section__description">Назовите ваш товар
+											или услугу:</td>
+										<td class="add-page__section__main-content">
+											<input type="text" name="name" id="name-product" value="{{ object.name }}" class="tmp-input-text" />
+										</td>
+									</tr>
+									<tr class="add-page__price add-page__section">
+										<!-- PRICE -->
+										<td class="add-page__section__description">Дайте цену:</td>
+										<td class="add-page__section__main-content">
+											<div class="add-page__section__main-content__inp-wrapper">
+												<input type="number" min="1" name="price" id="price" class="tmp-input-text" value="{{ object.price }}" />
+												<div class="sumbol">грн.</div>
+											</div>
+										</td>
+									</tr>
+
+									<tr class="add-page__discount add-page__section">
+										<!--DISCOUNT -->
+										<td class="add-page__section__description">Объявите акцию -
+											получите больше
+											продаж:</td>
+										<td class="add-page__section__main-content">
+											<div class="add-page__section__main-content__inp-wrapper">
+												<div class="add-page__section__main-content__inp-wrapper__description">
+													Срок
+													окончания акции</div>
+												<div class="add-page__section__main-content__inp-wrapper__input">
+													<input type="date" id="discount_to" name="expiry_date" class="tmp-input-text" />
+												</div>
+											</div>
+											<div class="add-page__section__main-content__inp-wrapper">
+												<div class="add-page__section__main-content__inp-wrapper__description">
+													Процент
+													скидки</div>
+												<input type="number" id="discount_percent" name="discount" class="tmp-input-text" />
+											</div>
+										</td>
+									</tr>
+									<tr class="add-page__keywords add-page__section">
+										<!-- description -->
+										<td class="add-page__section__description">Описание товара:
+										</td>
+										<td class="add-page__section__main-content">
+											<textarea name="overview" id="pr_description" placeholder="Описание товара" cols="60" class="tmp-input-text" rows="10"></textarea>
+										</td>
+									</tr>
+
+									<tr class="add-page__keywords add-page__section">
+										<!-- CITY -->
+										<td class="add-page__section__description">Город</td>
+										<td class="add-page__section__main-content">
+											<select name="city" id="id_city">
+												{% city_list as c_list %}
+												{% for key, value in c_list %}
+												<option value="{{ key }}" {% if value == object.city %}selected{% endif %}>{{ value }}</option>
+												{% endfor %}
+											</select>
+										</td>
+									</tr>
+
+									<tr class="add-page__keywords add-page__section">
+										<!-- KEYWORDS -->
+										<td class="add-page__section__description">
+											Подберите ключевые слова. Пишите через запятую с пробелом:
+										</td>
+										<td class="add-page__section__main-content">
+											<textarea name="tags" id="keywords" cols="60" class="tmp-input-text" rows="4"></textarea>
+										</td>
+									</tr>
+									<tr class="add-page__submit add-page__section">
+										<!-- submit	 -->
+										<td colspan="2" align="center" class="add-page__section__main-content">
+											<input type="submit" class="button button-with-gradient" value="Загрузить на сайт" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+						<!-- form add page -->
+					</div>
+					<!-- add-page -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- add-page-wrapper -->
+	</div>
+	<!-- content -->
+</div>
+{% endblock content %}

@@ -29,6 +29,8 @@
         </div>
       </div>
     </div>
+
+    {% if page_obj|length > 0 %}
     <div class="products-wrapper">
       <div class="container">
         <div class="row">
@@ -37,19 +39,14 @@
             <div class="product">
               <div class="product__header-image-wrapper">
                 <div class="product__header-image-wrapper__header-image">
-                  {% for cat, value in product.owner.profile.subscribed_to.items %}
-                  {{ cat }}{{  value  }}
-                  {% endfor %}
                   {% if product.discount %}
                   <div class="product__header-image-wrapper__header-image__sale-block">
-                    <img class="product__header-image-wrapper__header-image__sale-block__bg"
-                      src="{% static './img/icons/sale_bg.svg' %}" alt="" />
+                    <img class="product__header-image-wrapper__header-image__sale-block__bg" src="{% static './img/icons/sale_bg.svg' %}" alt="" />
                     <span class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ
                     </span>
                   </div>
                   {% endif %}
-                  <img class="product__header-image-wrapper__header-image__product-img"
-                    src="{{ product.images.first.image.url }}" alt="product_name" />
+                  <img class="product__header-image-wrapper__header-image__product-img" src="{{ product.images.first.image.url }}" alt="product_name" />
                 </div>
               </div>
               <div class="product__name">
@@ -114,7 +111,16 @@
           {% endfor %}
         </div>
       </div>
+      {% else %}
+      <div class="not-found-container">
+        <div class="not-found-container__text">
+          Ничего не найдено
+        </div>
+        <div class="not-found-container__icon">
+          <img src="{% static './img/icons/loupe.svg' %}" alt=""> </div>
+      </div> {% endif %}
       <!-- ajax button -->
+      {% if page_obj.has_next %}
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -126,9 +132,11 @@
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
     <!-- products-wrapper -->
   </div>
+
 
   <div class="pagination">
     <span class="step-links">

@@ -39,9 +39,9 @@ if (document.querySelector("form#form_add_page")) {
 
         if (name_parent_cat != main_cat_name) {
           // скрыть подрубрики которые пренадлежат другой родительской группе
-          option.style.display = "none";
+          option.classList.add('_display_none')
         } else {
-          option.style.display = "block";
+          option.classList.remove('_display_none')
         }
 
         // скріть value(подкатегорию)
@@ -50,12 +50,6 @@ if (document.querySelector("form#form_add_page")) {
     });
 
   });
-  // при запуске страницы скрыть все подкатегории
-  let sub_cat_options = document.querySelectorAll("#sub-cat-select option")
-  document.querySelector("#sub-cat-select").value = ''
-  sub_cat_options.forEach((option) => {
-    option.style.display = "none";
-  })
 
   let form_add_page = document.querySelector("form#form_add_page");
   // form_add_page.addEventListener("submit", function (e) {

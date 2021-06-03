@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="page">
+  {% comment %} {% include 'nav.html' %} {% endcomment %}
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="my-pages-header">
+            <div class="my-pages-header__left">
+              <div class="my-pages-header__left__title">
+                Мои страницы
+              </div>
+              <div class="my-pages-header__left__add-page">
+                <a href="{% url 'products:add_product' %}"><img style="max-height: 30px;" src="{% static './img/icons/add_image.svg' %}" alt="add icon"> Добавить страницу</a>
+              </div>
+            </div>
+            <div class="my-pages-header__right">
+              <form action="" class='searh-my-pages cont_with_same_icon'>
+                <input type="text" class='searh-my-pages__input' placeholder="Поиск страниц">
+                <img class="loupe just_icon" src="{% static './img/icons/loupe.svg' %}" alt="loupe">
+                <img class="loupe icon_active" src="{% static './img/icons/loupe_hover.svg' %}" alt="loupe">
+              </form>
+            </div>
+
+          </div>
+          <table class='admin-table'>
+            <thead>
+              <tr>
+                <th>
+                  №
+                </th>
+                <th>
+                  название страницы
+                </th>
+                <th>
+                  артикул
+                </th>
+                <th>
+                  статус
+                </th>
+                <th>
+                  добавлено
+                </th>
+                <th>
+                  продлить
+                </th>
+                <th>
+                  <div class="cont_with_same_icon admin-table__icon-cont">
+                    <img class="just_icon" src="{% static 'img/icons/edit.svg' %}" alt="edit">
+                  </div>
+                </th>
+                <th>
+                  <div class="cont_with_same_icon admin-table__icon-cont">
+                    <img class="just_icon" src="{% static 'img/icons/remove.svg' %}" alt="delete">
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            {% for item in products %}
+            <tbody>
+              <tr class='td_{{ item.pk }}'>
+                <td>
+                  {{ item.pk }}
+                </td>
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>
+                  {{ item.code }}
+                </td>
+                <td>
+                  <span class='_status-in-archive'>
+                    {% if item.is_active %}
+                    Активен
+                    {% else %}
+                    Остановлен
+                    {% endif %}
+                  </span>
+                </td>
+                <td>
+                  {{ item.timestamp|date:"d.m.Y" }}
+                </td>
+                <td>
+
+                </td>
+                <td>
+                  <a href="{% url 'adminpanel:edit' pk=item.id %}">
+                    <div class="cont_with_same_icon admin-table__icon-cont">
+                      <img class="just_icon" src="{% static 'img/icons/edit.svg' %}" alt="редактировать">
+                      <img class="icon_active" src="{% static 'img/icons/edit_active.svg' %}" alt="редактировать">
+                    </div>
+                  </a>
+                </td>
+                <td>
+                  <div class="cont_with_same_icon admin-table__icon-cont">
+                    <img class="just_icon" onclick='popup_open("#del_banner")' src="{% static './img/icons/remove.svg' %}" alt="удалить">
+                    <img class="icon_active" onclick='popup_open("#del_banner_{{ item.pk }}")' src="{% static './img/icons/remove_hover.svg' %}" alt="удалить">
+                  </div>
+
+                  <div id='del_banner_{{ item.pk }}' class='tmp-popup-window'>
+                    <div class="tmp-popup-window__close-popup" onclick='popup_close("#del_banner_{{ item.pk }}")'>
+                      ×
+                    </div>
+                    <div class="tmp-popup-window__action">
+                      Вы хотите удалить эту страницу?
+                    </div>
+                    <div class="tmp-popup-window__message">
+                      {{ item.name }}
+                    </div>
+                    <div class="tmp-popup-window__buttons">
+                      <div class="button button-with-gradient" onclick='popup_close("#del_banner_{{ item.pk }}")'>
+                        Оставить
+                      </div>
+                      <form action="{% url 'products:delete_product' item.id %}" onsubmit='return confirm(' huy')' method="POST">
+                        {% csrf_token %}
+                        <button class="button button-red" type="submit">Удалить</button>
+                      </form>
+
+                    </div>
+
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+            {% endfor %}
+
+          </table>
+          <script>
+            function ajax_item_delete(item_id, this_td_selector) {
+              $.ajax({
+                url: 'products/delete/' + item_id + '/'
+              }).done(function () {
+                let td = document.querySelector(this_td_selector)
+                td.remove()
+                return true
+              })
+            }
+            let all_tbody_tr = document.querySelectorAll('.admin-table tbody tr')
+            let iter = 0
+            all_tbody_tr.forEach(tr => {
+              if (iter % 2 == 0) {
+                tr.style.background = '#ffffff'
+              } else {
+                tr.style.background = '#FAFAFA'
+              }
+              iter += 1
+            })
+          </script>
+          <div class="my-pages-footer">
+            <div class="my-pages-footer__pagination">
+              {% if page_obj.has_previous %}
+              <a href="?page={{ page_obj.previous_page_number }}" class='my-pages-footer__pagination__prev'></a>
+              {% endif %}
+              <ul>
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+              {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}" class='my-pages-footer__pagination__next'></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- content -->
+</div>
+
+{% endblock content %}

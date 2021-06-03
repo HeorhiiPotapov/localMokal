@@ -1,5 +1,5 @@
 from django.template import Library
-from products.models import Product
+from products.models import Category, Product
 from ..utils import City
 
 register = Library()
@@ -9,6 +9,12 @@ register = Library()
 def city_list():
     city_list = [c for c in City.CITY_LIST]
     return city_list
+
+
+@register.inclusion_tag('products/parent_cat.html')
+def get_childrens(node):
+    childrens = Category.objects.filter(parent=node)
+    return {'childrens': childrens}
 
 
 @register.simple_tag(takes_context=True)

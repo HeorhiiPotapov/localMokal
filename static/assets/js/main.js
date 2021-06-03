@@ -54,6 +54,19 @@ window.onload = function () {
 				}
 			})
 
+			let all_cat = document.querySelectorAll('.category')
+			all_cat.forEach(cat => {
+				let sub_cat = cat.querySelector('.category__subcat')
+				if (sub_cat) {
+					cat.addEventListener('click', function () {
+						$(sub_cat).toggleClass('_open')
+					})
+					sub_cat.addEventListener('mouseleave', function () {
+						$(this).toggleClass('_open')
+					})
+				}
+			})
+
 			// categories mobile
 			let slider_on_categories_set = 0
 
@@ -268,36 +281,48 @@ window.onload = function () {
 
 		// search form
 		if (document.querySelector('#search-inp')) {
+			let searh_timeout;
 			$('.search-form__input-block img').on('click', function () {
 				$('#search-form').submit()
 			})
 			$('#search-inp').on('input', function () {
-				let val = document.querySelector('#search-inp').value,
-					city = document.querySelector('#region-inp').value
+				clearTimeout(searh_timeout);
+				searh_timeout = setTimeout(function () {
+					let val = document.querySelector('#search-inp').value,
+						city = document.querySelector('#region-inp').value
 
-				if (val.length >= 3) {
-					$.ajax({
-						url: "https://e22f0f4a0a13.ngrok.io/search/",
-						data: {
-							"q": val,
-							"city": city
-						},
-						async: false,
-						success: function (data) {
-							console.log(data)
-							let keys = Object.keys(data)
-							// keys.forEach( key_ => {
-							// 	console.log(data.key_)
-							// })
-							data.forEach(el => {
-								console.log(el)
-							})
-							// for (i = 0; i < data.length; i++) {
-							// 	console.log(data[i])
-							// }
-						}
-					})
-				}
+					if (val.length >= 3) {
+						$.ajax({
+							url: "/products/search/",
+							data: {
+								"query": val,
+								"region": city
+							},
+
+							async: false,
+							success: function (data) {
+								let json_parse = JSON.parse(data)
+								let inner_block = document.querySelector('.search-form__search-issue')
+								inner_block.innerHTML = ''
+
+								for (key in json_parse) {
+									let name = json_parse[key]['name'],
+										link = json_parse[key]['link']
+
+									let li = document.createElement('li'),
+										a = document.createElement('a')
+									a.setAttribute('href', link)
+									a.textContent = name
+									li.append(a)
+									inner_block.append(li)
+								}
+								// json_parse[0].forEach(el => {
+								// 	console.log(el['name'])
+								// })
+							}
+						})
+					}
+				}, 500)
 			})
 		}
 		// search form

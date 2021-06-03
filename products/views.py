@@ -1,13 +1,17 @@
+import json
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views import generic
+from django.views.generic import TemplateView, ListView, DetailView, DeleteView
 from django.urls import reverse
-from .models import Category, Product, Image
+from .models import Category, Product
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 
 
-class MainPageView(generic.TemplateView):
+class MainPageView(TemplateView):
     template_name = 'products/index.html'
 
     def get_context_data(self, **kwargs):
@@ -17,7 +21,7 @@ class MainPageView(generic.TemplateView):
         return context
 
 
-class ProductListView(generic.ListView):
+class ProductListView(ListView):
     """
     product list queryset can be a filtered by category
     name, or include all products ordered by creation date
@@ -50,7 +54,7 @@ class ProductListView(generic.ListView):
         return context
 
 
-class ProductSearchResult(generic.ListView):
+class ProductSearchResult(ListView):
     model = Product
     template_name = 'products/list.html'
     paginate_by = 24
@@ -58,15 +62,29 @@ class ProductSearchResult(generic.ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset()
         query = self.request.GET.get('query')
-        region = self.request.GET.get('region-inp')
-        if region or query:
-            qs = qs.filter(Q(name__icontains=query) | Q(city=query))
-        elif region and query:
-            qs = qs.filter(Q(name__icontains=query) & Q(city=query))
+        # region = self.request.GET.get('region-inp')
+        qs = qs.filter(name__icontains=query)
         return qs
 
 
-class ProductDetailView(generic.DetailView):
+def get_products_qs(request):
+    if request.is_ajax():
+        query = request.GET.get('query')
+        products = Product.objects.filter(name__icontains=query)
+        counter = 0
+        response = dict()
+        for item in products:
+            context = {
+                "name": item.name,
+                "link": f"/products/detail/{item.id}/{item.slug}/"
+            }
+            response[str(counter)] = context
+            counter += 1
+            return JsonResponse(json.dumps(response), safe=False)
+    return JsonResponse({}, status=404)
+
+
+class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/detail.html'
 
@@ -88,6 +106,7 @@ def add_product(request, **kwargs):
             new = product_form.save(commit=False)
             new.owner = request.user
             new.save()
+            product_form.save_m2m()
             for f in request.FILES.keys():
                 new.images.create(image=request.FILES[f])
             """
@@ -104,3 +123,10 @@ def add_product(request, **kwargs):
     return render(request, 'products/create.html', {
         'product_form': product_form,
         'categories': categories})
+
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    model = Product
+
+    def get_success_url(self):
+        return reverse('adminpanel:main')

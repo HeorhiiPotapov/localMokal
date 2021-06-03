@@ -30,8 +30,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category', 'city', 'is_active', 'timestamp')
     readonly_fields = ['slug', ]
     fields = [
-        # 'main_image',
-        # 'video',
+        'video',
         'slug',
         'owner',
         'name',
@@ -39,10 +38,11 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'price',
         'overview',
-        # 'discount',
         'is_active',
-        'timestamp',]
-        #'discount_expiry']
+        'discount',
+        'expiry_date',
+        'discount_overview',
+        'tags']
     list_display = ('name',
                     'category',
                     'price',

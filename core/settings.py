@@ -29,12 +29,13 @@ INSTALLED_APPS = [
     'subscribes.apps.SubscribesConfig',
     'feedback.apps.FeedbackConfig',
     'sociallinks.apps.SociallinksConfig',
-    'banners.apps.BannersConfig',
+    'adminpanel.apps.AdminpanelConfig',
 
     # soft
     'mptt',
     'corsheaders',
     'debug_toolbar',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -96,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale'
-    # os.path.join(BASE_DIR / 'products/locale')
 ]
 LANGUAGE_CODE = 'uk'
 LANGUAGES = [
@@ -155,3 +155,4 @@ DEBUG_TOOLBAR_PANELS = [
 ]
 
 INTERNAL_IPS = ['127.0.0.1', ]
+TAGGIT_CASE_INSENSITIVE = True
