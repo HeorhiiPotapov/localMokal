@@ -18,6 +18,8 @@ django-cors-headers = "*"
 django-taggit = "*"
 bpython = "*"
 django-heroku = "*"
+django-storages = "*"
+dropbox = "*"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "25f0b4d7506c91b62f3ca4749d92b43ba5043ecbfbed120f4e2639858cbf56cc"
+            "sha256": "607ef42652eb435b9d6487b7bbdcea8b1ec0f8f7e6c96a9dce2c58dc4e739a44"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -174,6 +174,14 @@
             "index": "pypi",
             "version": "==0.12.0"
         },
+        "django-storages": {
+            "hashes": [
+                "sha256:c823dbf56c9e35b0999a13d7e05062b837bae36c518a40255d522fbe3750fbb4",
+                "sha256:f28765826d507a0309cfaa849bd084894bc71d81bf0d09479168d44785396f80"
+            ],
+            "index": "pypi",
+            "version": "==1.11.1"
+        },
         "django-taggit": {
             "hashes": [
                 "sha256:9f947b7fe330875ac7f05f9616f42ef90df9253b639ca102a9449dd34cec0cab",
@@ -189,6 +197,15 @@
             ],
             "index": "pypi",
             "version": "==3.12.4"
+        },
+        "dropbox": {
+            "hashes": [
+                "sha256:609a818987fc2cf25ce2d014bcace423685559e905256c06ac0191a1639e4f21",
+                "sha256:801474ffc5e655694695c8ae404c1f942d5e2612af36bc37aeb9a331e51a25e6",
+                "sha256:c7d7232b1513528a24aacdd9ada2deaea6a1f9f9ad9507536f9238c9a7e64596"
+            ],
+            "index": "pypi",
+            "version": "==11.10.0"
         },
         "flake8": {
             "hashes": [
@@ -370,6 +387,13 @@
             "index": "pypi",
             "version": "==8.2.0"
         },
+        "ply": {
+            "hashes": [
+                "sha256:00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3",
+                "sha256:096f9b8350b65ebd2fd1346b12452efe5b9607f7482813ffca50c22722a807ce"
+            ],
+            "version": "==3.11"
+        },
         "prompt-toolkit": {
             "hashes": [
                 "sha256:bf00f22079f5fadc949f42ae8ff7f05702826a97059ffcc6281036ad40ac6f04",
@@ -467,6 +491,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==0.4.1"
+        },
+        "stone": {
+            "hashes": [
+                "sha256:2a50866528f60cc7cedd010def733e8ae9d581d17f967278a08059bffaea3c57",
+                "sha256:76235137c09ee88aa53e8c1e666819f6c20ac8064c4ac6c4ee4194eac0e3b7af",
+                "sha256:9bc78b40143b4ef33bf569e515408c2996ffebefbb1a897616ebe8aa6f2d7e75"
+            ],
+            "version": "==3.2.1"
         },
         "toml": {
             "hashes": [
