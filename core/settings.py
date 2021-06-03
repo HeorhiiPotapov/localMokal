@@ -1,4 +1,4 @@
-
+import django_heroku
 import os
 from pathlib import Path
 from django.utils.translation import ugettext_lazy as _
@@ -10,7 +10,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = (os.environ.get('DEBUG') == 'True')
 
 
-ALLOWED_HOSTS = ['127.0.0.1',
+ALLOWED_HOSTS = ['theendoftheroad.herokuapp.com',
+                 '127.0.0.1',
                  'localhost']
 
 INSTALLED_APPS = [
@@ -40,8 +41,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -153,6 +154,11 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.redirects.RedirectsPanel',
     'debug_toolbar.panels.profiling.ProfilingPanel',
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 INTERNAL_IPS = ['127.0.0.1', ]
 TAGGIT_CASE_INSENSITIVE = True
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+# DROPBOX_OAUTH2_TOKEN = ""
+# DROPBOX_ROOT_PATH = '/'
+django_heroku.settings(locals())

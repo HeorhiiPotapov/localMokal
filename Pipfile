@@ -17,6 +17,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 django-taggit = "*"
 bpython = "*"
+django-heroku = "*"
 
 [dev-packages]
 
