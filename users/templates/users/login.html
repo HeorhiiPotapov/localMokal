@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div id="page">
 	{% include 'nav.html' %}
@@ -18,14 +19,14 @@
 							</div>
 							<div class="register-form__inp-block view-password">
 								<i class="fa fa-lock register-form__inp-block__icon _icon__password"></i>
-								<i class="fa fa-eye register-form__inp-block__icon _show-passw"></i>
+								<i class="fa fa-eye register-form__inp-block__icon _show-password"></i>
 								<input type="password" class='register-form__passw tmp-input-text' name='password'
 									placeholder="Пароль">
 							</div>
 							{% if form.errors %}
 							<p class=" label label-danger">
-								Your username and password didn't match.
-								Please try again.
+								Ваше имя пользователя или пароль введены неверно.
+								Пожалуйста, попробуйте еще раз.
 							</p>
 							{% endif %}
 
@@ -33,7 +34,10 @@
 								<label for="register-form__remember_inp">
 									<input id='register-form__remember_inp' type="checkbox"
 										class='register-form__remember_inp' name='remember'>
-									<span class='register-form__remember__castom-checkbox'></span>
+									<div class="register-form__inp-block__checkbox-temp temp-checkbox">
+										<img class="just_icon" src="{% static './img/icons/check.svg' %}" alt="запомнить">
+										<img class="icon_active" src="{% static './img/icons/check_hover.svg' %}" alt="запомнить">
+									</div>
 									Запомнить меня
 								</label>
 							</div>

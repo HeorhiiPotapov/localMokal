@@ -947,9 +947,12 @@ a {
   margin-right: 0;
 }
 
+.temp-checkbox .icon_active {
+  display: none;
+}
+
 .cont_with_same_icon .icon_active {
   display: none;
-  margin-bottom: 2px;
   cursor: pointer;
 }
 
@@ -1122,6 +1125,24 @@ a {
   margin: 25px 0;
 }
 
+.register-form-wrapper .register-form__inp-block__checkbox-temp {
+  background: #f5f5f5;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.register-form-wrapper .register-form__inp-block__checkbox-temp img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 25px;
+  height: 18px;
+}
+
 .register-form-wrapper .register-form__inp-block__error {
   position: absolute;
   right: 0;
@@ -1137,11 +1158,13 @@ a {
   color: #aeafb0;
 }
 
-.register-form-wrapper .register-form__inp-block__icon._icon__pasw {
-  left: 10px;
+.register-form-wrapper .register-form__inp-block__icon._icon__password {
+  left: 13px;
+  top: 11px;
+  font-size: 19px;
 }
 
-.register-form-wrapper .register-form__inp-block__icon._show-passw {
+.register-form-wrapper .register-form__inp-block__icon._show-password {
   position: absolute;
   right: 8px;
   left: inherit;
@@ -2599,6 +2622,10 @@ a {
 .add-page__photo__load-image-or-urlYouT .load_photo_btn {
   cursor: pointer;
   width: 30%;
+}
+
+.add-page__keywords #keywords {
+  width: 50%;
 }
 
 .add-page__subheading .add-page__section__main-content__inp-wrapper {

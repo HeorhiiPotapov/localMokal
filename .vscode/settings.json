@@ -2,8 +2,6 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "/home/whoami/.local/share/virtualenvs/localMokal-FgMzPtxm/bin/python",
-    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace, 'Droid Sans Fallback'",
     "terminal.explorerKind": "external",
     "terminal.integrated.shellArgs.osx": [],
     "python.linting.pycodestyleEnabled": false,

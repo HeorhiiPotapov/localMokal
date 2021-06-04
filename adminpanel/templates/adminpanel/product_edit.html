@@ -135,7 +135,7 @@
 													Срок
 													окончания акции</div>
 												<div class="add-page__section__main-content__inp-wrapper__input">
-													<input type="date" id="discount_to" name="expiry_date" class="tmp-input-text" />
+													<input type="text" id="discount_to" placeholder="__.__.____" name="expiry_date" value=''class="tmp-input-text" />
 												</div>
 											</div>
 											<div class="add-page__section__main-content__inp-wrapper">
@@ -146,7 +146,7 @@
 											</div>
 										</td>
 									</tr>
-									<tr class="add-page__keywords add-page__section">
+									<tr class="add-page__description add-page__section">
 										<!-- description -->
 										<td class="add-page__section__description">Описание товара:
 										</td>
@@ -156,25 +156,12 @@
 									</tr>
 
 									<tr class="add-page__keywords add-page__section">
-										<!-- CITY -->
-										<td class="add-page__section__description">Город</td>
-										<td class="add-page__section__main-content">
-											<select name="city" id="id_city">
-												{% city_list as c_list %}
-												{% for key, value in c_list %}
-												<option value="{{ key }}" {% if value == object.city %}selected{% endif %}>{{ value }}</option>
-												{% endfor %}
-											</select>
-										</td>
-									</tr>
-
-									<tr class="add-page__keywords add-page__section">
 										<!-- KEYWORDS -->
 										<td class="add-page__section__description">
 											Подберите ключевые слова. Пишите через запятую с пробелом:
 										</td>
 										<td class="add-page__section__main-content">
-											<textarea name="tags" id="keywords" cols="60" class="tmp-input-text" rows="4"></textarea>
+											<input name="tags" id="keywords" class="tmp-input-text"/>
 										</td>
 									</tr>
 									<tr class="add-page__submit add-page__section">

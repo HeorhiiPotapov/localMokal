@@ -860,11 +860,14 @@ $footer-bg: #02592e;
     }
   }
 }
-
+.temp-checkbox {
+  & .icon_active {
+    display: none;
+  }
+}
 .cont_with_same_icon {
   & .icon_active {
     display: none;
-    margin-bottom: 2px;
     cursor: pointer;
   }
 
@@ -1016,6 +1019,21 @@ $footer-bg: #02592e;
       position: relative;
       margin: 25px 0;
 
+      &__checkbox-temp {
+        background:$input-bg-grey;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        & img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 25px;
+          height: 18px;
+        }
+      }
 
       &__error {
         position: absolute;
@@ -1031,11 +1049,13 @@ $footer-bg: #02592e;
         top: 12px;
         color: $grey-main;
 
-        &._icon__pasw {
-          left: 10px;
+        &._icon__password {
+          left: 13px;
+          top: 11px;
+          font-size: 19px;
         }
 
-        &._show-passw {
+        &._show-password {
           position: absolute;
           right: 8px;
           left: inherit;
@@ -2378,7 +2398,11 @@ $footer-bg: #02592e;
       }
     }
   }
-
+  &__keywords {
+    & #keywords {
+      width: 50%;
+    }
+  }
   &__subheading {
     .add-page__section__main-content {
       &__inp-wrapper {

@@ -183,24 +183,27 @@ window.onload = function () {
 
 
 		// поля с паролем
-		let all_passw_block = document.querySelectorAll('.view-password')
-		all_passw_block.forEach(block => {
-			let eye = block.querySelector('._show-passw'),
-				inp = block.querySelector('input')
-			eye.addEventListener('click', function () {
-				let inp_type = inp.getAttribute('type')
-				console.log(inp_type)
-				if (inp_type == 'password') {
-					inp.setAttribute('type', 'text')
-					eye.classList.remove('fa-eye')
-					eye.classList.add('fa-eye-slash')
-				} else {
-					inp.setAttribute('type', 'password')
-					eye.classList.add('fa-eye')
-					eye.classList.remove('fa-eye-slash')
-				}
-			})
-		})
+		// if(document.querySelector('.view-password')) {
+		// 	let all_passw_block = document.querySelectorAll('.view-password')
+		// 	all_passw_block.forEach(block => {
+		// 		let eye = block.querySelector('._show-passw'),
+		// 			inp = block.querySelector('input')
+		// 		eye.addEventListener('click', function () {
+		// 			let inp_type = inp.getAttribute('type')
+		// 			console.log(inp_type)
+		// 			if (inp_type == 'password') {
+		// 				inp.setAttribute('type', 'text')
+		// 				eye.classList.remove('fa-eye')
+		// 				eye.classList.add('fa-eye-slash')
+		// 			} else {
+		// 				inp.setAttribute('type', 'password')
+		// 				eye.classList.add('fa-eye')
+		// 				eye.classList.remove('fa-eye-slash')
+		// 			}
+		// 		})
+		// 	})
+		// }
+		
 		// поля с паролем
 
 		// поиск в шапке
@@ -225,6 +228,29 @@ window.onload = function () {
 			})
 		}
 		// страница подписки
+
+		// tmp checkbox
+		if(document.querySelector('.temp-checkbox')) {
+			let all_tmp_checkbox = document.querySelectorAll('.temp-checkbox')
+			all_tmp_checkbox.forEach(checkbox => {
+				let img_active = checkbox.querySelector('.icon_active'),
+					just_img = checkbox.querySelector('.just_icon'),
+					inp = checkbox.parentNode.querySelector('input[type="checkbox"')
+				just_img.addEventListener('click', function() {
+					img_active.style.display = 'block'
+					just_img.style.display = 'none'
+					inp.setAttribute('checked', 'true')
+
+
+				})
+				img_active.addEventListener('click', function() {
+					just_img.style.display = 'block'
+					img_active.style.display = 'none'
+					inp.setAttribute('checked', 'false')
+				})
+			})
+		}
+		// /tmp checkbox
 
 
 		// nav bar
