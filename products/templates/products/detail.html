@@ -51,8 +51,7 @@
 					<div class="product-page__content__product-info__price-and-favorites">
 						<div class="product-page__content__product-info__price-and-favorites__price">
 							{% if product.discount %}
-							<div
-								class="product-page__content__product-info__price-and-favorites__price__without-discount">
+							<div class="product-page__content__product-info__price-and-favorites__price__without-discount">
 								{{ product.price }}<span class="sumbol">грн.</span>
 							</div>
 							<div class="product-page__content__product-info__price-and-favorites__price__with-discount">
@@ -68,7 +67,7 @@
 							<div class="product__price-favorite__favorite">
 								<div class="add_to_favorites" id="item-{{ product.id }}" data-itemid="{{ product.id }}">
 									<img id="item-img-{{ product.id }}" class="favorite-button" src="
-								{% if product.id in request.session.favorites %}
+										{% if product.id in request.session.favorites %}
 										{% static './img/icons/favorites_fill.svg' %}
 										{% else %}
 										{% static './img/icons/favorites.svg' %}
@@ -116,13 +115,11 @@
 						<div class="product-page__content__product-info__contacts__content">
 							<div class="product-page__content__product-info__contacts__content__name-and-logo">
 								{% if product.owner.profile.logo %}
-								<div
-									class="product-page__content__product-info__contacts__content__name-and-logo__logo">
+								<div class="product-page__content__product-info__contacts__content__name-and-logo__logo">
 									<img src="{{ product.owner.profile.logo.url }}" alt="profile_logo" />
 								</div>
 								{% endif %}
-								<div
-									class="product-page__content__product-info__contacts__content__name-and-logo__name">
+								<div class="product-page__content__product-info__contacts__content__name-and-logo__name">
 									{% if product.owner.profile.brand %}
 									{{ product.owner.profile.brand }}
 									{% else %}
@@ -137,18 +134,14 @@
 								</div>
 
 								<div class="product-page__content__product-info__contacts__content__section__field">
-									{% comment %} {{ product.owner.profile.country }} {% endcomment %}
-									Украина
+									{% if product.owner.profile.country %}
+									{{ product.owner.profile.country }}
+									{% else %}
+									Не заполнено
+									{% endif %}
 								</div>
 							</div>
 							<div class="product-page__content__product-info__contacts__content__section">
-								<div class="product-page__content__product-info__contacts__content__section__title">
-									<i class="fa fa-map-marker" aria-hidden="true"></i>
-									Город / Адрес
-								</div>
-								<div class="product-page__content__product-info__contacts__content__section__field">
-									{{ product.get_city_display }}
-								</div>
 							</div>
 							<div class="product-page__content__product-info__contacts__content__section">
 								<div class="product-page__content__product-info__contacts__content__section__title">
@@ -156,10 +149,12 @@
 									Телефоны
 								</div>
 								<div class="product-page__content__product-info__contacts__content__section__field">
-									{% if product.owner.profile.phone %}
-									{{ product.owner.profile.phone }}
+									{% if product.owner.phone.all %}
+									{% for phone in product.owner.phone.all %}
+									{{ phone.phone }}
+									{% endfor %}
 									{% else %}
-									Не указанно
+									Не заполнено
 									{% endif %}
 								</div>
 							</div>
@@ -188,19 +183,15 @@
 											<div class="product__header-image-wrapper__header-image">
 												{% if item.discount %}
 												<div class="product__header-image-wrapper__header-image__sale-block">
-													<img class="product__header-image-wrapper__header-image__sale-block__bg"
-														src="{% static './img/icons/sale_bg.svg' %}" alt="" />
-													<span
-														class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ!</span>
+													<img class="product__header-image-wrapper__header-image__sale-block__bg" src="{% static './img/icons/sale_bg.svg' %}" alt="" />
+													<span class="product__header-image-wrapper__header-image__sale-block__text">АКЦИЯ!</span>
 												</div>
 												{% endif %}
-												<img class="product__header-image-wrapper__header-image__product-img"
-													src="{{ item.images.first.image.url }}" alt="product_name" />
+												<img class="product__header-image-wrapper__header-image__product-img" class="img-fluid" src="{{ item.images.first.image.url }}" alt="product_name" />
 											</div>
 										</div>
 										<div class="product__name">
-											<a href="{{ item.get_absolute_url }}"
-												style="color: inherit">{{ item.name }}</a>
+											<a href="{{ item.get_absolute_url }}" style="color: inherit">{{ item.name }}</a>
 										</div>
 										<div class="product__price-favorite">
 											<div class="product__price-favorite__price">
@@ -219,8 +210,7 @@
 												{% endif %}
 											</div>
 											<div class="product__price-favorite__favorite">
-												<div class="add_to_favorites" id="item-{{ item.id }}"
-													data-itemid="{{ item.id }}">
+												<div class="add_to_favorites" id="item-{{ item.id }}" data-itemid="{{ item.id }}">
 													<img id="item-img-{{ item.id }}" class="favorite-button" src="
 														{% if item.id in request.session.favorites %}
 															{% static './img/icons/favorites_fill.svg' %}
@@ -243,7 +233,7 @@
 													<div class="col-lg-6">
 														{% if item.discount %}
 														<p style="margin-left: 60px; margin-top: 15px; color: #048439">
-															{{ item.timestamp|date:"d.m" }}-{{ item.discount.expiry_date|date:"d.m" }}
+															{{ item.timestamp|date:"d.m" }}-{{ item.expiry_date|date:"d.m" }}
 														</p>
 														{% else %}
 														<p style="margin-left:110px; margin-top: 15px; color: #048439">

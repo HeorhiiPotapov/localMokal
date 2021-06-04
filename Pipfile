@@ -20,6 +20,8 @@ bpython = "*"
 django-heroku = "*"
 django-storages = "*"
 dropbox = "*"
+pynvim = "*"
+neovim = "*"
 
 [dev-packages]
 

@@ -5,11 +5,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from products.models import Category
 from django.core.validators import FileExtensionValidator
+from products.utils import City
 
 
 class CustomUser(AbstractUser):
     username = None
-    email = models.EmailField('Почта', unique=True)
+    email = models.EmailField('Email', unique=True)
     is_active = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
@@ -29,7 +30,9 @@ class Profile(models.Model):
                             validators=[FileExtensionValidator(['svg'])])
     brand = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=30, null=True, blank=True)
-    city = models.CharField(max_length=30, null=True, blank=True)
+    city = models.CharField(max_length=30,
+                            choices=City.CITY_LIST,
+                            default=City.ANY)
     address = models.CharField(max_length=300, null=True, blank=True)
     subscribed_to = models.ManyToManyField(Category, blank=True)
 
@@ -56,14 +59,23 @@ class Phone(models.Model):
         (3, 'Whatsup'),
         (4, 'Facebook')
     ]
-    social = models.CharField(max_length=2, choices=SOCIAL_CHOICES,
-                              default=PRIMARY)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,
-                                related_name="phone")
+    MAIN_PREFIX = "MAIN"
+
+    social = models.CharField(
+        max_length=2, choices=SOCIAL_CHOICES, default=PRIMARY)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="phone")
     phone = models.CharField(unique=True, max_length=13)
+    prefix = models.CharField(
+        max_length=4, default="+38", null=True, blank=True)
 
     def __str__(self):
         return f"{self.social} - {self.phone}"
+
+    def save(self):
+        if not self.phone.startswith(self.prefix):
+            self.phone = self.prefix + self.phone
+        return super().save()
 
 
 @receiver(post_save, sender=CustomUser)
