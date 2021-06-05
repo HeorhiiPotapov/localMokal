@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div id="page">
+{% include 'nav.html' %}
   <div id="content">
-
 			<div class="popup-category-wrapper">
 				<div class="container">
 					<div class="row">
@@ -34,6 +34,33 @@
           </div>
         </div>
       </div>
+      <div class="bg-for-categoryes"></div>
+			<script>
+				let popup_category_wrapper = document.querySelector('.popup-category-wrapper'),
+					category_btn = document.querySelector('.header-main__category-btn'),
+					bg_for_cat = document.querySelector('.bg-for-categoryes')
+				category_btn.addEventListener('mouseover', function() {
+					$(popup_category_wrapper).toggleClass('_open')
+					$(bg_for_cat).toggleClass('_open')
+				})
+				let main_cats = document.querySelectorAll('.popup-category__main-categories__cat')
+				main_cats.forEach( cat => {
+					cat.addEventListener('mouseover', function() {
+						let id_cat = cat.getAttribute('data-cat-id')
+						let subcat_cont = document.querySelector(`.popup-category__sub-categories[data-parent-cat-id="${id_cat}"]`)
+						hide_all_subcat()
+						subcat_cont.classList.add('_open')
+					})
+
+
+				})
+				function hide_all_subcat() {
+					let sub_cats_container = document.querySelectorAll('.popup-category__sub-categories')
+					sub_cats_container.forEach(sub_cat_cont => {
+						sub_cat_cont.classList.remove('_open')
+					})
+				}
+			</script>
   </div>
 </div>
 {% endblock content %}
