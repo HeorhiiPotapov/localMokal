@@ -116,3 +116,9 @@ class Image(models.Model):
 
     def __str__(self):
         return f"{self.product.id}"
+
+
+class Banner(models.Model):
+    image = models.ImageField(upload_to="banners")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE)
