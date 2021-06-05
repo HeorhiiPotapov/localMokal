@@ -4,11 +4,13 @@ from .views import (ProductDetailView,
                     ProductSearchResult,
                     ProductDeleteView,
                     add_product,
-                    get_products_qs)
+                    get_products_qs,
+                    CategoryListView)
 
 app_name = 'products'
 urlpatterns = [
     path('all/', ProductListView.as_view(), name='all'),
+    path('categories/', CategoryListView.as_view(), name="categories"),
     path('category/<pk>/<cat_slug>/',
          ProductListView.as_view(), name='by_category'),
     path('detail/<int:pk>/<str:slug>/',

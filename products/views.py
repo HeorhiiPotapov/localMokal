@@ -1,11 +1,11 @@
 import json
+import random
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView, ListView, DetailView, DeleteView
 from django.urls import reverse
-from .models import Category, Product
+from .models import Category, Product, Banner
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -62,7 +62,6 @@ class ProductSearchResult(ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset()
         query = self.request.GET.get('query')
-        # region = self.request.GET.get('region-inp')
         qs = qs.filter(name__icontains=query)
         return qs
 
@@ -81,7 +80,7 @@ def get_products_qs(request):
             response[str(counter)] = context
             counter += 1
             return JsonResponse(json.dumps(response), safe=False)
-    return JsonResponse({}, status=404)
+    return JsonResponse({'error': 'all bad'}, status=404)
 
 
 class ProductDetailView(DetailView):
@@ -130,3 +129,16 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('adminpanel:main')
+
+
+class CategoryListView(TemplateView):
+    template_name = 'products/categories.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.filter(parent__isnull=True)
+        try:
+            context["banner"] = random.choice(Banner.objects.all())
+        except IndexError:
+            pass
+        return context
