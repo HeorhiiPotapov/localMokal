@@ -10,7 +10,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-.gitignore
 Pipfile
 Pipfile.lock
 .vscode
