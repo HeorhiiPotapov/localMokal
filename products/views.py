@@ -80,7 +80,7 @@ def get_products_qs(request):
             response[str(counter)] = context
             counter += 1
             return JsonResponse(json.dumps(response), safe=False)
-    return JsonResponse({'error': 'all bad'}, status=404)
+    return JsonResponse({'error': 'all bad'})
 
 
 class ProductDetailView(DetailView):
