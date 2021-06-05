@@ -218,6 +218,23 @@ a {
   background: linear-gradient(153deg, #07dc58 3%, #048439 88%);
 }
 
+.bg-for-search {
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 600;
+  display: none;
+}
+
+.bg-for-search._active {
+  display: block;
+}
+
 .search-form {
   position: relative;
   display: -webkit-box;
@@ -226,8 +243,31 @@ a {
 }
 
 .search-form input {
+  border-radius: 25px;
+  background: #f5f5f5;
+  outline: none;
+  border: none;
+  padding: 5px 25px 5px 10px;
+  color: #aeafb0;
+  font-size: 17px;
   position: relative;
   z-index: 3;
+}
+
+.search-form input::-webkit-input-placeholder {
+  color: #aeafb0;
+}
+
+.search-form input:-ms-input-placeholder {
+  color: #aeafb0;
+}
+
+.search-form input::-ms-input-placeholder {
+  color: #aeafb0;
+}
+
+.search-form input::placeholder {
+  color: #aeafb0;
 }
 
 .search-form .loupe {
@@ -245,6 +285,12 @@ a {
   z-index: 2;
   padding-top: 20px;
   overflow: hidden;
+  -webkit-box-shadow: 0 12px 11px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 12px 11px 6px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.search-form__search-issue._active {
   display: block;
 }
 
@@ -278,32 +324,6 @@ a {
   display: grid;
   -ms-grid-columns: (minmax(150px, 1fr))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
-
-.search-form input {
-  border-radius: 10px;
-  background: #f5f5f5;
-  outline: none;
-  border: none;
-  padding: 5px 25px 5px 10px;
-  color: #aeafb0;
-  font-size: 17px;
-}
-
-.search-form input::-webkit-input-placeholder {
-  color: #aeafb0;
-}
-
-.search-form input:-ms-input-placeholder {
-  color: #aeafb0;
-}
-
-.search-form input::-ms-input-placeholder {
-  color: #aeafb0;
-}
-
-.search-form input::placeholder {
-  color: #aeafb0;
 }
 
 .search-form .loupe {
@@ -966,6 +986,14 @@ a {
   margin-right: 0;
 }
 
+.temp-checkbox._active .just_icon {
+  display: none;
+}
+
+.temp-checkbox._active .icon_active {
+  display: block;
+}
+
 .temp-checkbox .icon_active {
   display: none;
 }
@@ -1162,6 +1190,36 @@ a {
   height: 18px;
 }
 
+.register-form-wrapper .register-form__inp-block__view-pasword-icons {
+  position: absolute;
+  top: 10px;
+  right: 9px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.register-form-wrapper .register-form__inp-block__view-pasword-icons img {
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.register-form-wrapper .register-form__inp-block__view-pasword-icons .icon_active {
+  display: none;
+}
+
+.register-form-wrapper .register-form__inp-block__view-pasword-icons._active .icon_active {
+  display: block;
+}
+
+.register-form-wrapper .register-form__inp-block__view-pasword-icons._active .just_icon {
+  display: none;
+}
+
 .register-form-wrapper .register-form__inp-block__error {
   position: absolute;
   right: 0;
@@ -1246,10 +1304,19 @@ a {
 }
 
 .register-form-wrapper .register-button {
-  margin-top: 50px;
-  width: 248px;
+  margin-top: 30px;
+  width: 100%;
+  display: block;
+  position: relative;
   text-align: center;
   padding: 7px 0;
+}
+
+.register-form-wrapper .forget_pasw {
+  display: block;
+  width: 100%;
+  position: relative;
+  text-align: center;
 }
 
 .message-form-wrapper {
@@ -2848,6 +2915,8 @@ a {
             align-items: center;
     -ms-flex-pack: distribute;
         justify-content: space-around;
+    -webkit-box-shadow: 3px 0 29px -8px rgba(0, 0, 0, 0.2);
+            box-shadow: 3px 0 29px -8px rgba(0, 0, 0, 0.2);
   }
   .mobile-menu-on-bottom #btn_call,
   .mobile-menu-on-bottom #btn_message {

@@ -1,4 +1,5 @@
-$(".add_to_favorites").click(function () {
+$(".add_to_favorites").click(function (e) {
+	e.preventDefault();
 	let prod_id = this.getAttribute("data-itemid");
 	let img = $("#item-img-" + prod_id);
 	let navIcon = $("#nav_fav_img");

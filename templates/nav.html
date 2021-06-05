@@ -3,25 +3,26 @@
 <header class="header-main" id="heading">
   <div class="container">
     <div class="row">
-      <div class="col-lg-5">
+      <div class="col-md-5 col-lg-5">
         <div class="header-main__logo-wrapper">
           <a href="{% url 'index' %}">
             <img src="{% static './img/logo.png' %}" alt="logo" />
           </a>
         </div>
       </div>
-      <div class="col-lg-7 d-flex align-items-center">
+      <div class="col-md-7 col-lg-7 d-flex align-items-center">
         <div class="header-main__items">
           <div class="header-main__items__item search-form">
             <form action="{% url 'products:by_query' %}" id="search-form" class="search-form">
               <div class="search-form__input-block cont_with_same_icon">
                 <input type="text" id='search-inp' placeholder="Что ищите?" required autocomplete='off' name="query" />
-                <img class="loupe just_icon" src="{% static './img/icons/loupe.svg' %}" alt="loupe">
-                <img class="loupe icon_active" src="{% static './img/icons/loupe_hover.svg' %}" alt="loupe">
-
                 <ul class='search-form__search-issue'>
 
                 </ul>
+                <img class="loupe just_icon" src="{% static './img/icons/loupe.svg' %}" alt="loupe">
+                <img class="loupe icon_active" src="{% static './img/icons/loupe_hover.svg' %}" alt="loupe">
+
+               
               </div>
               <div class="search-form__input-block _region">
                 <input type="hidden" id="region-inp" name="region-inp" value="">

@@ -19,7 +19,10 @@
 							</div>
 							<div class="register-form__inp-block view-password">
 								<i class="fa fa-lock register-form__inp-block__icon _icon__password"></i>
-								<i class="fa fa-eye register-form__inp-block__icon _show-password"></i>
+								<div class="register-form__inp-block__view-pasword-icons">
+									<img class="just_icon" src="{% static './img/icons/eye.svg' %}" alt="eye">
+									<img class="icon_active" src="{% static './img/icons/eye_hover.svg' %}" alt="eye">
+								</div>
 								<input type="password" class='register-form__passw tmp-input-text' name='password'
 									placeholder="Пароль">
 							</div>
@@ -33,7 +36,7 @@
 							<div class="register-form__inp-block _remember-block">
 								<label for="register-form__remember_inp">
 									<input id='register-form__remember_inp' type="checkbox"
-										class='register-form__remember_inp' name='remember'>
+										class='register-form__remember_inp' name='remember' >
 									<div class="register-form__inp-block__checkbox-temp temp-checkbox">
 										<img class="just_icon" src="{% static './img/icons/check.svg' %}" alt="запомнить">
 										<img class="icon_active" src="{% static './img/icons/check_hover.svg' %}" alt="запомнить">
@@ -46,11 +49,10 @@
 								<input class='button button-with-gradient register-form__submit' type="submit"
 									value='Войти'>
 							</div>
+							<a href="{% url 'password_reset' %}" class='forget_pasw'>Забыли пароль?</a>
+							<a href="{% url 'users:new' %}"
+								class='button button-transperent register-button'>Зарегистрироваться</a>
 						</form>
-
-						<a href="{% url 'password_reset' %}" class='forget_pasw'>Забыли пароль?</a>
-						<a href="{% url 'users:new' %}"
-							class='button button-transperent register-button'>Зарегистрироваться</a>
 					</div>
 				</div>
 			</div>
