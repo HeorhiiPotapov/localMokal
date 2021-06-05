@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   padding: 0;
   margin: 0;
@@ -80,6 +81,23 @@ a {
 
 .header-main__logo-wrapper {
   min-width: 300px;
+}
+
+.header-main > .container > .row {
+  position: relative;
+}
+
+.header-main__category-btn {
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+  padding: 6px 30px;
+  cursor: pointer;
+  border-radius: 0 0 50% 50%;
+  background: #178b3f;
+  color: #fefefe;
+  -webkit-box-shadow: 0 2px 12px 6px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 12px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-main__items {
@@ -548,6 +566,7 @@ a {
   position: relative;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  display: block;
 }
 
 .products-wrapper .product-wrapper .product__header-image-wrapper {
@@ -3688,5 +3707,159 @@ a {
 
 .page-about__content-right__image {
   margin-right: 30px;
+}
+
+.bg-for-categoryes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 997;
+  display: none;
+}
+
+.bg-for-categoryes._open {
+  display: block;
+}
+
+.popup-category-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 97px;
+  display: none;
+  z-index: 998;
+  height: 75%;
+  overflow-x: auto;
+}
+
+.popup-category-wrapper > .container {
+  height: 100%;
+}
+
+.popup-category-wrapper > .container > .row {
+  height: 100%;
+}
+
+.popup-category-wrapper > .container > .row .col-12 {
+  height: 100%;
+}
+
+.popup-category-wrapper._open {
+  display: block;
+}
+
+.popup-category-wrapper .popup-category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 90%;
+}
+
+.popup-category-wrapper .popup-category__main-categories {
+  background: #ffffff;
+  padding-top: 40px;
+  border-radius: 0 0 0 10px;
+  max-width: 370px;
+  min-width: 250px;
+  height: 100%;
+  -webkit-box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: scroll;
+}
+
+.popup-category-wrapper .popup-category__main-categories::-webkit-scrollbar {
+  /* 1 - скроллбар */
+  width: 10px;
+  background: #f5f5f5;
+}
+
+.popup-category-wrapper .popup-category__main-categories::-webkit-scrollbar-track {
+  /* 3 - трек */
+  background: #f5f5f5;
+}
+
+.popup-category-wrapper .popup-category__main-categories::-webkit-scrollbar-thumb {
+  /* 5 - ползунок */
+  border-radius: 20px;
+  background: linear-gradient(153deg, #07dc58 3%, #048439 88%);
+}
+
+.popup-category-wrapper .popup-category__main-categories::-webkit-scrollbar-corner {
+  /* 6 - уголок */
+}
+
+.popup-category-wrapper .popup-category__main-categories::-webkit-resizer {
+  /* 7 - изменение размеров */
+}
+
+.popup-category-wrapper .popup-category__main-categories__cat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px;
+  color: #212529;
+}
+
+.popup-category-wrapper .popup-category__main-categories__cat__icon {
+  background: #f5f5f5;
+  border-radius: 50%;
+  background-position: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.popup-category-wrapper .popup-category__main-categories__cat__icon svg {
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.popup-category-wrapper .popup-category__sub-categories {
+  padding: 40px 5px 5px 5px;
+  background: #ffffff;
+  border-radius: 0 0 10px 0;
+  -webkit-box-shadow: 11px 8px 15px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 11px 8px 15px 1px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  display: none;
+  -ms-grid-columns: (minmax(150px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  z-index: 2;
+}
+
+.popup-category-wrapper .popup-category__sub-categories._open {
+  display: -ms-grid;
+  display: grid;
+}
+
+.popup-category-wrapper .popup-category__sub-categories__subcat {
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px;
 }
 /*# sourceMappingURL=main.css.map */
