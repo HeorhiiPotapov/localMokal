@@ -48,6 +48,7 @@ class Category(MPTTModel):
     def image_content(self):
         file = open(self.image.path)
         data = format_html(file.read())
+        file.close()
         return mark_safe(data)
 
 

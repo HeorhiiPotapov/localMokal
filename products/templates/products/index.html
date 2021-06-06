@@ -58,7 +58,7 @@
                       <!-- тут -->
                       <div class="category__subcat__main-cat-name__link__icon">
 
-                        {{ category.image_content }}
+                        {{ category.image_content|force_escape }}
                       </div>
                       <div class="category__subcat__main-cat-name__link__text">
                         {{ category.name }}
