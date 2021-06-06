@@ -305,15 +305,17 @@ window.onload = function () {
 			let searh_timeout;
 			let bg_for_search = document.querySelector('.bg-for-search'),
 				search_issue = document.querySelector('.search-form__search-issue')
-
+			bg_for_search.addEventListener('click', function() {
+				bg_for_search.classList.remove('_active')
+				search_issue.classList.remove('_active')
+			})
 			$('.search-form__input-block img').on('click', function () {
 				$('#search-form').submit()
 			})
 			$('#search-inp').on('input', function () {
-				if($('#search-inp').val() !='' && $('#search-inp').val().length == 1) {
+				if($('#search-inp').val() !='' && !$('#search-inp').hasClass('_active') ) {
 					bg_for_search.classList.add('_active')
-					search_issue.classList.add('_active')
-				}else if( $('#search-inp').val() =='' ) {
+				}else if( $('#search-inp').val() == '' ) {
 					bg_for_search.classList.remove('_active')
 					search_issue.classList.remove('_active')
 				}
@@ -332,31 +334,36 @@ window.onload = function () {
 
 							async: false,
 							success: function (data, textStatus, xhr) {
-								console.log(textStatus)
+								if(data['error'] == 'all bad') {
+									bg_for_search.classList.add('_active')
+									search_issue.classList.add('_active')
+									search_issue.innerHTML = '<span class="search-form__search-issue__not-found">ничего не найдено</span>'
+									return
+								}
 								let json_parse = JSON.parse(data)
 								let inner_block = document.querySelector('.search-form__search-issue')
 								inner_block.innerHTML = ''
-								console.log(json_parse)
-								console.log(json_parse != '')
-
+							
 								for (key in json_parse) {
 									let name = json_parse[key]['name'],
-										link = json_parse[key]['link']
-
+										link = json_parse[key]['link'],
+										bold_name = set_marker(name, name.search(val), val.length)
 									let li = document.createElement('li'),
 										a = document.createElement('a')
 									a.setAttribute('href', link)
-									a.textContent = name
+									a.innerHTML = bold_name
 									li.append(a)
 									inner_block.append(li)
 								}
+								search_issue.classList.add('_active')
+
 								// json_parse[0].forEach(el => {
 								// 	console.log(el['name'])
 								// })
-							},
-							complete: function(xhr, textStatus) {
-								console.log(xhr.status);
-							} 
+								function set_marker(str, pos, len) {
+									return str.slice(0, pos)+'<span class="search_mark">'+str.slice(pos, len)+'</span>'+str.slice(pos+len)
+								}
+							}
 						})
 					}
 				}, 500)

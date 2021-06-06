@@ -218,7 +218,10 @@ $footer-bg: #02592e;
     display: block;
   }
 }
-
+.search_mark {
+  color: $green-color-text;
+  font-weight: 600;
+}
 .search-form {
   position: relative;
   display: flex;
@@ -254,6 +257,11 @@ $footer-bg: #02592e;
     overflow: hidden;
     box-shadow: 0 12px 11px 6px rgba(0,0,0,0.2);
     display: none;
+    &__not-found {
+      padding: 10px;
+      text-align: center;
+      display: block;
+    }
     &._active {
       display: block;
     } 
@@ -267,7 +275,7 @@ $footer-bg: #02592e;
         width: 100%;
         padding: 5px 10px;
         display: block;
-
+        color: rgb(76,76,76);
         &:hover {
           background-color: #F2F2F2;
         }

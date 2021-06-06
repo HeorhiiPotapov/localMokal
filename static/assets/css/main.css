@@ -235,6 +235,11 @@ a {
   display: block;
 }
 
+.search_mark {
+  color: #178b3f;
+  font-weight: 600;
+}
+
 .search-form {
   position: relative;
   display: -webkit-box;
@@ -290,6 +295,12 @@ a {
   display: none;
 }
 
+.search-form__search-issue__not-found {
+  padding: 10px;
+  text-align: center;
+  display: block;
+}
+
 .search-form__search-issue._active {
   display: block;
 }
@@ -305,6 +316,7 @@ a {
   width: 100%;
   padding: 5px 10px;
   display: block;
+  color: #4c4c4c;
 }
 
 .search-form__search-issue li a:hover {
