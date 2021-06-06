@@ -6,70 +6,9 @@
 <div class="bg-for-open-mob-menu"></div>
 <div class="right-bar">
 	<div class="right-bar__menu">
-		<div class="right-bar__menu__item">
-			<a class='right-bar__menu__item__link' href="{% url 'products:add_product' %}">
-				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/icon_plus.svg' %}" alt="">
-				</div>
-				<div class="right-bar__menu__item__link__text">
-					Создать страницу
-				</div>
-			</a>
-		</div>
 
-		<div class="right-bar__menu__separator"></div>
 
-		<div class="right-bar__menu__item _with-sub-menu">
-			<a class='right-bar__menu__item__link '>
-				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/favorites.svg' %}" alt="">
-				</div>
-				<div class="right-bar__menu__item__link__text">
-					Мои страницы
-				</div>
-			</a>
-			<div class="right-bar__menu__item__sub-menu">
-				{% for item in u_items %}
-				<div class="right-bar__menu__item">
-					<a class='right-bar__menu__item__link' href="{{ item.get_absolute_url }}">
-						<div class="right-bar__menu__item__link__icon">
-							<img src="{% static './img/icons/favorites.svg' %}" alt="" style="height: 17px;">
-						</div>
-						<div class="right-bar__menu__item__link__text">
-							{{ item.name }}
-						</div>
-					</a>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-
-		<div class="right-bar__menu__item _with-sub-menu">
-			<a class='right-bar__menu__item__link '>
-				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/favorites.svg' %}" alt="">
-				</div>
-				<div class="right-bar__menu__item__link__text">
-					Избранное
-				</div>
-			</a>
-			<div class="right-bar__menu__item__sub-menu ">
-				{% for item in favorites %}
-				<div class="right-bar__menu__item">
-					<a class='right-bar__menu__item__link' href="{{ item.get_absolute_url }}">
-						<div class="right-bar__menu__item__link__icon">
-							<img src="{% static './img/icons/favorites.svg' %}" alt="">
-						</div>
-						<div class="right-bar__menu__item__link__text">
-							{{ item.name }}
-						</div>
-					</a>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-
-		<div class="right-bar__menu__separator"></div>
+		{% comment %} AUTHIENTIFICATION {% endcomment %}
 
 		{% if request.user.is_authenticated %}
 		<div class="right-bar__menu__item">
@@ -115,6 +54,135 @@
 		</div>
 		{% endif %}
 
+		{% comment %} FOR NOT STUFF USERS {% endcomment %}
 
+		{% if request.user.is_authenticated and not request.user.is_stuff %}
+		<div class="right-bar__menu__item _with-sub-menu">
+			<a class='right-bar__menu__item__link '>
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static './img/icons/favorites.svg' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					Избранное
+				</div>
+			</a>
+			<div class="right-bar__menu__item__sub-menu ">
+				{% for item in favorites %}
+				<div class="right-bar__menu__item">
+					<a class='right-bar__menu__item__link' href="{{ item.get_absolute_url }}">
+						<div class="right-bar__menu__item__link__icon">
+							<img src="{% static './img/icons/favorites.svg' %}" alt="">
+						</div>
+						<div class="right-bar__menu__item__link__text">
+							{{ item.name }}
+						</div>
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="right-bar__menu__item">
+			<a class='right-bar__menu__item__link' href="{% url 'products:add_product' %}">
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static './img/icons/icon_plus.svg' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					Создать страницу
+				</div>
+			</a>
+		</div>
+		<div class="right-bar__menu__separator"></div>
+		<div class="right-bar__menu__item _with-sub-menu">
+			<a class='right-bar__menu__item__link '>
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static './img/icons/favorites.svg' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					Мои страницы
+				</div>
+			</a>
+			<div class="right-bar__menu__item__sub-menu">
+				<div class="right-bar__menu__item">
+					<a class='right-bar__menu__item__link' href="{% url 'products:add_product' %}">
+						<div class="right-bar__menu__item__link__icon">
+							<img src="{% static './img/icons/icon_plus.svg' %}" alt="">
+						</div>
+						<div class="right-bar__menu__item__link__text">
+							Создать страницу
+						</div>
+					</a>
+				</div>
+
+				{% for item in u_items %}
+				<div class="right-bar__menu__item">
+					<a class='right-bar__menu__item__link' href="{{ item.get_absolute_url }}">
+						<div class="right-bar__menu__item__link__icon">
+							<img src="{% static './img/icons/favorites.svg' %}" alt="" style="height: 17px;">
+						</div>
+						<div class="right-bar__menu__item__link__text">
+							{{ item.name }}
+						</div>
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+
+		{% comment %} MAIN PAGES {% endcomment %}
+		{% if not request.user.is_stuff %}
+		<div class="right-bar__menu__item">
+			<a class='right-bar__menu__item__link' href="{% url 'index' %}">
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static '' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					Главная
+				</div>
+			</a>
+		</div>
+		<div class="right-bar__menu__item">
+			<a class='right-bar__menu__item__link' href="">
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static '' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					Поставщикам
+				</div>
+			</a>
+		</div>
+		<div class="right-bar__menu__item">
+			<a class='right-bar__menu__item__link' href="">
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static '' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					О проекте
+				</div>
+			</a>
+		</div>
+		<div class="right-bar__menu__item">
+			<a class='right-bar__menu__item__link' href="">
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static '' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					Обратная Связь
+				</div>
+			</a>
+		</div>
+		{% endif %}
+
+		{% comment %} LOCALIZATION {% endcomment %}
+		<div class="right-bar__menu__item">
+			<a class='right-bar__menu__item__link' href="">
+				<div class="right-bar__menu__item__link__icon">
+					<img src="{% static '' %}" alt="">
+				</div>
+				<div class="right-bar__menu__item__link__text">
+					Мова \ Язык
+				</div>
+			</a>
+		</div>
 	</div>
 </div>

@@ -12,14 +12,14 @@
               {% for cat in categories %}
                 <a href='{{ cat.get_absolute_url }}' data-cat-id='{{ cat.pk }}' class="popup-category__main-categories__cat">
                   <div class="popup-category__main-categories__cat__icon">
-                    <img src="{{ cat.image.url }}" alt="">
+                    {{ cat.image_content }}
                   </div>
                   <div class="popup-category__main-categories__cat__name">
                     {{ cat.name }}
                   </div>
                 </a>
-                {% for children in cat.childrens.all %}
-                  <div class="popup-category__sub-categories" data-parent-cat-id='1'>
+                {% for children in cat.children.all %}
+                  <div class="popup-category__sub-categories" data-parent-cat-id='{{ cat.id }}'>
                     <a href='{{ children.get_absoute_url }}' class="popup-category__sub-categories__subcat">
                       <div class="popup-category__sub-categories__subcat__name">
                         {{ children.name }}

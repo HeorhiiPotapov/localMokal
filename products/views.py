@@ -108,12 +108,6 @@ def add_product(request, **kwargs):
             product_form.save_m2m()
             for f in request.FILES.keys():
                 new.images.create(image=request.FILES[f])
-            """
-            discount = (
-                request.POST.get('discount')
-                or request.POST.get('discount')
-                and request.POST.get('expiry')
-            ) """
             return redirect(reverse('products:detail',
                                     kwargs={'pk': new.pk,
                                             'slug': new.slug}))
@@ -137,8 +131,4 @@ class CategoryListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.filter(parent__isnull=True)
-        try:
-            context["banner"] = random.choice(Banner.objects.all())
-        except IndexError:
-            pass
         return context

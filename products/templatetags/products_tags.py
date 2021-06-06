@@ -11,6 +11,12 @@ def city_list():
     return city_list
 
 
+@register.inclusion_tag('products/categories.html')
+def get_categories_list(node):
+    cat_list = Category.objects.filter(parent__isnull=True)
+    return {'cat_list': cat_list}
+
+
 @register.inclusion_tag('products/parent_cat.html')
 def get_childrens(node):
     childrens = Category.objects.filter(parent=node)

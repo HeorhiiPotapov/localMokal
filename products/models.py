@@ -118,4 +118,10 @@ class Image(models.Model):
 class Banner(models.Model):
     image = models.ImageField(upload_to="banners")
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                              on_delete=models.CASCADE)
+                              on_delete=models.CASCADE,
+                              related_name="banners")
+    category = models.ForeignKey(Category,
+                                 on_delete=models.CASCADE,
+                                 related_name="banners",
+                                 null=True,
+                                 blank=True)

@@ -34,7 +34,7 @@
             {% for link in links %}
             <div class="footer-main__logo-and-socials__socials__social">
               <a href="{{ link.url }}" rel="nofollow">
-                <img src="{{ link.image.url }}" alt="{{ link.name }}" />
+                {{ link.image_content }}
               </a>
             </div>
             {% endfor %}
