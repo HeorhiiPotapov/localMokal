@@ -36,7 +36,10 @@
         <div class="row">
           {% for product in page_obj %}
           <div class="col-6 col-md-4 col-lg-3 product-wrapper">
-            <div class="product">
+            <a href="{{ product.get_absolute_url }}" class="product">
+              <object data="" type="">
+
+              
               <div class="product__header-image-wrapper">
                 <div class="product__header-image-wrapper__header-image">
                   {% if product.discount %}
@@ -50,7 +53,7 @@
                 </div>
               </div>
               <div class="product__name">
-                <a style="color: inherit" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                <span style="color: inherit">{{ product.name }}</>
               </div>
               <div class="product__price-favorite">
                 <div class="product__price-favorite__price">
@@ -106,7 +109,8 @@
                   </div>
                 </div>
               </div>
-            </div>
+              </object>
+            </a>
           </div>
           {% endfor %}
         </div>

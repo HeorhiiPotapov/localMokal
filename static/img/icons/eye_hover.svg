@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="83px" height="47px" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+viewBox="0 0 83 47.4286">
+ <defs>
+   <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="24.5514" y1="6.723" x2="58.7723" y2="40.9427">
+    <stop offset="0" stop-color="#00FF66"/>
+    <stop offset="0.25098" stop-color="#00BF4E"/>
+    <stop offset="1" stop-color="#007F35"/>
+   </linearGradient>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path fill="url(#id0)" d="M56.261 12.7358c0.928414,2.01571 1.44776,4.26383 1.44776,6.62933 0,8.77784 -7.12021,15.8981 -15.8981,15.8981 -8.7731,0 -15.8933,-7.12021 -15.8933,-15.8981 0,-2.50423 0.582186,-4.87684 1.61613,-6.98504 -5.67483,2.37143 -11.0319,6.22619 -15.7107,11.5228 18.6714,19.243 41.9494,18.4058 59.677,0 -4.6729,-5.08197 -9.84736,-8.79326 -15.2388,-11.1671zm-21.797 0.216986c2.56351,0 4.64089,2.07737 4.64089,4.6397 0,2.56351 -2.07737,4.64089 -4.64089,4.64089 -2.56351,0 -4.64089,-2.07737 -4.64089,-4.64089 0,-2.56233 2.07737,-4.6397 4.64089,-4.6397zm-33.6435 11.0141c22.7871,-29.6761 57.2487,-30.5831 81.6815,0 -24.2633,28.9943 -56.127,30.314 -81.6815,0z"/>
+ </g>
+</svg>

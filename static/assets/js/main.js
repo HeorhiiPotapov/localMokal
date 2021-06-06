@@ -183,26 +183,24 @@ window.onload = function () {
 
 
 		// поля с паролем
-		// if(document.querySelector('.view-password')) {
-		// 	let all_passw_block = document.querySelectorAll('.view-password')
-		// 	all_passw_block.forEach(block => {
-		// 		let eye = block.querySelector('._show-passw'),
-		// 			inp = block.querySelector('input')
-		// 		eye.addEventListener('click', function () {
-		// 			let inp_type = inp.getAttribute('type')
-		// 			console.log(inp_type)
-		// 			if (inp_type == 'password') {
-		// 				inp.setAttribute('type', 'text')
-		// 				eye.classList.remove('fa-eye')
-		// 				eye.classList.add('fa-eye-slash')
-		// 			} else {
-		// 				inp.setAttribute('type', 'password')
-		// 				eye.classList.add('fa-eye')
-		// 				eye.classList.remove('fa-eye-slash')
-		// 			}
-		// 		})
-		// 	})
-		// }
+		if(document.querySelector('.register-form__inp-block__view-pasword-icons')) {
+			let all_passw_block = document.querySelectorAll('.register-form__inp-block__view-pasword-icons')
+			all_passw_block.forEach(block => {
+				let eye = block.querySelector('.just_icon'),
+					eye_active = block.querySelector('.icon_active'),
+					inp = block.parentNode.querySelector('input')
+				block.addEventListener('click', function () {
+					let inp_type = inp.getAttribute('type')
+					if (inp_type == 'password') {
+						inp.setAttribute('type', 'text')
+						$(block).toggleClass('_active')
+					} else {
+						inp.setAttribute('type', 'password')
+						$(block).toggleClass('_active')
+					}
+				})
+			})
+		}
 		
 		// поля с паролем
 
@@ -236,17 +234,14 @@ window.onload = function () {
 				let img_active = checkbox.querySelector('.icon_active'),
 					just_img = checkbox.querySelector('.just_icon'),
 					inp = checkbox.parentNode.querySelector('input[type="checkbox"')
-				just_img.addEventListener('click', function() {
-					img_active.style.display = 'block'
-					just_img.style.display = 'none'
-					inp.setAttribute('checked', 'true')
-
-
-				})
-				img_active.addEventListener('click', function() {
-					just_img.style.display = 'block'
-					img_active.style.display = 'none'
-					inp.setAttribute('checked', 'false')
+				checkbox.addEventListener('click', function() {
+					$(checkbox).toggleClass('_active')
+					if(inp.checked) {
+						inp.setAttribute('checked', 'false')
+					}else {
+						inp.setAttribute('checked', 'true')
+						
+					}
 				})
 			})
 		}
@@ -308,10 +303,22 @@ window.onload = function () {
 		// search form
 		if (document.querySelector('#search-inp')) {
 			let searh_timeout;
+			let bg_for_search = document.querySelector('.bg-for-search'),
+				search_issue = document.querySelector('.search-form__search-issue')
+			bg_for_search.addEventListener('click', function() {
+				bg_for_search.classList.remove('_active')
+				search_issue.classList.remove('_active')
+			})
 			$('.search-form__input-block img').on('click', function () {
 				$('#search-form').submit()
 			})
 			$('#search-inp').on('input', function () {
+				if($('#search-inp').val() !='' && !$('#search-inp').hasClass('_active') ) {
+					bg_for_search.classList.add('_active')
+				}else if( $('#search-inp').val() == '' ) {
+					bg_for_search.classList.remove('_active')
+					search_issue.classList.remove('_active')
+				}
 				clearTimeout(searh_timeout);
 				searh_timeout = setTimeout(function () {
 					let val = document.querySelector('#search-inp').value,
@@ -326,25 +333,36 @@ window.onload = function () {
 							},
 
 							async: false,
-							success: function (data) {
+							success: function (data, textStatus, xhr) {
+								if(data['error'] == 'all bad') {
+									bg_for_search.classList.add('_active')
+									search_issue.classList.add('_active')
+									search_issue.innerHTML = '<span class="search-form__search-issue__not-found">ничего не найдено</span>'
+									return
+								}
 								let json_parse = JSON.parse(data)
 								let inner_block = document.querySelector('.search-form__search-issue')
 								inner_block.innerHTML = ''
-
+							
 								for (key in json_parse) {
 									let name = json_parse[key]['name'],
-										link = json_parse[key]['link']
-
+										link = json_parse[key]['link'],
+										bold_name = set_marker(name, name.search(val), val.length)
 									let li = document.createElement('li'),
 										a = document.createElement('a')
 									a.setAttribute('href', link)
-									a.textContent = name
+									a.innerHTML = bold_name
 									li.append(a)
 									inner_block.append(li)
 								}
+								search_issue.classList.add('_active')
+
 								// json_parse[0].forEach(el => {
 								// 	console.log(el['name'])
 								// })
+								function set_marker(str, pos, len) {
+									return str.slice(0, pos)+'<span class="search_mark">'+str.slice(pos, len)+'</span>'+str.slice(pos+len)
+								}
 							}
 						})
 					}

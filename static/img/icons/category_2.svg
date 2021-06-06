@@ -7,9 +7,8 @@ viewBox="0 0 7.19 7.25"
  xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
  <defs>
    <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="0.78" y1="0.81" x2="6.41" y2="6.44">
-    <stop offset="0" stop-opacity="1" stop-color="#009A84"/>
-    <stop offset="0.25098" stop-opacity="1" stop-color="#218A7F"/>
-    <stop offset="1" stop-opacity="1" stop-color="#437A79"/>
+        <stop offset="0" stop-opacity="1" stop-color="#07DC58" />
+        <stop offset="1" stop-opacity="1" stop-color="#048B3B" />
    </linearGradient>
  </defs>
  <g id="Слой_x0020_1">

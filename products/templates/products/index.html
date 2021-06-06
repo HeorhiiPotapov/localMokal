@@ -50,12 +50,12 @@
                 <div class="category__bottom-text">
                   <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
                 </div>
+                <!-- подкатегории наверно убрать-->
 
                 <div class="category__subcat">
                   <div class="category__subcat__main-cat-name">
 
                     <a href="{{ category.get_absolute_url }}" class="category__subcat__main-cat-name__link">
-                      <!-- тут -->
                       <div class="category__subcat__main-cat-name__link__icon">
 
                         {{ category.image_content|force_escape }}
@@ -68,15 +68,18 @@
                   </div>
 
                   {% get_childrens category %}
-
+          
                 </div>
               </div> <!-- /category -->
               {% endfor %}
-              <style>
-                .categories {
-                  position: relative;
-                }
-              </style>
+              <script>
+                (function() {
+                  let all_path_on_cat_icon = document.querySelectorAll(' .category__top-icon path')
+                  all_path_on_cat_icon.forEach( path => {
+                    path.setAttribute('fill',"url(#icon_gradient)")
+                  })
+                })()
+              </script>
             </div>
           </div>
         </div>
