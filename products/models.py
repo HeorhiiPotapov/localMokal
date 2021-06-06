@@ -13,6 +13,8 @@ from datetime import timedelta
 from django.utils.text import slugify
 from django.core.validators import FileExtensionValidator
 from taggit.managers import TaggableManager
+from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 
 class Category(MPTTModel):
@@ -43,16 +45,10 @@ class Category(MPTTModel):
                        kwargs={'pk': self.pk,
                                "cat_slug": self.slug})
 
-
-"""
-this can be done with rander_to_response method
-or with some method simmilar to django defoult
-email message content what sending to user with activation link
-when registering
-"""
-# def read_svg_content(self):
-#     with open(self.image.path) as file:
-#         return file.read()
+    def image_content(self):
+        file = open(self.image.path)
+        data = format_html(file.read())
+        return mark_safe(data)
 
 
 class Product(models.Model):
