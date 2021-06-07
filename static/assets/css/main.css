@@ -3175,6 +3175,14 @@ a {
   right: -19px;
 }
 
+.right-bar__menu__item:hover .right-bar__menu__item__link__icon .on-hover {
+  display: block;
+}
+
+.right-bar__menu__item:hover .right-bar__menu__item__link__icon .static {
+  display: none;
+}
+
 .right-bar__menu__item__link {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3200,6 +3208,14 @@ a {
       -ms-flex-align: center;
           align-items: center;
   margin-right: 25px;
+}
+
+.right-bar__menu__item__link__icon .on-hover {
+  display: none;
+}
+
+.right-bar__menu__item__link__icon .static {
+  display: block;
 }
 
 .right-bar__menu__item__link__icon img {

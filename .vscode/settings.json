@@ -6,6 +6,5 @@
     "terminal.integrated.shellArgs.osx": [],
     "python.linting.pycodestyleEnabled": false,
     "python.linting.banditEnabled": false,
-    "python.linting.mypyEnabled": false,
-    "python.pythonPath": "/home/whoami/.local/share/virtualenvs/localMokal-FgMzPtxm/bin/python"
+    "python.linting.mypyEnabled": false
 }

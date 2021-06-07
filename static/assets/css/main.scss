@@ -2953,8 +2953,18 @@ $footer-bg: #02592e;
             right: -19px;
           }
         }
-      }
 
+      }
+      &:hover {
+        & .right-bar__menu__item__link__icon {
+          & .on-hover {
+            display: block;
+          }
+          & .static {
+            display: none;
+          }
+        }
+      }
       &__link {
         display: flex;
         align-items: center;
@@ -2969,7 +2979,12 @@ $footer-bg: #02592e;
           justify-content: center;
           align-items: center;
           margin-right: 25px;
-
+          & .on-hover {
+            display: none;
+          }
+          & .static {
+            display: block;
+          }
           & img {
             width: 100%;
             height: 100%;
