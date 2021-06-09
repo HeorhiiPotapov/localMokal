@@ -1280,10 +1280,6 @@ $footer-bg: #02592e;
   }
 }
 
-.mobile-menu-on-bottom {
-  display: none;
-}
-
 .my-contacts__form {
   display: flex;
   flex-direction: row;
@@ -2724,7 +2720,14 @@ $footer-bg: #02592e;
       &__icon {
         max-width: 24px;
         max-height: 24px;
-
+        & .header-main__items__item.hamburger {
+          display: block;
+          width: 24px;
+          height: 24px;
+          & .wrapper-menu-hamburger__hamburger-menu {
+            bottom: -6px;
+          }
+        }
         & img {
           width: 100%;
         }
@@ -2808,19 +2811,16 @@ $footer-bg: #02592e;
 
       &__header {
         transition: 0s;
+        position: fixed;
+        top: 0;
+        background: $white-text;
+        z-index: 10;
       }
     }
 
     & .products-wrapper {
       padding-bottom: 90px;
     }
-  }
-
-  .product-page__content__header {
-    position: fixed;
-    top: 0;
-    background: $white-text;
-    z-index: 10;
   }
 
   .products-wrapper {
