@@ -103,7 +103,23 @@
 	// страница товара
 })()
 
+function fixed_block_from(selector, max_width, position) {
 
+	if ($('body').width() < max_width) {
+
+		let prev_offset_y;
+		document.querySelector('body').addEventListener('scroll', function (e) {
+			if (prev_offset_y > document.body.scrollTop) { // это скрол наверх
+				// показать при скроле наверх
+				$(selector).css(position, '0')
+			} else { // это скрол вниз
+				// скриывать шапку при скроле вниз
+				$(selector).css(position, '-50%')
+			}
+			prev_offset_y = document.body.scrollTop
+		})
+	}
+}
 function chenge_product_page_html() {
 	// на моб устройствах если кнопок еще нету в нижнем меню
 	if ($('body').width() < 992  && !document.querySelector('.mobile-menu-on-bottom button')) {
@@ -115,5 +131,15 @@ function chenge_product_page_html() {
 		console.log(document.querySelector('.product-page__content__header__buttons button'))
 		$('.mobile-menu-on-bottom button').appendTo('.product-page__content__header__buttons')
 		$('.product-page__content__product-info__price-and-favorites__share').appendTo('.product-page__content__product-info__price-and-favorites')
+	}
+}
+function hide_or_show_expand_btn() {
+	$(".block-for-calculate-height").text('')
+	$(".product-page__content__product-info__description__text").clone().appendTo('.block-for-calculate-height');
+	let description_text_height = $(".block-for-calculate-height").height()
+	if (description_text_height <= 90) {
+		$('.product-page__content__product-info__description__expand').css('display', 'none')
+	} else {
+		$('.product-page__content__product-info__description__expand').css('display', 'inline-block')
 	}
 }

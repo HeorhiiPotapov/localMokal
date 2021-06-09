@@ -25,7 +25,26 @@
         </div>
       </div>
     </div>
+    <script>
+    // slider home page
+		if (document.querySelector('.slider-temp-wrapper__slider-temp')) {
+			$('.slider-temp-wrapper__slider-temp').slick({
+				speed: 1000,
+				slidesToShow: 1,
+				// autoplay: true,
+				dots: true,
+				arrows: true,
 
+				responsive: [{
+					breakpoint: 992,
+					settings: {
+						arrows: false,
+					}
+				}]
+			});
+		}
+		// /slider home page
+    </script>
     <div class="block-name">
       <div class="container">
         <div class="row">

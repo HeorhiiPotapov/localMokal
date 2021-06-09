@@ -2925,6 +2925,7 @@ a {
         justify-content: space-around;
     -webkit-box-shadow: 3px 0 29px -8px rgba(0, 0, 0, 0.2);
             box-shadow: 3px 0 29px -8px rgba(0, 0, 0, 0.2);
+    z-index: 9;
   }
   .mobile-menu-on-bottom #btn_call,
   .mobile-menu-on-bottom #btn_message {

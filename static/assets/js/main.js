@@ -18,28 +18,6 @@ window.onload = function () {
 		fixed_block_from('.header-main', 99999, 'top')
 		fixed_block_from('.mobile_menu_on_bottom', 992, 'bottom')
 
-
-
-		// slider home page
-		if (document.querySelector('.slider-temp-wrapper__slider-temp')) {
-			$('.slider-temp-wrapper__slider-temp').slick({
-				speed: 1000,
-				slidesToShow: 1,
-				// autoplay: true,
-				dots: true,
-				arrows: true,
-
-				responsive: [{
-					breakpoint: 992,
-					settings: {
-						arrows: false,
-					}
-				}]
-			});
-		}
-		// /slider home page
-
-
 		// categories
 		if (document.querySelector('.category')) {
 			$('.category').hover(function () {
@@ -272,22 +250,6 @@ window.onload = function () {
 				}, 500)
 			})
 		}
-		// search form
-		// $('#search-inp').on('input', function(){
-		// 	let val = document.querySelector('#search-inp').value,
-		// 		city = document.querySelector('#region-inp').value
-
-		// 	if(val.length >= 3) {
-		// 		$.ajax({
-		// 			url: "https://2426c4087ccb.ngrok.io/search/",
-		// 			data: { "q": val, "city": city },
-		// 			async: false,
-		// 			success: function( data ){
-		// 				console.log('ssend::', data )
-		// 			}
-		// 		})
-		// 	}
-		// })
 	})();
 }
 
@@ -325,16 +287,7 @@ function dropdown_input(for_input) { // for_input - id скрытого инпу
 	})
 }
 
-function hide_or_show_expand_btn() {
-	$(".block-for-calculate-height").text('')
-	$(".product-page__content__product-info__description__text").clone().appendTo('.block-for-calculate-height');
-	let description_text_height = $(".block-for-calculate-height").height()
-	if (description_text_height <= 90) {
-		$('.product-page__content__product-info__description__expand').css('display', 'none')
-	} else {
-		$('.product-page__content__product-info__description__expand').css('display', 'inline-block')
-	}
-}
+
 
 function set_full_height_product_page() {
 	if ($('.product-page__images-block')) {
