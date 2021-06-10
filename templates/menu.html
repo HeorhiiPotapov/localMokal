@@ -14,7 +14,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="{% url 'users:logout' %}">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/user_grey.svg' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/logout_hover.svg' %}" alt="logout">
+					<img class="static" src="{% static './img/icons/logout.svg' %}" alt="logout">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Выход
@@ -35,7 +36,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="{% url 'users:login' %}">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/user_grey.svg' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/user_hover.svg' %}" alt="user">
+					<img class="static" src="{% static './img/icons/user.svg' %}" alt="user">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Войти
@@ -45,7 +47,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="{% url 'users:new' %}">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/user_grey.svg' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/user_hover.svg' %}" alt="user">
+					<img class="static" src="{% static './img/icons/user.svg' %}" alt="user">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Регистрация
@@ -60,7 +63,8 @@
 		<div class="right-bar__menu__item _with-sub-menu">
 			<a class='right-bar__menu__item__link '>
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/favorites.svg' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/favorites_fill.svg' %}" alt="user">
+					<img class="static" src="{% static './img/icons/favorites_green.svg' %}" alt="user">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Избранное
@@ -84,7 +88,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="{% url 'products:add_product' %}">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/icon_plus.svg' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/icon_plus_hover.svg' %}" alt="icon_plus">
+					<img class="static" src="{% static './img/icons/icon_plus.svg' %}" alt="icon_plus">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Создать страницу
@@ -95,7 +100,8 @@
 		<div class="right-bar__menu__item _with-sub-menu">
 			<a class='right-bar__menu__item__link '>
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static './img/icons/favorites.svg' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/my-pages_hover.svg' %}" alt="icon_plus">
+					<img class="static" src="{% static './img/icons/my-pages.svg' %}" alt="icon_plus">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Мои страницы
@@ -134,7 +140,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="{% url 'index' %}">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static '' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/home_hover.svg' %}" alt="home">
+					<img class="static" src="{% static './img/icons/home.svg' %}" alt="home">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Главная
@@ -144,7 +151,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static '' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/store_hover.svg' %}" alt="store">
+					<img class="static" src="{% static './img/icons/store.svg' %}" alt="store">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Поставщикам
@@ -154,7 +162,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static '' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/about-project_hover.svg' %}" alt="mail">
+					<img class="static" src="{% static './img/icons/about-project.svg' %}" alt="mail">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					О проекте
@@ -164,7 +173,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static '' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/mail_hover.svg' %}" alt="mail">
+					<img class="static" src="{% static './img/icons/mail.svg' %}" alt="mail">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Обратная Связь
@@ -177,7 +187,8 @@
 		<div class="right-bar__menu__item">
 			<a class='right-bar__menu__item__link' href="">
 				<div class="right-bar__menu__item__link__icon">
-					<img src="{% static '' %}" alt="">
+					<img class="on-hover" src="{% static './img/icons/message_hover.svg' %}" alt="message">
+					<img class="static" src="{% static './img/icons/message.svg' %}" alt="message">
 				</div>
 				<div class="right-bar__menu__item__link__text">
 					Мова \ Язык

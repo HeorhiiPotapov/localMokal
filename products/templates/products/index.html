@@ -25,7 +25,26 @@
         </div>
       </div>
     </div>
+    <script>
+    // slider home page
+		if (document.querySelector('.slider-temp-wrapper__slider-temp')) {
+			$('.slider-temp-wrapper__slider-temp').slick({
+				speed: 1000,
+				slidesToShow: 1,
+				// autoplay: true,
+				dots: true,
+				arrows: true,
 
+				responsive: [{
+					breakpoint: 992,
+					settings: {
+						arrows: false,
+					}
+				}]
+			});
+		}
+		// /slider home page
+    </script>
     <div class="block-name">
       <div class="container">
         <div class="row">
@@ -72,19 +91,19 @@
                 </div>
               </div> <!-- /category -->
               {% endfor %}
-              <script>
-                (function() {
-                  let all_path_on_cat_icon = document.querySelectorAll(' .category__top-icon path')
-                  all_path_on_cat_icon.forEach( path => {
-                    path.setAttribute('fill',"url(#icon_gradient)")
-                  })
-                })()
-              </script>
+         
             </div>
           </div>
         </div>
       </div>
-
+      <script>
+        (function() {
+          let all_path_on_cat_icon = document.querySelectorAll(' .category__top-icon path')
+          all_path_on_cat_icon.forEach( path => {
+            path.setAttribute('fill',"url(#icon_gradient)")
+          })
+        })()
+      </script>
       <div class="block-name">
         <div class="container">
           <div class="row">

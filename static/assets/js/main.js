@@ -18,28 +18,6 @@ window.onload = function () {
 		fixed_block_from('.header-main', 99999, 'top')
 		fixed_block_from('.mobile_menu_on_bottom', 992, 'bottom')
 
-
-
-		// slider home page
-		if (document.querySelector('.slider-temp-wrapper__slider-temp')) {
-			$('.slider-temp-wrapper__slider-temp').slick({
-				speed: 1000,
-				slidesToShow: 1,
-				// autoplay: true,
-				dots: true,
-				arrows: true,
-
-				responsive: [{
-					breakpoint: 992,
-					settings: {
-						arrows: false,
-					}
-				}]
-			});
-		}
-		// /slider home page
-
-
 		// categories
 		if (document.querySelector('.category')) {
 			$('.category').hover(function () {
@@ -79,106 +57,7 @@ window.onload = function () {
 		}
 		// categories
 
-		// страница товара
-		if (document.querySelector('.product-page')) {
-			$('#content').css('padding', '0')
-			$('.header-main').css('display', 'none')
 
-			window.addEventListener('resize', function () {
-				if ($('body').width() <= 992) { // на моб
-					$('.product-page__content').css({
-						'max-height': 'inherit',
-						'height': 'auto'
-					})
-					$('.product-page__images-block').css({
-						'max-height': '300px',
-						'height': '300px'
-					})
-					$('.product-page').css('margin-top', '80px')
-
-				} else {
-					$('.product-page').css('margin-top', '0')
-					set_full_height_product_page()
-				}
-			})
-			if ($('body').width() <= 992) { // на пк запустить при загрузке страницы
-				$('.product-page__content').css({
-					'max-height': 'inherit',
-					'height': 'auto'
-				})
-				$('.product-page__images-block').css({
-					'max-height': '300px',
-					'height': '300px'
-				})
-				$('.product-page').css('margin-top', '80px')
-			} else {
-				$('.product-page').css('margin-top', '0')
-				set_full_height_product_page()
-			}
-
-			$('.product-page__images-block').slick({
-				speed: 1000,
-				slidesToShow: 1,
-				// autoplay: true,
-				dots: true,
-				arrows: true,
-				responsive: [{
-					breakpoint: 992,
-					settings: {
-						arrows: false,
-					}
-				}]
-			});
-
-
-			// подробнее
-			// скрыть кнопку если текст занимает меньше 90px height
-			window.addEventListener('resize', function () {
-				hide_or_show_expand_btn()
-				// page__content__header вылезает за полосу прокрутки при position: fixed... Поправляю
-				if ($('body').width() > 992) {
-					$('.product-page__content__header').css('width', $('.product-page__content').width() - 17 + "px")
-				} else {
-					$('.product-page__content__header').css('width', '100%')
-				}
-			})
-			if ($('body').width() > 992) {
-				$('.product-page__content__header').css('width', $('.product-page__content').width() - 17 + "px")
-			} else {
-				$('.product-page__content__header').css('width', '100%')
-			}
-
-
-			hide_or_show_expand_btn()
-			// /скрыть кнопку если пекст занимает меньше 90px height
-
-			// развирнуть при клике
-			$('.product-page__content__product-info__description__expand').on('click', function () {
-				$('.product-page__content__product-info__description__text', ).toggleClass('open')
-				$('.product-page__content__product-info__description__expand').toggleClass('open')
-			})
-			// /развирнуть при клике
-
-			// подробнее
-
-			// скрыть шапку если скролится вниз и показать если скролится наверх
-			fixed_block_from('.product-page__content__header', 992, 'top')
-			if ($('body').width() < 992) {
-				// кнопки позвонить и сообщения переместить в футер
-				$('.product-page__content__header__buttons button').appendTo('.mobile_menu_on_bottom')
-				// share переместить в шапку
-				$('.product-page__content__product-info__price-and-favorites__share').appendTo('.product-page__content__header__buttons')
-			}
-
-		} else {
-
-		}
-		// раздел с номерами
-		$('#btn_call, .product-page__content__header__phones__close-btn').on('click', function () {
-			$('.product-page__content__header').toggleClass('active')
-			$('.product-page__content__header__phones').toggleClass('active')
-		})
-		// страница товара
 
 
 
@@ -261,8 +140,10 @@ window.onload = function () {
 
 			})
 			$('._open-right-bar').on('click', function () {
-				$('.right-bar').toggleClass('_open')
-				$('.bg-for-open-mob-menu').toggleClass('_active')
+				document.querySelector('.right-bar').classList.add('_open')
+				document.querySelector('.bg-for-open-mob-menu').classList.add('_active')
+				// $('.right-bar').toggleClass('_open')
+				// $('.bg-for-open-mob-menu').toggleClass('_active')
 			})
 			$('.bg-for-open-mob-menu').on('touchstart', function () {
 				$('.right-bar').toggleClass('_open')
@@ -369,22 +250,6 @@ window.onload = function () {
 				}, 500)
 			})
 		}
-		// search form
-		// $('#search-inp').on('input', function(){
-		// 	let val = document.querySelector('#search-inp').value,
-		// 		city = document.querySelector('#region-inp').value
-
-		// 	if(val.length >= 3) {
-		// 		$.ajax({
-		// 			url: "https://2426c4087ccb.ngrok.io/search/",
-		// 			data: { "q": val, "city": city },
-		// 			async: false,
-		// 			success: function( data ){
-		// 				console.log('ssend::', data )
-		// 			}
-		// 		})
-		// 	}
-		// })
 	})();
 }
 
@@ -422,16 +287,7 @@ function dropdown_input(for_input) { // for_input - id скрытого инпу
 	})
 }
 
-function hide_or_show_expand_btn() {
-	$(".block-for-calculate-height").text('')
-	$(".product-page__content__product-info__description__text").clone().appendTo('.block-for-calculate-height');
-	let description_text_height = $(".block-for-calculate-height").height()
-	if (description_text_height <= 90) {
-		$('.product-page__content__product-info__description__expand').css('display', 'none')
-	} else {
-		$('.product-page__content__product-info__description__expand').css('display', 'inline-block')
-	}
-}
+
 
 function set_full_height_product_page() {
 	if ($('.product-page__images-block')) {
