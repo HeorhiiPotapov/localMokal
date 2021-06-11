@@ -40,13 +40,17 @@
   </svg>
   <!-- /FOR SVG GRADIENT -->
 
-  {% comment %} <!-- этот скрипт нужно загружать только на странице товара и он должен загружатся первым --> {% endcomment %}
+  {% comment %} this must be loaded only from product detail page {% endcomment %}
+  {% if '/products/detail/' in request.path_info %}
   <script src="{% static '/assets/js/product-page.js' %}"></script>
+  {% endif %}
 
   <script src="{% static '/assets/js/main.js' %}"></script>
 
-  {% comment %} <!-- этот скрипт нужно загружать только на дабавления товара--> {% endcomment %}
+  {% comment %} load only on product creation page {% endcomment %}
+  {% if '/products/create/' in request.path_info %}
   <script src="{% static '/assets/js/add_page.js' %}"></script>
+  {% endif %}
 
   <script src="{% static '/assets/js/popup.js' %}"></script>
 
