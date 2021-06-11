@@ -66,8 +66,7 @@
 								{% for category in categories %}
 								<div class="category_h">
 									{% if category.id in subscribed %}True{% else %}False {% endif %}
-									<input type="hidden" name="subscribe" value="{{ category.id }}" />
-									<input type="checkbox" class="subscription-to-shares__category-checkbox" />
+									<input type="checkbox" name="subscribe" class="subscription-to-shares__category-checkbox" value="{{ category.id }}" />
 									<div class="category_h__top-icon">
 										<div class="category_h__top-icon__X"></div>
 										{{ category.image_content }}

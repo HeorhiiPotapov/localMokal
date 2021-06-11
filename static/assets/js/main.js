@@ -108,21 +108,21 @@ window.onload = function () {
 
 		// tmp checkbox
 		if(document.querySelector('.temp-checkbox')) {
-			let all_tmp_checkbox = document.querySelectorAll('.temp-checkbox')
-			all_tmp_checkbox.forEach(checkbox => {
-				let img_active = checkbox.querySelector('.icon_active'),
-					just_img = checkbox.querySelector('.just_icon'),
-					inp = checkbox.parentNode.querySelector('input[type="checkbox"')
-				checkbox.addEventListener('click', function() {
-					$(checkbox).toggleClass('_active')
-					if(inp.checked) {
-						inp.setAttribute('checked', 'false')
-					}else {
-						inp.setAttribute('checked', 'true')
-						
-					}
-				})
+			let checkbox = document.querySelector('.temp-checkbox')
+			// all_tmp_checkbox.forEach(checkbox => {
+			let img_active = checkbox.querySelector('.icon_active'),
+				just_img = checkbox.querySelector('.just_icon'),
+				inp = checkbox.querySelector('input[type="checkbox"]'),
+				icon_ = checkbox.querySelector('.register-form__inp-block__checkbox-temp')
+			checkbox.addEventListener('click', function() {
+				$(icon_).toggleClass('_active')
+				if( inp.checked ) {
+					inp.setAttribute('checked', false)
+				}else {
+					inp.setAttribute('checked', true)
+				}
 			})
+			// })
 		}
 		// /tmp checkbox
 
