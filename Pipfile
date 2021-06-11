@@ -22,6 +22,7 @@ django-storages = "*"
 dropbox = "*"
 pynvim = "*"
 neovim = "*"
+black = "*"
 
 [dev-packages]
 

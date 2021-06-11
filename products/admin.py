@@ -28,7 +28,7 @@ class ImageInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     list_filter = ('category', 'city', 'is_active', 'timestamp')
-    readonly_fields = ['slug', ]
+    readonly_fields = ['slug', 'public_id']
     fields = [
         'video',
         'slug',
@@ -42,7 +42,8 @@ class ProductAdmin(admin.ModelAdmin):
         'discount',
         'expiry_date',
         'discount_overview',
-        'tags']
+        'tags',
+        'public_id']
     list_display = ('name',
                     'category',
                     'price',

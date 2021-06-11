@@ -40,18 +40,18 @@
   </svg>
   <!-- /FOR SVG GRADIENT -->
 
-  <!-- этот скрипт нужно загружать только на странице товара и он должен загружатся первым -->
-  <script src="{% static './assets/js/product-page.js' %}"></script>
+  {% comment %} <!-- этот скрипт нужно загружать только на странице товара и он должен загружатся первым --> {% endcomment %}
+  <script src="{% static '/assets/js/product-page.js' %}"></script>
 
-  <script src="{% static './assets/js/main.js' %}"></script>
+  <script src="{% static '/assets/js/main.js' %}"></script>
 
-  <!-- этот скрипт нужно загружать только на дабавления товара-->
-  <script src="{% static './assets/js/add_page.js' %}"></script>
+  {% comment %} <!-- этот скрипт нужно загружать только на дабавления товара--> {% endcomment %}
+  <script src="{% static '/assets/js/add_page.js' %}"></script>
 
-  <script src="{% static './assets/js/popup.js' %}"></script>
+  <script src="{% static '/assets/js/popup.js' %}"></script>
 
   <script>
-    const imgLocation = "{% static './img/icons/' %}";
+    const imgLocation = "{% static '/img/icons/' %}";
     let favCount = $("#favorites_count");
   </script>
 

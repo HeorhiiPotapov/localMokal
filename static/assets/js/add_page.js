@@ -33,22 +33,21 @@ if (document.querySelector("form#form_add_page")) {
       sub_cat_options.forEach((option) => {
         let name_parent_cat = option.getAttribute("data-main-cat");
 
-        if (name_parent_cat == '-1') {
-          return
+        if (name_parent_cat == "-1") {
+          return;
         }
 
         if (name_parent_cat != main_cat_name) {
           // скрыть подрубрики которые пренадлежат другой родительской группе
-          option.classList.add('_display_none')
+          option.classList.add("_display_none");
         } else {
-          option.classList.remove('_display_none')
+          option.classList.remove("_display_none");
         }
 
         // скріть value(подкатегорию)
-        sub_cat.value = ''
+        sub_cat.value = "";
       });
     });
-
   });
 
   let form_add_page = document.querySelector("form#form_add_page");
@@ -175,10 +174,7 @@ if (document.querySelector("form#form_add_page")) {
 
       // добавляю атрибут name инпуту
       let input_url = new_block_loaded_url.querySelector("input");
-      input_url.setAttribute(
-        "name",
-        "video"
-      );
+      input_url.setAttribute("name", "video");
       input_url.removeAttribute("disabled");
 
       // получаю от пользователя url на виде и достаю параметны из ссыдки
@@ -270,8 +266,8 @@ if (document.querySelector("form#form_add_page")) {
       // получаю на какой стороне находится курсор, на левой или правой
       let part_on_el = parseInt(
         (get_pos_cursor_to_the_parent(e).x / 160 + "")
-        .split(".")[1]
-        .substr(0, 1)
+          .split(".")[1]
+          .substr(0, 1)
       );
       // получаю елемен, поторый в данный момент назодится под этим data-pos
       let elem_on_the_cursor = document.querySelector(
@@ -328,8 +324,8 @@ if (document.querySelector("form#form_add_page")) {
       // получаю на какой стороне находится курсор, на левой или правой
       var part_on_el = parseInt(
         (get_pos_cursor_to_the_parent(e).x / 160 + "")
-        .split(".")[1]
-        .substr(0, 1)
+          .split(".")[1]
+          .substr(0, 1)
       );
       let clone_elmnt = elmnt.cloneNode(true);
 
@@ -404,7 +400,7 @@ if (document.querySelector("form#form_add_page")) {
       var y = event.clientY - bounds.top;
       return {
         x: x,
-        y: y
+        y: y,
       };
     }
   }

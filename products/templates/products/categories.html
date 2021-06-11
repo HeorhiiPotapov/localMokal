@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load products_tags %}
 {% block content %}
 <div id="page">
   {% include 'nav.html' %}
@@ -9,6 +10,7 @@
           <div class="col-12">
             <div class="popup-category">
               <div class="popup-category__main-categories">
+              {% get_categories_list as categories %}
               {% for cat in categories %}
                 <a href='{{ cat.get_absolute_url }}' data-cat-id='{{ cat.pk }}' class="popup-category__main-categories__cat">
                   <div class="popup-category__main-categories__cat__icon">

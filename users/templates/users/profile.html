@@ -9,8 +9,8 @@
         <div class="col-12">
           <div class="my-contacts">
             <h2>Мои контакты</h2>
-
-            <form class='my-contacts__form' action="">
+            <form class='my-contacts__form' action="{% url 'users:profile' %}" method="POST">
+              {% csrf_token %}
               <div class="my-contacts__form__left">
                 <div class="my-contacts__form__left__upload-file">
                   <i class="fa fa-plus" aria-hidden="true"></i>
@@ -19,12 +19,11 @@
               <div class="my-contacts__form__center">
                 <div class="my-contacts__form__center__block-fields">
                   <div class="my-contacts__form__center__block-fields__title">
-                    <i class="fa fa-building my-contacts__form__center__block-fields__title__icon"
-                      aria-hidden="true"></i>
+                    <i class="fa fa-building my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
                     Компания
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _company_name">
-                    <input type="text" class='tmp-input-text' name='brand'>
+                    <input type="text" class='tmp-input-text' name='brand' value="{{ request.user.profile.brand }}">
                   </div>
                 </div>
 
@@ -34,21 +33,20 @@
                     Страна
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _country">
-                    <input type="text" class='tmp-input-text' name='country'>
+                    <input type="text" class='tmp-input-text' name='country' value="{{ request.user.profile.country }}">
                   </div>
                 </div>
 
                 <div class="my-contacts__form__center__block-fields">
                   <div class="my-contacts__form__center__block-fields__title">
-                    <i class="fa fa-map-marker my-contacts__form__center__block-fields__title__icon"
-                      aria-hidden="true"></i>
+                    <i class="fa fa-map-marker my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
                     Город / адрес
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _addres">
-                    <input type="text" class='tmp-input-text' name='city'>
+                    <input type="text" class='tmp-input-text' name='city' value="{{ request.user.profile.get_city_display }}"">
                   </div>
-                  <div class="my-contacts__form__center__block-fields__inp-block _addres1">
-                    <input type="text" class='tmp-input-text' name='address'>
+                  <div class=" my-contacts__form__center__block-fields__inp-block _addres1">
+                    <input type="text" class='tmp-input-text' name='address' value="{{ request.user.profile.address }}">
                   </div>
                 </div>
                 <div class="my-contacts__form__center__block-fields">
@@ -58,13 +56,13 @@
                   </div>
                   <!-- ТУТ ИЗМЕНЕНИЯ -->
 
+                  {% for phone in request.user.phones.all %}
                   <div class="my-contacts__form__center__block-fields__inp-block _phone">
-                    <input type="text" class='tmp-input-text' name='phone'>
+                    <input type="text" class='tmp-input-text' name='phone' value="{{ phone.prefix }} {{ phone.phone }}">
                     <div class="phone_socials">
                       <div class="phone_socials__phone-social">
                         <input type="checkbox" name="phone-socials" value='telegram' id="">
-                        <img class='chenge_checkbox active' src="{% static './img/icons/telegram.png' %}"
-                          alt="telegram">
+                        <img class='chenge_checkbox active' src="{% static './img/icons/telegram.png' %}" alt="telegram">
                         <img class='chenge_checkbox grey' src="{% static './img/icons/telegram_grey.png' %}" alt="">
                       </div>
                       <div class="phone_socials__phone-social">
@@ -75,27 +73,24 @@
                       </div>
                       <div class="phone_socials__phone-social">
                         <input type="checkbox" name="phone-socials" value='whatsapp' id="">
-                        <img class='chenge_checkbox active' src="{% static './img/icons/whatsApp.png' %}"
-                          alt="whatsApp">
-                        <img class='chenge_checkbox grey' src="{% static './img/icons/whatsApp_grey.png' %}"
-                          alt="whatsApp">
+                        <img class='chenge_checkbox active' src="{% static './img/icons/whatsApp.png' %}" alt="whatsApp">
+                        <img class='chenge_checkbox grey' src="{% static './img/icons/whatsApp_grey.png' %}" alt="whatsApp">
                       </div>
                       <div class="phone_socials__phone-social">
                         <input type="checkbox" name="phone-socials" value='facebook' id="">
-                        <img class='chenge_checkbox active' src="{% static './img/icons/facebook.png' %}"
-                          alt="facebook">
-                        <img class='chenge_checkbox grey' src="{% static './img/icons/facebook_grey.png' %}"
-                          alt="facebook">
+                        <img class='chenge_checkbox active' src="{% static './img/icons/facebook.png' %}" alt="facebook">
+                        <img class='chenge_checkbox grey' src="{% static './img/icons/facebook_grey.png' %}" alt="facebook">
                       </div>
                     </div>
                   </div>
+                  {% endfor %}
+
                   <div class="my-contacts__form__center__block-fields__inp-block _phone">
                     <input type="text" class='tmp-input-text' name='phone1'>
                     <div class="phone_socials">
                       <div class="phone_socials__phone-social">
                         <input type="checkbox" name="phone1-socials" value='telegram' id="">
-                        <img class='chenge_checkbox active' src="{% static './img/icons/telegram.png' %}"
-                          alt="telegram">
+                        <img class='chenge_checkbox active' src="{% static './img/icons/telegram.png' %}" alt="telegram">
                         <img class='chenge_checkbox grey' src="{% static './img/icons/telegram_grey.png' %}" alt="">
                       </div>
                       <div class="phone_socials__phone-social">
@@ -106,17 +101,13 @@
                       </div>
                       <div class="phone_socials__phone-social">
                         <input type="checkbox" name="phone1-socials" value='whatsapp' id="">
-                        <img class='chenge_checkbox active' src="{% static './img/icons/whatsApp.png' %}"
-                          alt="whatsApp">
-                        <img class='chenge_checkbox grey' src="{% static './img/icons/whatsApp_grey.png' %}"
-                          alt="whatsApp">
+                        <img class='chenge_checkbox active' src="{% static './img/icons/whatsApp.png' %}" alt="whatsApp">
+                        <img class='chenge_checkbox grey' src="{% static './img/icons/whatsApp_grey.png' %}" alt="whatsApp">
                       </div>
                       <div class="phone_socials__phone-social">
                         <input type="checkbox" name="phone1-socials" value='facebook' id="">
-                        <img class='chenge_checkbox active' src="{% static './img/icons/facebook.png' %}"
-                          alt="facebook">
-                        <img class='chenge_checkbox grey' src="{% static './img/icons/facebook_grey.png' %}"
-                          alt="facebook">
+                        <img class='chenge_checkbox active' src="{% static './img/icons/facebook.png' %}" alt="facebook">
+                        <img class='chenge_checkbox grey' src="{% static './img/icons/facebook_grey.png' %}" alt="facebook">
                       </div>
                     </div>
                   </div>
@@ -161,8 +152,7 @@
                 </div>
                 <div class="my-contacts__form__center__block-fields">
                   <div class="my-contacts__form__center__block-fields__title">
-                    <i class="fa fa-envelope-o my-contacts__form__center__block-fields__title__icon"
-                      aria-hidden="true"></i>
+                    <i class="fa fa-envelope-o my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
                     E-mail
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _email">
@@ -201,8 +191,7 @@
               <div class="my-contacts__form__center">
                 <div class="my-contacts__form__center__block-fields">
                   <div class="my-contacts__form__center__block-fields__title">
-                    <i class="fa fa-building my-contacts__form__center__block-fields__title__icon"
-                      aria-hidden="true"></i>
+                    <i class="fa fa-building my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
                     Название / Имя
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _company_name">
@@ -211,13 +200,11 @@
                 </div>
                 <div class="my-contacts__form__center__block-fields">
                   <div class="my-contacts__form__center__block-fields__title">
-                    <i class="fa fa-map-marker my-contacts__form__center__block-fields__title__icon"
-                      aria-hidden="true"></i>
+                    <i class="fa fa-map-marker my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
                     Город / адрес
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _addres">
-                    <input type="text" class='tmp-input-text' name='address'
-                      {% if request.user.profile.get_city_display %} value="{{ request.user.profile.get_city_display }}
+                    <input type="text" class='tmp-input-text' name='address' {% if request.user.profile.get_city_display %} value="{{ request.user.profile.get_city_display }}
                       {% endif %}">
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _addres1">
@@ -241,8 +228,7 @@
                 </div>
                 <div class="my-contacts__form__center__block-fields">
                   <div class="my-contacts__form__center__block-fields__title">
-                    <i class="fa fa-envelope-o my-contacts__form__center__block-fields__title__icon"
-                      aria-hidden="true"></i>
+                    <i class="fa fa-envelope-o my-contacts__form__center__block-fields__title__icon" aria-hidden="true"></i>
                     E-mail
                   </div>
                   <div class="my-contacts__form__center__block-fields__inp-block _email">

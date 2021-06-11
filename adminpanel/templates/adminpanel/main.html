@@ -69,7 +69,11 @@
                   {{ item.name }}
                 </td>
                 <td>
-                  {{ item.code }}
+                  {% if item.public_id %}
+                  {{ item.public_id }}
+                  {% else %}
+                  --||--
+                  {% endif %}
                 </td>
                 <td>
                   <span class='_status-in-archive'>

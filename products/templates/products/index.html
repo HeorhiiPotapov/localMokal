@@ -26,24 +26,24 @@
       </div>
     </div>
     <script>
-    // slider home page
-		if (document.querySelector('.slider-temp-wrapper__slider-temp')) {
-			$('.slider-temp-wrapper__slider-temp').slick({
-				speed: 1000,
-				slidesToShow: 1,
-				// autoplay: true,
-				dots: true,
-				arrows: true,
+      // slider home page
+      if (document.querySelector('.slider-temp-wrapper__slider-temp')) {
+        $('.slider-temp-wrapper__slider-temp').slick({
+          speed: 1000,
+          slidesToShow: 1,
+          // autoplay: true,
+          dots: true,
+          arrows: true,
 
-				responsive: [{
-					breakpoint: 992,
-					settings: {
-						arrows: false,
-					}
-				}]
-			});
-		}
-		// /slider home page
+          responsive: [{
+            breakpoint: 992,
+            settings: {
+              arrows: false,
+            }
+          }]
+        });
+      }
+      // /slider home page
     </script>
     <div class="block-name">
       <div class="container">
@@ -54,7 +54,6 @@
         </div>
       </div>
     </div>
-
     <div class="categories-wrapper">
       <div class="container">
         <div class="row">
@@ -69,7 +68,7 @@
                 <div class="category__bottom-text">
                   <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
                 </div>
-                <!-- подкатегории наверно убрать-->
+                <!-- may be delete sub categories -->
 
                 <div class="category__subcat">
                   <div class="category__subcat__main-cat-name">
@@ -77,30 +76,28 @@
                     <a href="{{ category.get_absolute_url }}" class="category__subcat__main-cat-name__link">
                       <div class="category__subcat__main-cat-name__link__icon">
 
-                        {{ category.image_content|force_escape }}
+                        {{ category.image_content }}
                       </div>
                       <div class="category__subcat__main-cat-name__link__text">
                         {{ category.name }}
                       </div>
                     </a>
-
                   </div>
-
                   {% get_childrens category %}
-          
+
                 </div>
               </div> <!-- /category -->
               {% endfor %}
-         
+
             </div>
           </div>
         </div>
       </div>
       <script>
-        (function() {
+        (function () {
           let all_path_on_cat_icon = document.querySelectorAll(' .category__top-icon path')
-          all_path_on_cat_icon.forEach( path => {
-            path.setAttribute('fill',"url(#icon_gradient)")
+          all_path_on_cat_icon.forEach(path => {
+            path.setAttribute('fill', "url(#icon_gradient)")
           })
         })()
       </script>
@@ -124,16 +121,14 @@
                   <div class="product__header-image-wrapper__header-image">
                     {% if product.discount > 0 %}
                     <div class="product__header-image-wrapper__header-image__sale-block">
-                      <img class="product__header-image-wrapper__header-image__sale-block__bg"
-                        src="{% static './img/icons/sale_bg.svg' %}" alt="" />
+                      <img class="product__header-image-wrapper__header-image__sale-block__bg" src="{% static './img/icons/sale_bg.svg' %}" alt="" />
                       <span class="product__header-image-wrapper__header-image__sale-block__text">
                         АКЦИЯ!
                       </span>
                     </div>
                     {% endif %}
 
-                    <img class="product__header-image-wrapper__header-image__product-img"
-                      src="{{ product.images.first.image.url }}" alt="product_name" />
+                    <img class="product__header-image-wrapper__header-image__product-img" src="{{ product.images.first.image.url }}" alt="product_name" />
                   </div>
                 </div>
                 <div class="product__name">
@@ -203,6 +198,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
+
               <div class="buyers-and-suppliers-cards">
                 <div class="buyers-and-suppliers-cards__card">
                   <div class="buyers-and-suppliers-cards__card__title">

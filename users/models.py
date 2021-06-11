@@ -64,7 +64,7 @@ class Phone(models.Model):
     social = models.CharField(
         max_length=2, choices=SOCIAL_CHOICES, default=PRIMARY)
     profile = models.ForeignKey(
-        Profile, on_delete=models.CASCADE, related_name="phone")
+        Profile, on_delete=models.CASCADE, related_name="phones")
     phone = models.CharField(unique=True, max_length=13)
     prefix = models.CharField(
         max_length=4, default="+38", null=True, blank=True)

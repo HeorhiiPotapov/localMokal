@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.urls import reverse
 from django.core.validators import MinValueValidator, \
     MaxValueValidator
@@ -9,7 +8,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from .utils import City
 from django.conf import settings
 from .managers import ProductManager
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.utils.text import slugify
 from django.core.validators import FileExtensionValidator
 from taggit.managers import TaggableManager
@@ -72,6 +71,7 @@ class Product(models.Model):
                                                           MaxValueValidator(100)])
     discount_overview = models.TextField(max_length=200, null=True, blank=True)
     expiry_date = models.DateTimeField(null=True, blank=True)
+    public_id = models.CharField(max_length=20, null=True, blank=True)
 
     objects = ProductManager()
 
@@ -82,6 +82,8 @@ class Product(models.Model):
         self.slug = slugify(self.name + '-' + str(self.id))
         if not self.expiry_date:
             self.expiry_date = timezone.now() + timedelta(days=14)
+        if not self.public_id:
+            self.public_id = f"{datetime.now().year % 1000}-{self.id}"
         return super(Product, self).save(*args, **kwargs)
 
     class Meta:

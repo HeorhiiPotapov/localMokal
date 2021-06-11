@@ -16,6 +16,7 @@ from .tokens import account_activation_token
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Profile, Phone
 
 User = get_user_model()
 
@@ -76,20 +77,15 @@ class ActivationView(View):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        profile_form = ProfileEditForm(request.POST,
-                                       request.FILES,
-                                       instance=request.user.profile)
-        phone_form = AddPhoneForm(request.POST,
-                                  instance=request.user.profile)
-        if profile_form.is_valid() and phone_form.is_valid():
-            profile_form.save()
+        profile_form = ProfileEditForm(request.POST)
+        phone_form = AddPhoneForm(request.POST)
+        if profile_form.is_valid():
+            updated = profile_form.save(commit=False)
+            updated.user = request.user
+            updated.save()
+        if phone_form.is_valid():
             phone_form.save()
-            return redirect('users:profile')
-    profile_form = ProfileEditForm(instance=request.user.profile)
-    phone_form = AddPhoneForm(instance=request.user.profile)
-    context = {'profile_form': profile_form,
-               'phone_form': phone_form}
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/profile.html')
 
 # @login_required
 # def profile(request):
