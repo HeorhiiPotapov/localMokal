@@ -18,8 +18,7 @@ from django.utils.html import format_html
 
 class Category(MPTTModel):
     image = models.FileField(upload_to="category_img",
-                             validators=[FileExtensionValidator(['svg'])]
-                             )
+                             validators=[FileExtensionValidator(['svg'])])
     name = models.CharField(max_length=300)
     slug = models.SlugField(max_length=300, unique=True)
     parent = TreeForeignKey("self", on_delete=models.CASCADE,
@@ -30,6 +29,11 @@ class Category(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['-timestamp']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ('-timestamp',)
@@ -54,13 +58,14 @@ class Category(MPTTModel):
 class Product(models.Model):
     name = models.CharField(max_length=300)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    slug = models.SlugField(unique=True, editable=False)
+    slug = models.SlugField(unique=True, max_length=50)
     video = models.URLField(null=True, blank=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
                               related_name="products")
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 related_name='products')
+                                 related_name='products',
+                                 null=True, blank=True)
     overview = models.TextField(max_length=2000)
     is_active = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -79,12 +84,12 @@ class Product(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name + '-' + str(self.id))
+        self.slug = slugify(self.name)
         if not self.expiry_date:
             self.expiry_date = timezone.now() + timedelta(days=14)
         if not self.public_id:
             self.public_id = f"{datetime.now().year % 1000}-{self.id}"
-        return super(Product, self).save(*args, **kwargs)
+        super(Product, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Product"

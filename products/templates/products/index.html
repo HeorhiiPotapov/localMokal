@@ -66,7 +66,7 @@
                   {{ category.image_content }}
                 </div>
                 <div class="category__bottom-text">
-                  <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                  <a href="{{ category.get_absolute_url }}">{{ category.name|truncatechars:15 }}</a>
                 </div>
                 <!-- may be delete sub categories -->
 
@@ -79,7 +79,7 @@
                         {{ category.image_content }}
                       </div>
                       <div class="category__subcat__main-cat-name__link__text">
-                        {{ category.name }}
+                        {{ category.name|truncatechars:15 }}
                       </div>
                     </a>
                   </div>

@@ -1,6 +1,7 @@
 from django.db.models import Q, Manager
 
 
+
 class ProductManager(Manager):
 
     """ Basic Product manager whose impleement some required staff """

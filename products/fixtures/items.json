@@ -1,5 +1,93 @@
 [
   {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Tunisia"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Tokelau"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Pitcairn Islands"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Azerbaijan"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Gambia"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 6,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Eritrea"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 7,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Greece"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 8,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Antarctica"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 9,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "Turkmenistan"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 10,
+    "fields": {
+      "name": "Любое имя для категории",
+      "slug": "somehowq"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Любое ия для категории",
+      "slug": "somewq"
+    }
+  },
+  {
     "model": "products.product",
     "pk": 1,
     "fields": {
@@ -9,9 +97,6 @@
       "owner": 1,
       "category": 1,
       "overview": "local plugin would be an enthusiast who is running a cluster of Raspberry Pis. Another example would be someone running several virtual machines managed by Vagrant. The DNF local plugin reduces the time required for DNF transactions. It accomplishes this by transparently creating and managing a local R",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother3"
     }
   },
@@ -25,9 +110,6 @@
       "owner": 1,
       "category": 1,
       "overview": "le would be someone running several virtual machines managed by Vagrant. The DNF local plugin reduces the",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother3333"
     }
   },
@@ -41,9 +123,6 @@
       "owner": 1,
       "category": 1,
       "overview": "gin would be an enthusiast who is running a cluster of Raspberry Pis. Another example would be someone running several virtual machines managed by Vagrant. The DNF local plugin reduces the time required for DNF transactions. It accomplishes this by transparently creating and managing a local R",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother3333ewdGVDSFZV"
     }
   },
@@ -57,9 +136,6 @@
       "owner": 1,
       "category": 1,
       "overview": "If you are aVagrant. The DNF local plugin reduces the time required for DNF transactions. It accomplishes this by transparently creating and managing a local R",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother222"
     }
   },
@@ -73,9 +149,6 @@
       "owner": 1,
       "category": 1,
       "overview": "Little text about product Lorem",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother3999"
     }
   },
@@ -89,9 +162,6 @@
       "owner": 1,
       "category": 1,
       "overview": "If you are a Fedora Linux enthusiast or a developer working with multiple instances of Fedora Linux then you might benefit from the DNF local plugin. An example of someone who would benefit from the DNF local plugin would be an enthusiast who is running a cluster of Raspberry Pis. Another example would be someone running several virtual machines managed by Vagrant. The DNF local plugin reduces the time required for DNF transactions. It accomplishes this by transparently creating and managing a local R",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother11111"
     }
   },
@@ -105,9 +175,6 @@
       "owner": 1,
       "category": 1,
       "overview": "If you are a Fedora Linux enthusiast or a developer working with multiple instances of Fedora Linux then you might benefit from the DNF local plugin. An example of someone who would benefit from the DNF local plugin would be an enthusiast who is running a cluster of Raspberry Pis. Another example would be someone running several virtual machines managed by Vagrant. The DNF local plugin reduces the time required for DNF transactions. It accomplishes this by transparently creating and managing a local R",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother12121212121212"
     }
   },
@@ -121,9 +188,6 @@
       "owner": 1,
       "category": 1,
       "overview": "If you are a Fedora Linux enthusiast or a developer working with multiple instances of Fedora Linux then you might benefit from the DNF local plugin. An example of someone who would benefit from the DNF local plugin would be an enthusiast who is running a cluster of Raspberry Pis. Another example would be someone running several virtual machines managed by Vagrant. The DNF local plugin reduces the time required for DNF transactions. It accomplishes this by transparently creating and managing a local R",
-      "is_active": true,
-      "timestamp": "2021-04-16T15:01:56Z",
-      "city": "1",
       "slug": "asnother0000"
     }
   }

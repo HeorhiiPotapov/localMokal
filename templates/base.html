@@ -48,9 +48,9 @@
   <script src="{% static '/assets/js/main.js' %}"></script>
 
   {% comment %} load only on product creation page {% endcomment %}
-  {% if '/products/create/' in request.path_info %}
+  {% comment %} {% if '/products/create/' in request.path_info %} {% endcomment %}
   <script src="{% static '/assets/js/add_page.js' %}"></script>
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
 
   <script src="{% static '/assets/js/popup.js' %}"></script>
 
